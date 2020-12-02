@@ -57,7 +57,6 @@ public class AdminController {
         return "admin/country/all";
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/city/all")
     public String getCitiesPage(
             @RequestParam(required = false, defaultValue = "0") Integer page,

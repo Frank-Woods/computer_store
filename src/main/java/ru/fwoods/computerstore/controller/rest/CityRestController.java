@@ -18,6 +18,7 @@ import java.util.Map;
 
 @RestController
 public class CityRestController {
+
     @Autowired
     private CityService cityService;
 
