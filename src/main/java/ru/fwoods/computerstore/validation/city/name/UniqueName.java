@@ -1,7 +1,5 @@
 package ru.fwoods.computerstore.validation.city.name;
 
-import ru.edjll.shop.validation.user.email.UniqueEmailValidator;
-
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.*;

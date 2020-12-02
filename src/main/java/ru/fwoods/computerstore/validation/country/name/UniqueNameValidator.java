@@ -1,8 +1,8 @@
 package ru.fwoods.computerstore.validation.country.name;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import ru.edjll.shop.domain.Country;
-import ru.edjll.shop.service.CountryService;
+import ru.fwoods.computerstore.domain.Country;
+import ru.fwoods.computerstore.service.CountryService;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
