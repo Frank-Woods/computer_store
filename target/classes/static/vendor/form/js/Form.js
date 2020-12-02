@@ -1,7 +1,6 @@
 class Form {
     constructor(node = null, spinner = null) {
         this.node = node ? node : this.createNode();
-        this.spinner = spinner;
         this.items = [];
     }
 
@@ -18,22 +17,8 @@ class Form {
         return node;
     }
 
-    activateSpinner() {
-        if (this.spinner) {
-            if (!this.spinner.classList.contains('custom-spinner-blurred')) {
-                this.spinner.classList.add('custom-spinner-blurred');
-            }
-            this.node.append(this.spinner);
-        }
-    }
-
-    deactivateSpinner() {
-        if (this.spinner) this.spinner.remove();
-    }
-
     scan() {
         this.items = this.items.concat(Form.scan(this.node, this, this));
-        this.deactivateSpinner();
     }
 
     static scan(node, form, parentFormItem) {

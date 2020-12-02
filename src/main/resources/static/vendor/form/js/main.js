@@ -48,8 +48,6 @@ for (let form of forms) {
                 });
             }
 
-            form.activateSpinner();
-
             const request = new XMLHttpRequest();
             request.open(requestParam.method, requestParam.url, true);
             request.setRequestHeader(requestParam.csrf.header, requestParam.csrf.value);
@@ -68,7 +66,6 @@ for (let form of forms) {
                     unused.forEach(error => {
                         new Toast(ToastEvent.ERROR, 'Ошибка', error[1], 300000);
                     });
-                    form.deactivateSpinner();
                 } else if (request.status === 404) {
                     new Toast(ToastEvent.ERROR, 'Ошибка', 'Страница не найдена', 300000);
                 } else {

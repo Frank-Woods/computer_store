@@ -21,13 +21,6 @@ public class CountryController {
         return "admin/country/create";
     }
 
-    @PostMapping("/admin/country/create")
-    public String createCountry(Country country) {
-        countryService.saveCountry(country);
-        return "redirect:/admin/countries";
-    }
-
-    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/admin/country/update/{id}")
     public String getCountriesUpdate(
             @PathVariable Long id,

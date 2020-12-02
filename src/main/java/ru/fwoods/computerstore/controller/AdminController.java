@@ -50,7 +50,7 @@ public class AdminController {
         Pageable pageable = PageRequest.of(page, 15);
         Page<Country> countriesPage = countryService.getPageCountries(pageable);
         model.put("countriesPage", countriesPage);
-        return "admin/countries";
+        return "admin/countries/all";
     }
 
     @GetMapping("/manufacturers")
@@ -61,7 +61,7 @@ public class AdminController {
         Pageable pageable = PageRequest.of(page, 15);
         Page<Manufacturer> manufacturersPage = manufacturerService.getPageManufacturers(pageable);
         model.put("manufacturersPage", manufacturersPage);
-        return "admin/manufacturers";
+        return "admin/manufacturers/all";
     }
 
     @GetMapping("/categories")
@@ -72,7 +72,7 @@ public class AdminController {
         Pageable pageable = PageRequest.of(page, 15);
         Page<ProductCategory> categoriesPage = productCategoryService.getPageCategories(pageable);
         model.put("categoriesPage", categoriesPage);
-        return "admin/categories";
+        return "admin/categories/all";
     }
 
     @GetMapping("/sales")
@@ -83,7 +83,7 @@ public class AdminController {
         Pageable pageable = PageRequest.of(page, 15);
         Page<Sale> salesPage = saleService.getPageSales(pageable);
         model.put("sales", salesPage);
-        return "admin/sales";
+        return "admin/sales/all";
     }
 
     @GetMapping("/products")
@@ -94,7 +94,7 @@ public class AdminController {
         Pageable pageable = PageRequest.of(page, 15);
         Page<ProductData> productsPage = productDataService.getPageProducts(pageable);
         model.put("products", productsPage);
-        return "admin/products";
+        return "admin/products/all";
     }
 
     @GetMapping("/promotions")
@@ -105,7 +105,7 @@ public class AdminController {
         Pageable pageable = PageRequest.of(page, 15);
         Page<Promotion> promotionsPage = promotionService.getPagePromotion(pageable);
         model.put("promotions", promotionsPage);
-        return "admin/promotions";
+        return "admin/promotions/all";
     }
 
     @GetMapping("/users")
@@ -116,6 +116,6 @@ public class AdminController {
         Pageable pageable = PageRequest.of(page, 15);
         Page<User> usersPage = userService.getPageUser(pageable);
         model.put("users", usersPage);
-        return "admin/users";
+        return "admin/users/all";
     }
 }

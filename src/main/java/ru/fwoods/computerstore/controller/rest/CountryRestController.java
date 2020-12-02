@@ -2,7 +2,6 @@ package ru.fwoods.computerstore.controller.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,13 +17,13 @@ import java.util.Map;
 
 @RestController
 public class CountryRestController {
+
     @Autowired
     private CountryService countryService;
 
     @Autowired
     private ControllerUtils controllerUtils;
 
-    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping(value = "/admin/country/create")
     public ResponseEntity createCountry(
             @RequestPart(name = "country", required = false) @Validated Country country,
@@ -38,7 +37,6 @@ public class CountryRestController {
         return ResponseEntity.ok().body(null);
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping(value = "/admin/country/update")
     public ResponseEntity updateCountry(
             @RequestPart(name = "country", required = false) @Validated Country country,
@@ -52,7 +50,6 @@ public class CountryRestController {
         return ResponseEntity.ok().body(null);
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping(value = "/admin/country/delete")
     public ResponseEntity<Map<String, String>> deleteCountry(@RequestPart(name = "country") IdWrapper idWrapper) {
         try {
