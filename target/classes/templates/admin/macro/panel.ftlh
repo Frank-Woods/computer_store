@@ -29,8 +29,8 @@
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Страницы:</h6>
-                    <a class="collapse-item" href="#">Все страны</a>
-                    <a class="collapse-item" href="#">Добавить</a>
+                    <a class="collapse-item" href="/admin/country/all">Все страны</a>
+                    <a class="collapse-item" href="/admin/country/create">Добавить</a>
                 </div>
             </div>
         </li>

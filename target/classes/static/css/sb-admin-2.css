@@ -4725,6 +4725,7 @@ input[type="button"].btn-block {
   padding-left: 0;
   list-style: none;
   border-radius: 0.35rem;
+  justify-content: flex-end;
 }
 
 .page-link {
@@ -11266,4 +11267,23 @@ body.sidebar-toggled footer.sticky-footer {
 td > a > img {
   max-width: 50px;
   max-height: 50px;
+}
+form.dropdown-item {
+  padding: 0;
+}
+form.dropdown-item > button {
+  display: block;
+  width: 100%;
+  padding: 0.25rem 1.5rem;
+  clear: both;
+  font-weight: 400;
+  color: #3a3b45;
+  text-align: inherit;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 0;
+  outline: none;
+}
+form.dropdown-item > button:focus {
+  color: white;
 }

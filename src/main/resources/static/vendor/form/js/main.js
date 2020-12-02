@@ -62,7 +62,7 @@ for (let form of forms) {
                         window.location = request.getResponseHeader('Referer');
                     }
                 } else if (request.status >= 400 && request.status <= 401) {
-                    const unused = form.setErrors(request.response);
+                    const unused = customForm.setErrors(request.response);
                     unused.forEach(error => {
                         new Toast(ToastEvent.ERROR, 'Ошибка', error[1], 300000);
                     });

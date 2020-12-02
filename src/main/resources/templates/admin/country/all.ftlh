@@ -1,4 +1,10 @@
 <#import "../macro/main.ftlh" as main>
+<#import "../../macro/pagination.ftlh" as pagination>
+<#import "../../macro/form.ftlh" as form>
+
+<#assign links>
+    <@form.links></@form.links>
+</#assign>
 
 <#assign body>
     <div class="card shadow container p-0">
@@ -23,40 +29,49 @@
                     </tr>
                     </tfoot>
                     <tbody>
-                    <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td class="dropdown no-arrow table-action">
-                            <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                <i class="fas fa-caret-down"></i>
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-right shadow" aria-labelledby="dropdownMenuButton" x-placement="bottom-start">
-                                <a class="dropdown-item" href="#">Изменить</a>
-                                <a class="dropdown-item" href="#">Удалить</a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Garrett Winters</td>
-                        <td>Accountant</td>
-                        <td class="dropdown no-arrow table-action">
-                            <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                <i class="fas fa-caret-down"></i>
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-right shadow" aria-labelledby="dropdownMenuButton" x-placement="bottom-start">
-                                <a class="dropdown-item" href="#">Изменить</a>
-                                <a class="dropdown-item" href="#">Удалить</a>
-                            </div>
-                        </td>
-                    </tr>
+                        <#if countriesPage??>
+                            <#list countriesPage.getContent() as country>
+                                <tr>
+                                    <td>${country.id}</td>
+                                    <td>${country.name}</td>
+                                    <td class="dropdown no-arrow table-action">
+                                        <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                            <i class="fas fa-caret-down"></i>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-right shadow" aria-labelledby="dropdownMenuButton" x-placement="bottom-start">
+                                            <a class="dropdown-item" href="/admin/country/update/${country.id}">Изменить</a>
+                                            <form class="dropdown-item" name="delete">
+                                                <div class="custom-input">
+                                                    <div class="custom-input__settings">
+                                                        <span class="custom-input__settings__attributes">{"name": "id", "type": "hidden", "defaultValue": "${country.id}"}</span>
+                                                    </div>
+                                                </div>
+                                                <button>Удалить</button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </#list>
+                        </#if>
                     </tbody>
                 </table>
             </div>
+            <@pagination.template
+            url = "/admin/country/all"
+            page = countriesPage
+            ></@pagination.template>
         </div>
     </div>
 </#assign>
 
+<#assign scripts>
+    <script src="/static/js/admin/country/delete.js"></script>
+    <@form.js></@form.js>
+</#assign>
+
 <@main.template
+links = links
 body = body
 page = "Страны"
+scripts = scripts
 ></@main.template>
