@@ -19,7 +19,8 @@
                 </div>
                 <div class="custom-select">
                     <div class="custom-select__settings">
-                        <span class="custom-select__settings__attributes">{"name":"country", "label":"Страна", "itemVisibleValue":["name"], "options":[{"id":1, "name":"Россия"}, {"id":2, "name":"США"}]}</span>
+                        <span class="custom-select__settings__attributes">{"name":"country", "label":"Страна", "itemVisibleValue":["name"]}</span>
+                        <span class="custom-select__settings__request">{"ajax":true, "url":"http://localhost:8080/admin/country/get/search"}</span>
                     </div>
                 </div>
                 <button class="custom-button">Создать</button>
@@ -29,7 +30,7 @@
 </#assign>
 
 <#assign scripts>
-    <script src="/static/js/admin/country/create.js"></script>
+    <script src="/static/js/admin/city/create.js"></script>
     <@form.js></@form.js>
 </#assign>
 

@@ -179,6 +179,7 @@ class Select {
         if (this.getValue() && this.attributes.outputValueFormat.type === 'var') {
             this.request.excludedValues.push(this.value);
         }
+        this.load();
     }
 
     load() {
@@ -187,7 +188,7 @@ class Select {
                 .then(
                     data => {
                         this.clearContent();
-                        data.content.forEach(item => {
+                        data.forEach(item => {
                             const contentItem = this.createContentItem(item);
                             this.content.items.node.append(contentItem);
                             this.content.items.values.push(contentItem);
