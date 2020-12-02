@@ -6,14 +6,14 @@
   padding: 0;
   border-radius: 0.25rem;
   border: 1px solid rgb(75 112 221);
-  margin: 1rem 0;
+  margin: 1rem 0 2rem 0;
   transition: background-color .2s;
 
   &:focus-within & {
 
     &__label {
       &__text {
-        transform: translateY(-40px) scale(0.9);
+        transform: translateY(-35px) scale(0.9);
         position: absolute;
       }
     }

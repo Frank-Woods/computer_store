@@ -1,8 +1,7 @@
-.custom-select,
-.custom-select-style {
+.custom-select {
   position: relative;
   width: 100%;
-  margin-bottom: 1rem;
+  margin: 1rem 0 2rem 0;
 
   &:focus-within {
     outline: none;
@@ -10,15 +9,18 @@
 
   &:focus-within > &__content {
     height: 400%;
-    border: 1px solid rgba(255,255,255,.1);
+    border: 1px solid rgb(75 112 221);
     border-top: 0;
     transition: height .2s .2s, border 0s .2s;
   }
 
   &:focus-within &__label {
     border-radius: .25rem .25rem 0 0;
-    background-color: #2a2b36;
     transition: border-radius .2s, background-color .2s;
+
+    &__text {
+      transform: translateY(-35px) scale(0.9);
+    }
   }
 
   &__settings {
@@ -31,7 +33,7 @@
     margin-bottom: 0.5rem;
     transition: height .2s, border 0s .2s;
     position: absolute;
-    background-color: #2a2b36;
+    background-color: white;
     top: 100%;
     border-radius: 0 0 .25rem .25rem;
     border: 0px solid transparent;
@@ -59,51 +61,6 @@
       display: flex;
     }
 
-    &__spinner {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-      background-color: #2a2b36;
-      display: none;
-      justify-content: center;
-      align-items: center;
-
-      &__item {
-        width: 50px;
-        height: 50px;
-        background: linear-gradient(to right, #4638c2 10%, transparent 42%);
-        border-radius: 50%;
-        position: absolute;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        animation: rotation 1s infinite linear;
-
-        &::before {
-          content: "";
-          width: 50%;
-          height: 50%;
-          background-color: #4638c2;
-          position: absolute;
-          top: 0;
-          left: 0;
-          border-top-left-radius: 100%;
-        }
-
-        &::after {
-          content: "";
-          width: 75%;
-          height: 75%;
-          background-color: #2a2b36;
-          position: absolute;
-          border-radius: 50%;
-        }
-      }
-    }
-
     &__items {
       width: 100%;
       margin-bottom: 1rem;
@@ -112,21 +69,21 @@
     &__item {
       width: 100%;
       height: max-content;
-      border-bottom: 1px solid rgba(255,255,255,.1);
+      border-bottom: 1px solid #858796;
       display: flex;
       justify-content: space-between;
       cursor: pointer;
       transition: background-color .2s;
 
       &:hover {
-        background-color: #2f303d;
+        background-color: #f1f2ff;
       }
 
       & > span {
         display: block;
         padding: 0.5rem;
         width: 100%;
-        color: rgba(255,255,255,.8);
+        color: #858796;
       }
     }
   }
@@ -136,21 +93,20 @@
     display: flex;
     align-items: center;
     border-radius: 0.25rem;
-    border: 1px solid rgba(255,255,255,.1);
+    border: 1px solid rgb(75 112 221);
     margin-bottom: 0;
     cursor: pointer;
     transition: border-radius .2s .2s, background-color .2s .2s;
 
     & > input[type=text] {
       width: 100%;
-      height: 100%;
       border: none;
       outline: none;
       padding: .5rem .6rem;
       box-sizing: border-box;
       border-radius: .25rem 0 0 .25rem;
       background-color: transparent;
-      color: rgba(255,255,255,.8);
+      color: #858796;
 
       &:disabled {
         cursor: pointer;
@@ -165,8 +121,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 0 0.75rem;
-      margin: .5rem 0;
+      padding: 0.5rem 0.75rem;
       font-family: system-ui, serif;
       font-weight: 400;
       flex-shrink: 0;
@@ -176,7 +131,8 @@
       border-radius: 0 .25rem .25rem 0;
       user-select: none;
       cursor: pointer;
-      color: rgba(255,255,255,.8);
+      color: #858796;
+      transition: transform .2s;
     }
   }
 
@@ -192,7 +148,7 @@
       opacity: 0;
       transition: opacity .4s, visibility 0s .4s;
       overflow-y: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgb(75 112 221);
       border-top: none;
       height: max-content;
       visibility: hidden;
