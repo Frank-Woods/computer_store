@@ -39,7 +39,7 @@ public class AdminController {
 
     @GetMapping
     public String getAdminPanel() {
-        return "admin";
+        return "admin/index";
     }
 
     @GetMapping("/country/all")
