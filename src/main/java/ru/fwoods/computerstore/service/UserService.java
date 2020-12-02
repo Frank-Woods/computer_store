@@ -1,0 +1,77 @@
+package ru.fwoods.computerstore.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+import ru.fwoods.computerstore.domain.User;
+import ru.fwoods.computerstore.model.UserPassword;
+import ru.fwoods.computerstore.repository.UserRepository;
+
+import java.time.LocalDate;
+import java.util.List;
+
+@Service
+public class UserService implements UserDetailsService {
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private CityService cityService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private SecurityService securityService;
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        return userRepository.findByEmail(email);
+    }
+
+    public Page<User> getPageUser(Pageable pageable) {
+        return userRepository.findAll(pageable);
+    }
+
+    public User getUserByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+    public boolean updateUser(ru.fwoods.computerstore.model.User user) {
+        User userDomain = userRepository.getOne(user.getId());
+
+        if (passwordEncoder.matches(user.getPassword(), userDomain.getPassword())) {
+            userDomain.setFirstName(user.getFirstName());
+            userDomain.setLastName(user.getLastName());
+            userDomain.setPatronymic(user.getPatronymic());
+            userDomain.setEmail(user.getEmail());
+            userDomain.setPhone(user.getPhone());
+            userDomain.setCity(cityService.getCity(user.getCity()));
+            userRepository.save(userDomain);
+            securityService.updateAuthenticationToken();
+            return true;
+        }
+        return false;
+    }
+
+    public boolean changePassword(UserPassword userPassword) {
+        User user = userRepository.getOne(userPassword.getId());
+
+        if (passwordEncoder.matches(userPassword.getPassword(), user.getPassword())) {
+            user.setPassword(passwordEncoder.encode(userPassword.getNewPassword()));
+            userRepository.save(user);
+            securityService.updateAuthenticationToken();
+            return true;
+        }
+        return false;
+    }
+
+    public User getUserById(Long id) {
+        return userRepository.getOne(id);
+    }
+}
