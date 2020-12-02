@@ -1,8 +1,8 @@
 package ru.fwoods.computerstore.validation.city.name;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import ru.edjll.shop.model.City;
-import ru.edjll.shop.service.CityService;
+import ru.fwoods.computerstore.model.City;
+import ru.fwoods.computerstore.service.CityService;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -15,7 +15,7 @@ public class UniqueNameValidator implements ConstraintValidator<UniqueName, City
 
     @Override
     public boolean isValid(City city, ConstraintValidatorContext ctx) {
-        ru.edjll.shop.domain.City cityDomain = cityService.getCityByName(city.getName());
+        ru.fwoods.computerstore.domain.City cityDomain = cityService.getCityByName(city.getName());
         if (cityDomain == null || cityDomain.getId().equals(city.getId())) return true;
 
         ctx.disableDefaultConstraintViolation();

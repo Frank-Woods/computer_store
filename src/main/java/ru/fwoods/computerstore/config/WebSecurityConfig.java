@@ -16,7 +16,9 @@ import ru.fwoods.computerstore.service.UserService;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    private final UserService userService;
+
+    @Autowired
+    private UserService userService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -26,16 +28,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder(8);
     }
 
-    public WebSecurityConfig(UserService userService) {
-        this.userService = userService;
-    }
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/", "/user/registration", "/static/**").permitAll()
-                .anyRequest().authenticated()
+                .antMatchers("/", "/test", "/user/registration", "/static/**").permitAll()
                 .and()
                 .formLogin()
                 .loginPage("/user/login")

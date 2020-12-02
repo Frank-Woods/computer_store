@@ -14,12 +14,12 @@ public class CountryController {
     @Autowired
     private CountryService countryService;
 
-    @GetMapping("/admin/countries/create")
+    @GetMapping("/admin/country/create")
     public String getCountriesCreate() {
-        return "country/create";
+        return "admin/country/create";
     }
 
-    @PostMapping("/admin/countries/create")
+    @PostMapping("/admin/country/create")
     public String createCountry(Country country) {
         countryService.saveCountry(country);
         return "redirect:/admin/countries";
