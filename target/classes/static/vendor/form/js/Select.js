@@ -42,16 +42,6 @@ class Select {
 
         this.setValue(this.attributes.defaultValue);
 
-        this.pagination = {
-            enabled: request && (request.pagination !== undefined && request.pagination !== null) ? request.pagination : true
-        }
-
-        if (this.pagination.enabled) {
-            const visibleLinksNumber = request &&  request.visibleLinksNumber ? request.visibleLinksNumber : 3;
-            const pageSize = request && request.pageSize ? request.pageSize : 2;
-            this.pagination.object = new Pagination(this.changePage.bind(this), 0, 0, pageSize, visibleLinksNumber);
-        }
-
         this.validation = new Validation(form, validation);
         if (validation && validation.error) {
             this.createError(validation.error);
@@ -68,16 +58,11 @@ class Select {
         this.node = node ? node : this.createNode();
         this.content = this.createContent();
         this.inputs = this.createInputs();
-        if (this.pagination.enabled) {
-            this.content.node.append(this.pagination.object.node);
-        }
         this.node.append(this.content.node);
         this.node.append(this.inputs.node);
-        this.node.addEventListener('focusin', this.focus.bind(this));
-        this.node.addEventListener('focusout', this.blur.bind(this));
         this.node.setAttribute('tabindex', '1');
-        if (!this.pagination.enabled) this.node.classList.add('custom-select--max-content');
         if (!this.request.searchParam) this.inputs.search.disabled = true;
+        this.load();
     }
 
     static create(node, form, parentFormItem) {
@@ -128,22 +113,13 @@ class Select {
         const content = document.createElement('div');
         content.classList.add('custom-select__content');
 
-        const contentSpinner = document.createElement('div');
-        contentSpinner.classList.add('custom-select__content__spinner');
-
-        const contentSpinnerItem = document.createElement('div');
-        contentSpinnerItem.classList.add('custom-select__content__spinner__item');
-
-        contentSpinner.append(contentSpinnerItem);
-
         const contentItems = document.createElement('div');
         contentItems.classList.add('custom-select__content__items');
 
-        content.append(contentSpinner, contentItems);
+        content.append(contentItems);
 
         return {
             node: content,
-            spinner: contentSpinner,
             items: {
                 node: contentItems,
                 values: []
@@ -189,27 +165,6 @@ class Select {
         }
     }
 
-    focus() {
-        if (!this.attributes.activeFocus) {
-            this.changePage()
-                .then(
-                    res => {
-                        if (this.pagination.enabled) {
-                            this.pagination.object.updatePage(res.page, res.totalPages);
-                        }
-                    }
-                );
-        }
-    }
-
-    blur(e) {
-        if (e.relatedTarget !== null && e.target.closest(`.custom-select`) === e.relatedTarget.closest(`.custom-select`)) {
-            this.attributes.activeFocus = true;
-        } else {
-            this.attributes.activeFocus = false
-        }
-    }
-
     inputChange() {
         this.removeError();
         if (this.getValue()) {
@@ -224,20 +179,11 @@ class Select {
         if (this.getValue() && this.attributes.outputValueFormat.type === 'var') {
             this.request.excludedValues.push(this.value);
         }
-        this.changePage()
-            .then(
-                res => {
-                    if (this.pagination.enabled) {
-                        this.pagination.object.updatePage(res.page, res.totalPages);
-                    }
-                }
-            );
     }
 
-    changePage(page = 0) {
-        //this.content.node.classList.add('custom-select__content-loading');
+    load() {
         if (this.request.ajax) {
-            return this.sendRequest(page)
+            return this.sendRequest()
                 .then(
                     data => {
                         this.clearContent();
@@ -246,11 +192,6 @@ class Select {
                             this.content.items.node.append(contentItem);
                             this.content.items.values.push(contentItem);
                         });
-                        //this.content.node.classList.remove('custom-select__content-loading');
-                        return {
-                            page: data.pageable.pageNumber,
-                            totalPages: data.totalPages
-                        };
                     }
                 );
         } else {
@@ -262,30 +203,21 @@ class Select {
                     content = content.filter(value => new RegExp(this.inputs.search.value.toUpperCase()).test(this.attributes.inputValueFormat.type === 'var' ? value.toUpperCase() : value.name.toUpperCase()));
                 }
 
-                const pageContent = this.pagination.enabled ? content.slice(page * this.pagination.object.pageSize, page * this.pagination.object.pageSize + this.pagination.object.pageSize) : content;
-
-                pageContent.forEach(item => {
+                content.forEach(item => {
                     const contentItem = this.createContentItem(item);
                     this.content.items.node.append(contentItem);
                     this.content.items.values.push(contentItem);
                 });
-                this.content.node.classList.remove('custom-select__content-loading');
-                resolve(
-                    {
-                        page: page,
-                        totalPages: this.pagination.enabled ? Math.ceil(content.length / this.pagination.object.pageSize) : 1
-                    }
-                );
+
+                resolve();
             });
         }
     }
 
-    sendRequest(page) {
+    sendRequest() {
         return new Promise((resolve, reject) => {
             let url = new URL(this.request.url);
-            url.searchParams.set('page', page);
             if (this.request.searchParam) url.searchParams.set('searchParam', this.inputs.search.value);
-            url.searchParams.set('pageSize', String(this.pagination.object.pageSize));
             if (this.request.tracking) {
                 const item = this.parentFormItem.searchFormItemByName(this.request.tracking);
                 if (item !== null) url.searchParams.set('tracking', item.getValue());
@@ -346,7 +278,6 @@ class Select {
         this.setValue(data);
         this.node.blur();
         this.removeError();
-        console.log(this.request.excludedValues, this.getValue(), this.request.excludedValues.indexOf(this.getValue()));
         if (this.request.excludedValues.indexOf(this.getValue()) === -1) {
             this.request.excludedValues.push(this.getValue());
         }

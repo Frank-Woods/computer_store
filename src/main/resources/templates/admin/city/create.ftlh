@@ -19,7 +19,7 @@
                 </div>
                 <div class="custom-select">
                     <div class="custom-select__settings">
-                        <span class="custom-input__select__attributes">{"name":"name", "label":"Название", "itemVisibleValue":["name"], "options":[{"id":1, "name":"Россия"}, {"id":2, "name":"США"}]}</span>
+                        <span class="custom-select__settings__attributes">{"name":"country", "label":"Страна", "itemVisibleValue":["name"], "options":[{"id":1, "name":"Россия"}, {"id":2, "name":"США"}]}</span>
                     </div>
                 </div>
                 <button class="custom-button">Создать</button>
