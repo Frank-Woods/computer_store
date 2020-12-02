@@ -1,0 +1,24 @@
+.custom-button,
+.custom-button-style {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  color: #fff;
+  background-color: #4e73df;
+  border: 1px solid #4e73df;
+  padding: .375rem .75rem;
+  font-family: system-ui, serif;
+  font-weight: 600;
+  line-height: 1.5;
+  border-radius: .25rem;
+  transition: color .15s, background-color .15s;
+  margin-top: 1rem;
+  outline: none !important;
+  width: 100%;
+
+  &:hover {
+    background-color: #2e59d9;
+    border: 1px solid #2653d4;
+  }
+}
