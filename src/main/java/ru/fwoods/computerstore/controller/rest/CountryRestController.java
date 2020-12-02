@@ -61,7 +61,7 @@ public class CountryRestController {
         }
     }
 
-    @GetMapping(value = "admin/country/get/search")
+    @GetMapping(value = "/admin/country/get/search")
     public ResponseEntity getCountrySearch(
             @RequestParam(required = false, defaultValue = "") String searchParam
     ) {
