@@ -37,4 +37,9 @@ public class CountryService {
     public Country getCountryByName(String name) {
         return countryRepository.getCountryByName(name);
     }
+
+    public List<Country> getCountrySearch(String searchParam) {
+        if (searchParam.length() > 0) return countryRepository.findAllByNameContainsIgnoreCase(searchParam);
+        else return countryRepository.findAll();
+    }
 }

@@ -5,15 +5,14 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.fwoods.computerstore.controller.ControllerUtils;
 import ru.fwoods.computerstore.domain.Country;
 import ru.fwoods.computerstore.model.IdWrapper;
 import ru.fwoods.computerstore.service.CountryService;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -60,5 +59,13 @@ public class CountryRestController {
         catch (Exception ex) {
             return ResponseEntity.badRequest().body(Collections.singletonMap("error", "Удаление невозможно, есть связанные сущности"));
         }
+    }
+
+    @GetMapping(value = "admin/country/get/search")
+    public ResponseEntity getCountrySearch(
+            @RequestParam(required = false, defaultValue = "") String searchParam
+    ) {
+        List<Country> counties = countryService.getCountrySearch(searchParam);
+        return ResponseEntity.ok().body(counties);
     }
 }
