@@ -11087,7 +11087,7 @@ body.sidebar-toggled footer.sticky-footer {
 .table-action > button:focus {
   background-color: #4e73df;
   color: white;
-  outline-color: #1b40ac;
+  outline: none !important;
 }
 td > a > img {
   max-width: 50px;

@@ -30,7 +30,7 @@
 </#assign>
 
 <#assign scripts>
-    <script src="/static/js/admin/country/create.js"></script>
+    <script src="/static/js/admin/city/create.js"></script>
     <@form.js></@form.js>
 </#assign>
 
