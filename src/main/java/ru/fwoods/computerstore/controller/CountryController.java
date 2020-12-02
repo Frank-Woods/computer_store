@@ -1,6 +1,7 @@
 package ru.fwoods.computerstore.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,39 +12,24 @@ import ru.fwoods.computerstore.service.CountryService;
 
 @Controller
 public class CountryController {
+
     @Autowired
     private CountryService countryService;
 
-    @GetMapping("/admin/countries/create")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/admin/country/create")
     public String getCountriesCreate() {
-        return "country/create";
+        return "admin/country/create";
     }
 
-    @PostMapping("/admin/countries/create")
-    public String createCountry(Country country) {
-        countryService.saveCountry(country);
-        return "redirect:/admin/countries";
-    }
-
-    @GetMapping("/admin/countries/update/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/admin/country/update/{id}")
     public String getCountriesUpdate(
             @PathVariable Long id,
             Model model
     ) {
         Country country = countryService.getCountryById(id);
         model.addAttribute("country", country);
-        return "country/update";
-    }
-
-    @PostMapping("/admin/countries/update")
-    public String updateCountry(Country country) {
-        countryService.saveCountry(country);
-        return "redirect:/admin/countries";
-    }
-
-    @PostMapping("/admin/countries/delete")
-    public String deleteCountry(Long id) {
-        countryService.deleteCountryById(id);
-        return "redirect:/admin/countries";
+        return "admin/country/update";
     }
 }
