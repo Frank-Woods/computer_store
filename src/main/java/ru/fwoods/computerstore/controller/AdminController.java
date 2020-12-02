@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,6 +38,9 @@ public class AdminController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private CityService cityService;
+
     @GetMapping
     public String getAdminPanel() {
         return "admin/index";
@@ -51,6 +55,18 @@ public class AdminController {
         Page<Country> countriesPage = countryService.getPageCountries(pageable);
         model.put("countriesPage", countriesPage);
         return "admin/country/all";
+    }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/city/all")
+    public String getCitiesPage(
+            @RequestParam(required = false, defaultValue = "0") Integer page,
+            Map<String, Object> model
+    ) {
+        Pageable pageable = PageRequest.of(page, 15);
+        Page<City> citiesPage = cityService.getPageCities(pageable);
+        model.put("citiesPage", citiesPage);
+        return "admin/city/all";
     }
 
     @GetMapping("/manufacturer/all")
