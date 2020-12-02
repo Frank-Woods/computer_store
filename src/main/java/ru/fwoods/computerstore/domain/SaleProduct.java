@@ -25,8 +25,8 @@ public class SaleProduct {
     @ManyToOne(
             fetch = FetchType.EAGER
     )
-    @JoinColumn(name = "product_id", nullable = false)
-    private Product product;
+    @JoinColumn(name = "product_data_id", nullable = false)
+    private ProductData productData;
 
     public Long getId() {
         return id;
@@ -52,11 +52,11 @@ public class SaleProduct {
         this.sale = sale;
     }
 
-    public Product getProduct() {
-        return product;
+    public ProductData getProductData() {
+        return productData;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProductData(ProductData productData) {
+        this.productData = productData;
     }
 }
