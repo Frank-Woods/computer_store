@@ -47,7 +47,7 @@ public class AdminController {
             @RequestParam(required = false, defaultValue = "0") Integer page,
             Map<String, Object> model
     ) {
-        Pageable pageable = PageRequest.of(page, 15);
+        Pageable pageable = PageRequest.of(page, 1);
         Page<Country> countriesPage = countryService.getPageCountries(pageable);
         model.put("countriesPage", countriesPage);
         return "admin/country/all";

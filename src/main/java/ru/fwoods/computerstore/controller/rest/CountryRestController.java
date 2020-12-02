@@ -1,6 +1,7 @@
 package ru.fwoods.computerstore.controller.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -24,7 +25,7 @@ public class CountryRestController {
     @Autowired
     private ControllerUtils controllerUtils;
 
-    @PostMapping(value = "/admin/country/create")
+    @PostMapping(value = "/admin/country/create", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity createCountry(
             @RequestPart(name = "country", required = false) @Validated Country country,
             BindingResult bindingResult
