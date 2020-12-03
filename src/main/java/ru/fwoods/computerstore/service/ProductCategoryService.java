@@ -135,4 +135,17 @@ public class ProductCategoryService {
             return category;
         });
     }
+
+    public Page<ru.fwoods.computerstore.model.ProductCategory> getCategoriesWithoutParentAndProduct(Pageable pageable) {
+        Page<ProductCategory> productCategories = productCategoryRepository.getCategoriesByParentNullAndProductsNull(pageable);
+
+        return productCategories.map(productCategory -> {
+            ru.fwoods.computerstore.model.ProductCategory productCategoryModel = new ru.fwoods.computerstore.model.ProductCategory();
+
+            productCategoryModel.setId(productCategory.getId());
+            productCategoryModel.setName(productCategory.getName());
+
+            return productCategoryModel;
+        });
+    }
 }
