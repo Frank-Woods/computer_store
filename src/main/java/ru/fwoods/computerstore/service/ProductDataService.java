@@ -53,19 +53,22 @@ public class ProductDataService {
         return fileService.createFile(productDataUploadPath, file);
     }
 
-    public void save(ru.fwoods.computerstore.model.ProductData productData, List<MultipartFile> image) {
-        Set<AttributeValue> attributes = new HashSet<>();
-
+    public void save(ru.fwoods.computerstore.model.ProductData productData, List<MultipartFile> images) {
         ProductData productDataDomain = new ProductData();
 
-        productDataDomain.setId(productData.getId());
-        saveProductData(productData, productDataDomain);
+        productDataDomain.setName(productData.getName());
+        productDataDomain.setDescription(productData.getDescription());
+        productDataDomain.setCost(productDataDomain.getCost());
+        productDataDomain.setShelfLife(productDataDomain.getShelfLife());
+        productDataDomain.setCategory(productCategoryService.getCategoryById(productData.getCategory()));
+        productDataDomain.setCountry(countryService.getCountryById(productData.getCountry()));
+        productDataDomain.setManufacturer(manufacturerService.getManufacturerById(productData.getManufacturer()));
 
-        ProductData productDataDomainSaved = productDataRepository.save(productDataDomain);
+        if (images != null && !images.isEmpty()) {
+            images.forEach(image -> imageService.saveProductDataImage(image, productDataDomain));
+        }
 
-        saveImage(image, productDataDomainSaved);
-
-        saveAttributeValue(productData, attributes, productDataDomain);
+        productDataRepository.save(productDataDomain);
     }
 
     public Page<ProductData> getPageProducts(Pageable pageable) {
@@ -103,40 +106,39 @@ public class ProductDataService {
         return productDataRepository.findById(id).orElse(null);
     }
 
-    public void update(ru.fwoods.computerstore.model.ProductData productData, List<MultipartFile> image) {
-        Set<AttributeValue> attributes = new HashSet<>();
-
+    public void update(ru.fwoods.computerstore.model.ProductData productData, List<MultipartFile> images) {
         ProductData productDataDomain = productDataRepository.getOne(productData.getId());
 
-        saveProductData(productData, productDataDomain);
+        productDataDomain.setName(productData.getName());
+        productDataDomain.setDescription(productData.getDescription());
+        productDataDomain.setCost(productDataDomain.getCost());
+        productDataDomain.setShelfLife(productDataDomain.getShelfLife());
+        productDataDomain.setCategory(productCategoryService.getCategoryById(productData.getCategory()));
+        productDataDomain.setCountry(countryService.getCountryById(productData.getCountry()));
+        productDataDomain.setManufacturer(manufacturerService.getManufacturerById(productData.getManufacturer()));
+        List<Image> productDataImages = imageService.getImagesByProductDataId(productDataDomain.getId());
+        List<Long> imageIds = new ArrayList<>();
 
-        saveImage(image, productDataDomain);
-
-        List<AttributeValue> attributeValues = attributeValueService.getAttributeValueWithOneProduct(productData.getId());
-
-        attributeValues.forEach(attributeValue -> {
-            attributeService.deleteById(attributeValue.getAttribute().getId());
-            valueService.deleteById(attributeValue.getValue());
-            attributeValueService.deleteById(attributeValue.getId());
-        });
-
-        saveAttributeValue(productData, attributes, productDataDomain);
-    }
-
-    private void saveAttributeValue(ru.fwoods.computerstore.model.ProductData productData, Set<AttributeValue> attributes, ProductData productDataDomain) {
-        productData.getAttributeCategories().forEach(attributeCategory -> {
-            AttributeCategory attributeCategoryDomain = attributeCategoryService.save(attributeCategory);
-            attributeCategory.getAttributes().forEach(attribute -> {
-                Attribute attributeDomain = attributeService.save(attribute, attributeCategoryDomain);
-                Value valueDomain = valueService.save(attribute);
-                AttributeValue attributeValueDomain = attributeValueService.save(attributeDomain, valueDomain);
-                attributes.add(attributeValueDomain);
+        if (images != null && !images.isEmpty()) {
+            images.forEach(image -> {
+                if (!Objects.equals(image.getContentType(), "null")) {
+                    imageService.saveProductDataImage(image, productDataDomain);
+                } else {
+                    try {
+                        Long id = Long.parseLong(image.getOriginalFilename());
+                        imageIds.add(id);
+                    } catch (NullPointerException | NumberFormatException exception) {
+                        exception.printStackTrace();
+                    }
+                }
             });
+        }
+
+        productDataImages.forEach(productDataImage -> {
+            if (!imageIds.contains(productDataImage.getId())) {
+                imageService.deleteProductDataImage(productDataImage.getId());
+            }
         });
-
-        productDataDomain.setAttributes(attributes);
-
-        productDataRepository.save(productDataDomain);
     }
 
     private void saveImage(List<MultipartFile> image, ProductData productDataDomain) {
@@ -181,22 +183,6 @@ public class ProductDataService {
         productDataModel.setManufacturer(productData.getManufacturer().getId());
         productDataModel.setCountry(productData.getCountry().getId());
         productDataModel.setCategory(productData.getCategory().getId());
-
-        List<ru.fwoods.computerstore.model.AttributeCategory> attributeCategories = attributeCategoryService.getUseAttributeCategories(productData.getId());
-
-        productData.getAttributes().forEach(attributeValue -> {
-            ru.fwoods.computerstore.model.Attribute attribute = new ru.fwoods.computerstore.model.Attribute();
-            attribute.setId(attributeValue.getId());
-            attribute.setName(attributeValue.getAttribute().getName());
-            attribute.setDescription(attributeValue.getAttribute().getDescription());
-            attribute.setValue(attributeValue.getValue().getValue());
-            attribute.setUnit(attributeValue.getValue().getUnit());
-            attributeCategories.forEach(attributeCategory -> {
-                if (attributeCategory.getId().equals(attributeValue.getAttribute().getCategory().getId())) {
-                    attributeCategory.getAttributes().add(attribute);
-                }
-            });
-        });
 
         return productDataModel;
     }
