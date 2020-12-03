@@ -90,7 +90,7 @@ public class ProductCategoryRestController {
         return ResponseEntity.ok().body(null);
     }
 
-    @GetMapping("admin/productCategory/parent/null")
+    @GetMapping("/admin/productCategory/parent/null")
     public List<Object> getCategoriesWithoutParent() {
         List<ru.fwoods.computerstore.domain.ProductCategory> categories = productCategoryService.getCategoriesWithoutParent();
         return categories.stream()
