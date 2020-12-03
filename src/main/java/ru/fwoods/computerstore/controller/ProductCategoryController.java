@@ -69,13 +69,16 @@ public class ProductCategoryController {
         return "admin/category/attribute/create";
     }
 
-    @GetMapping("/admin/category/attribute/update/{id}")
+    @GetMapping("/admin/category/{categoryId}/attribute/update/{id}")
     public String getPromotionProductUpdate(
+            @PathVariable Long categoryId,
             @PathVariable Long id,
             Map<String, Object> model
     ) {
+        ProductCategory productCategory = productCategoryService.getCategoryById(categoryId);
         Attribute attribute = attributeService.getAttributeModelById(id);
 
+        model.put("category", productCategory);
         model.put("attribute", attribute);
         return "admin/category/attribute/update";
     }
