@@ -49,8 +49,10 @@ public class PromotionService {
         promotionDomain.setDateStart(promotion.getDateStart());
         promotionDomain.setDateEnd(promotion.getDateEnd());
 
+        Promotion promotionDomainSaved = promotionRepository.save(promotionDomain);
+
         if (images != null && !images.isEmpty()) {
-            images.forEach(image -> imageService.savePromotionImage(image, promotionDomain));
+            images.forEach(image -> imageService.savePromotionImage(image, promotionDomainSaved));
         }
 
         promotionRepository.save(promotionDomain);
