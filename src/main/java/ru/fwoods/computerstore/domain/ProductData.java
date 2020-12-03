@@ -33,7 +33,7 @@ public class ProductData {
             name = "cost",
             nullable = false
     )
-    private Double price;
+    private Double cost;
 
     @NotEmpty(message = "error.validation.productData.shelfLife.empty")
     @Column(name = "shelf_life")
@@ -95,11 +95,11 @@ public class ProductData {
     }
 
     public Double getCost() {
-        return price;
+        return cost;
     }
 
     public void setCost(Double cost) {
-        this.price = cost;
+        this.cost = cost;
     }
 
     public Integer getShelfLife() {
