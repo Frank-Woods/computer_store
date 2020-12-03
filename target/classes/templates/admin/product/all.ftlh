@@ -22,7 +22,6 @@
                         <th>Категория</th>
                         <th>Производитель</th>
                         <th>Стоимость</th>
-                        <th>Дата</th>
                         <th>Действия</th>
                     </tr>
                     </thead>
@@ -34,7 +33,6 @@
                         <th>Категория</th>
                         <th>Производитель</th>
                         <th>Стоимость</th>
-                        <th>Дата</th>
                         <th>Действия</th>
                     </tr>
                     </tfoot>
@@ -47,8 +45,7 @@
                                     <td><#noautoesc>${product.description}</#noautoesc></td>
                                     <td>${product.category.name}</td>
                                     <td>${product.manufacturer.name}</td>
-                                    <td>${product.price}</td>
-                                    <td>${product.date}</td>
+                                    <td>${product.cost}</td>
                                     <td class="dropdown no-arrow table-action">
                                         <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                             <i class="fas fa-caret-down"></i>

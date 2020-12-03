@@ -14,52 +14,52 @@
             <form name="update">
                 <div class="custom-input">
                     <div class="custom-input__settings">
-                        <span class="custom-input__settings__attributes">{"name":"name", "label":"Название", "defaultValue":${product.name}</span>
+                        <span class="custom-input__settings__attributes">{"name":"name", "label":"Название", "defaultValue":${productData.name}</span>
                         <span class="custom-input__settings__validation">{"required": true}</span>
                     </div>
                 </div>
                 <div class="custom-textarea">
                     <div class="custom-textarea__settings">
-                        <span class="custom-textarea__settings__attributes">{"name":"description", "label":"Описание", "defaultValue":${product.description}</span>
+                        <span class="custom-textarea__settings__attributes">{"name":"description", "label":"Описание", "defaultValue":${productData.description}</span>
                         <span class="custom-textarea__settings__validation">{"required":true}</span>
                     </div>
                 </div>
                 <div class="custom-select">
                     <div class="custom-select__settings">
-                        <span class="custom-select__settings__attributes">{"name":"category", "label":"Категория", "itemVisibleValue":["name"], "defaultValue":{"id":${product.category.id}, "name":"${product.category.name}"}}</span>
+                        <span class="custom-select__settings__attributes">{"name":"category", "label":"Категория", "itemVisibleValue":["name"], "defaultValue":{"id":${productData.category.id}, "name":"${productData.category.name}"}}</span>
                         <span class="custom-select__settings__request">{"ajax":true, "url":"http://localhost:8080/admin/country/get/search"}</span>
                         <span class="custom-select__settings__validation">{"required":true}</span>
                     </div>
                 </div>
                 <div class="custom-select">
                     <div class="custom-select__settings">
-                        <span class="custom-select__settings__attributes">{"name":"manufacturer", "label":"Производитель", "itemVisibleValue":["name"]}, "defaultValue":{"id":${product.manufacturer.id}, "name":"${product.manufacturer.name}"}}</span>
+                        <span class="custom-select__settings__attributes">{"name":"manufacturer", "label":"Производитель", "itemVisibleValue":["name"]}, "defaultValue":{"id":${productData.manufacturer.id}, "name":"${productData.manufacturer.name}"}}</span>
                         <span class="custom-select__settings__request">{"ajax":true, "url":"http://localhost:8080/admin/country/get/search"}</span>
                         <span class="custom-select__settings__validation">{"required":true}</span>
                     </div>
                 </div>
                 <div class="custom-select">
                     <div class="custom-select__settings">
-                        <span class="custom-select__settings__attributes">{"name":"country", "label":"Страна", "itemVisibleValue":["name"], "defaultValue":{"id":${product.country.id}, "name":"${product.country.name}"}}</span>
+                        <span class="custom-select__settings__attributes">{"name":"country", "label":"Страна", "itemVisibleValue":["name"], "defaultValue":{"id":${productData.country.id}, "name":"${productData.country.name}"}}</span>
                         <span class="custom-select__settings__request">{"ajax":true, "url":"http://localhost:8080/admin/country/get/search"}</span>
                         <span class="custom-select__settings__validation">{"required":true}</span>
                     </div>
                 </div>
                 <div class="custom-input">
                     <div class="custom-input__settings">
-                        <span class="custom-input__settings__attributes">{"name":"cost", "label":"Стоимость", "type":"number", "defaultValue":${product.cost}</span>
+                        <span class="custom-input__settings__attributes">{"name":"cost", "label":"Стоимость", "type":"number", "defaultValue":${productData.cost}</span>
                         <span class="custom-input__settings__validation">{"required":true, "min":0}</span>
                     </div>
                 </div>
                 <div class="custom-file-input">
                     <div class="custom-file-input__settings">
-                        <span class="custom-file-input__settings__attributes">{"name": "images", "label": "Изображения", "multiple":true, "type": "file", "files": [<#list product.images as image>{"id":${image.id}, "src": "/image/productImage/${image.filename}"}<#if image?has_next?>,</#if></#list>]}</span>
+                        <span class="custom-file-input__settings__attributes">{"name": "images", "label": "Изображения", "multiple":true, "type": "file", "files": [<#list productData.images as image>{"id":${image.id}, "src": "/image/productImage/${image.filename}"}<#if image?has_next>,</#if></#list>]}</span>
                         <span class="custom-file-input__settings__validation">{"imageTypes":["image.png", "image.jpeg"], "required": true}</span>
                     </div>
                 </div>
                 <div class="custom-input">
                     <div class="custom-input__settings">
-                        <span class="custom-input__settings__attributes">{"name":"id", "type":"hidden", "defaultValue":${product.id}</span>
+                        <span class="custom-input__settings__attributes">{"name":"id", "type":"hidden", "defaultValue":${productData.id}</span>
                     </div>
                 </div>
                 <button class="custom-button">Изменить</button>
