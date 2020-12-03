@@ -524,8 +524,8 @@
 .custom-file-input-style__file-wrapper:empty {
   width: 0;
 }
-.custom-file-input__file-wrapper:empty + *,
-.custom-file-input-style__file-wrapper:empty + * {
+.custom-file-input__file-wrapper:empty + .custom-file-input__buttons-wrapper,
+.custom-file-input-style__file-wrapper:empty + .custom-file-input__buttons-wrapper {
   width: 100%;
 }
 .custom-file-input__file-wrapper__file,

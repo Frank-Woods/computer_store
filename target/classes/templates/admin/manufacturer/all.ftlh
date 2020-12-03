@@ -70,7 +70,7 @@
                 </table>
             </div>
             <@pagination.template
-            url = "/admin/city/all"
+            url = "/admin/manufacturer/all"
             page = manufacturersPage
             ></@pagination.template>
         </div>

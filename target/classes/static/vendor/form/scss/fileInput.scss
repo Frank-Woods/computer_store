@@ -58,7 +58,7 @@
       width: 0;
     }
 
-    &:empty + * {
+    &:empty + .custom-file-input__buttons-wrapper {
       width: 100%;
     }
 

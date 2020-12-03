@@ -15,27 +15,23 @@
                 <div class="custom-input">
                     <div class="custom-input__settings">
                         <span class="custom-input__settings__attributes">{"name":"name", "label":"Название"}</span>
+                        <span class="custom-input__settings__validation">{"required": true}</span>
                     </div>
                 </div>
                 <div class="custom-input">
                     <div class="custom-input__settings">
-                        <span class="custom-input__settings__attributes">{"name":"dateStart", "label":"Дата начала", "type": "datetime"}</span>
+                        <span class="custom-input__settings__attributes">{"name":"dateStart", "label":"Дата начала", "type": "datetime-local"}</span>
                     </div>
                 </div>
                 <div class="custom-input">
                     <div class="custom-input__settings">
-                        <span class="custom-input__settings__attributes">{"name":"dateEnd", "label":"Дата окончания", "type": "datetime"}</span>
+                        <span class="custom-input__settings__attributes">{"name":"dateEnd", "label":"Дата окончания", "type": "datetime-local"}</span>
+                        <span class="custom-input__settings__validation">{"laterThan": "dateStart"}</span>
                     </div>
                 </div>
                 <div class="custom-textarea">
                     <div class="custom-textarea__settings">
                         <span class="custom-textarea__settings__attributes">{"name":"description", "label":"Описание"}</span>
-                    </div>
-                </div>
-                <div class="custom-select">
-                    <div class="custom-select__settings">
-                        <span class="custom-select__settings__attributes">{"name":"country", "label":"Страна", "itemVisibleValue":["name"]}</span>
-                        <span class="custom-select__settings__request">{"ajax":true, "url":"http://localhost:8080/admin/country/get/search"}</span>
                     </div>
                 </div>
                 <div class="custom-file-input">
@@ -51,7 +47,7 @@
 </#assign>
 
 <#assign scripts>
-    <script src="/static/js/admin/manufacturer/create.js"></script>
+    <script src="/static/js/admin/promotion/create.js"></script>
     <@form.js></@form.js>
 </#assign>
 
