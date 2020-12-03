@@ -2,6 +2,7 @@ package ru.fwoods.computerstore.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -69,6 +70,9 @@ public class ProductData {
             inverseJoinColumns = @JoinColumn(name = "attribute_value_id")
     )
     private Set<AttributeValue> attributes;
+
+    @OneToMany(mappedBy = "productData")
+    private List<PromotionProduct> promotionProducts;
 
     public Long getId() {
         return id;
@@ -142,18 +146,11 @@ public class ProductData {
         this.attributes = attributes;
     }
 
-    @Override
-    public String toString() {
-        return "ProductData{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", cost=" + cost +
-                ", shelfLife=" + shelfLife +
-                ", manufacturer=" + manufacturer +
-                ", country=" + country +
-                ", category=" + category +
-                ", attributes=" + attributes +
-                '}';
+    public List<PromotionProduct> getPromotionProducts() {
+        return promotionProducts;
+    }
+
+    public void setPromotionProducts(List<PromotionProduct> promotionProducts) {
+        this.promotionProducts = promotionProducts;
     }
 }

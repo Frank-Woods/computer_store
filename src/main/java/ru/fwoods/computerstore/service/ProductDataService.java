@@ -8,10 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 import ru.fwoods.computerstore.domain.*;
 import ru.fwoods.computerstore.repository.ProductDataRepository;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class ProductDataService {
@@ -202,5 +199,10 @@ public class ProductDataService {
         });
 
         return productDataModel;
+    }
+
+    public List<ProductData> getProductDataSearch(String searchParam) {
+        if (searchParam.length() > 0) return productDataRepository.findAllWithoutPromotionAndSearchParam(new Date(), searchParam);
+        else return productDataRepository.findAllWithoutPromotion(new Date());
     }
 }
