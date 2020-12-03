@@ -46,7 +46,7 @@
                 </div>
                 <div class="custom-file-input">
                     <div class="custom-file-input__settings">
-                        <span class="custom-file-input__settings__attributes">{"name": "images", "label": "Изображения", "type": "file", "files": [<#list product.images as image>{"id":${image.id}, "src": "/image/productImage/${image.filename}"}<#if image?has_next?>,</#if></#list>]}</span>
+                        <span class="custom-file-input__settings__attributes">{"name": "images", "label": "Изображения", "multiple":true, "type": "file", "files": [<#list product.images as image>{"id":${image.id}, "src": "/image/productImage/${image.filename}"}<#if image?has_next?>,</#if></#list>]}</span>
                         <span class="custom-file-input__settings__validation">{"imageTypes":["image.png", "image.jpeg"], "required": true}</span>
                     </div>
                 </div>
