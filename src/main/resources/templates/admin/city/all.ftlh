@@ -5,7 +5,7 @@
 <#assign links>
     <@form.links></@form.links>
 </#assign>
-    
+
 <#assign body>
     <div class="card shadow container p-0">
         <div class="card-header py-3">
@@ -31,7 +31,7 @@
                     </tr>
                     </tfoot>
                     <tbody>
-                        <#if citiesPage??>
+                        <#if 0 < citiesPage.numberOfElements>
                             <#list citiesPage.getContent() as city>
                                 <tr>
                                     <td>${city.id}</td>
@@ -55,6 +55,10 @@
                                     </td>
                                 </tr>
                             </#list>
+                        <#else>
+                            <tr>
+                                <td colspan="4" class="text-center">Пусто</td>
+                            </tr>
                         </#if>
                     </tbody>
                 </table>
@@ -68,7 +72,7 @@
 </#assign>
 
 <#assign scripts>
-    <script src="/static/js/admin/country/delete.js"></script>
+    <script src="/static/js/admin/city/delete.js"></script>
     <@form.js></@form.js>
 </#assign>
 

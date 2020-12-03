@@ -25,7 +25,7 @@ public class ManufacturerController {
     @Autowired
     private ManufacturerService manufacturerService;
 
-    @GetMapping("/admin/manufacturers/create")
+    @GetMapping("/admin/manufacturer/create")
     public String getManufacturersCreate(
             @RequestParam(required = false, defaultValue = "0") Integer page,
             Map<String, Object> model
@@ -33,7 +33,7 @@ public class ManufacturerController {
         Pageable pageable = PageRequest.of(page, 15);
         Page<Country> countriesPage = countryService.getPageCountries(pageable);
         model.put("countriesPage", countriesPage);
-        return "manufacturer/create";
+        return "admin/manufacturer/create";
     }
 
 //    @PostMapping("/admin/manufacturers/create")
