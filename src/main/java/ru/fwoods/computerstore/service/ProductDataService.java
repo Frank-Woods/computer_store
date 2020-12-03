@@ -112,7 +112,7 @@ public class ProductDataService {
 
         productDataDomain.setName(productData.getName());
         productDataDomain.setDescription(productData.getDescription());
-        productDataDomain.setCost(productDataDomain.getCost());
+        productDataDomain.setCost(productData.getCost());
         productDataDomain.setCategory(productCategoryService.getCategoryById(productData.getCategory()));
         productDataDomain.setCountry(countryService.getCountryById(productData.getCountry()));
         productDataDomain.setManufacturer(manufacturerService.getManufacturerById(productData.getManufacturer()));
