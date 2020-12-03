@@ -39,8 +39,8 @@
                     </tr>
                     </tfoot>
                     <tbody>
-                        <#if 0 < products.numberOfElements>
-                            <#list products.getContent() as product>
+                        <#if 0 < productsPage.numberOfElements>
+                            <#list productsPage.getContent() as product>
                                 <tr>
                                     <td>${product.id}</td>
                                     <td>${product.name}</td>
@@ -77,7 +77,7 @@
             </div>
             <@pagination.template
             url = "/admin/product/all"
-            page = products
+            page = productsPage
             ></@pagination.template>
         </div>
     </div>

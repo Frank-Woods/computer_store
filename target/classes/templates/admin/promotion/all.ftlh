@@ -37,8 +37,8 @@
                     </tr>
                     </tfoot>
                     <tbody>
-                        <#if 0 < promotions.numberOfElements>
-                            <#list promotions.getContent() as promotion>
+                        <#if 0 < promotionsPage.numberOfElements>
+                            <#list promotionsPage.getContent() as promotion>
                                 <tr>
                                     <td>${promotion.id}</td>
                                     <td>${promotion.name}</td>
@@ -76,7 +76,7 @@
             </div>
             <@pagination.template
             url = "/admin/promotion/all"
-            page = promotions
+            page = promotionsPage
             ></@pagination.template>
         </div>
     </div>
