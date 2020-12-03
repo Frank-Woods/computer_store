@@ -72,4 +72,8 @@ public class PromotionProductService {
             return discountProduct;
         });
     }
+
+    public void deleteById(Long id) {
+        promotionProductRepository.deleteById(id);
+    }
 }

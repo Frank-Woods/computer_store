@@ -37,7 +37,7 @@ public class PromotionProductRestController {
     public ResponseEntity updatePromotionProduct(
             @RequestPart(name = "product") IdWrapper idWrapper
     ) {
-        promotionProductService.delete(ByIddiscountProduct);
+        promotionProductService.deleteById(idWrapper.getId());
         return ResponseEntity.ok().body(null);
     }
 }
