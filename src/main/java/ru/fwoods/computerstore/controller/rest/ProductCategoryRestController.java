@@ -1,14 +1,14 @@
 package ru.fwoods.computerstore.controller.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.fwoods.computerstore.controller.ControllerUtils;
 import ru.fwoods.computerstore.model.DiscountProduct;
 import ru.fwoods.computerstore.model.IdWrapper;
@@ -90,14 +90,11 @@ public class ProductCategoryRestController {
         return ResponseEntity.ok().body(null);
     }
 
-    @GetMapping("admin/productCategory/parent/null")
-    public List<Object> getCategoriesWithoutParent() {
-        List<ru.fwoods.computerstore.domain.ProductCategory> categories = productCategoryService.getCategoriesWithoutParent();
-        return categories.stream()
-                .map(category -> new Object() {
-                            public Long id = category.getId();
-                            public String name = category.getName();
-                        }
-                ).collect(Collectors.toList());
+    @GetMapping("admin/productCategory/parent/product/null")
+    public Page<ProductCategory> getCategoriesWithoutParentAndProduct(
+            @RequestParam(required = false, defaultValue = "0") Integer page
+    ) {
+        Pageable pageable = PageRequest.of(page, 15);
+        return productCategoryService.getCategoriesWithoutParentAndProduct(pageable);
     }
 }

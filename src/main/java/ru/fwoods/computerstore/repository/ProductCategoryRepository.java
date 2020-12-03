@@ -17,6 +17,8 @@ public interface ProductCategoryRepository extends JpaRepository<ProductCategory
 
     List<ProductCategory> getCategoriesByParentNull();
 
+    Page<ProductCategory> getCategoriesByParentNullAndProductsNull(Pageable pageable);
+
     List<ProductCategory> getCategoryByParentIdInAndIdNot(Collection<Long> parent_id, Long id);
 
     List<ProductCategory> getProductCategoriesByIdIn(List<Long> id);
