@@ -48,14 +48,22 @@ public class PromotionController {
             @PathVariable Long id,
             Map<String, Object> model
     ) {
+        Promotion promotion = promotionService.findById(id);
         List<DiscountProduct> promotionProducts = promotionProductService.getAllByPromotionId(id);
 
+        model.put("promotion", promotion);
         model.put("products", promotionProducts);
         return "admin/promotion/product/all";
     }
 
-    @GetMapping("/admin/promotion/product/create")
-    public String getPromotionProductCreate() {
+    @GetMapping("/admin/promotion/{id}/product/create")
+    public String getPromotionProductCreate(
+            @PathVariable Long id,
+            Map<String, Object> model
+    ) {
+        Promotion promotion = promotionService.findById(id);
+
+        model.put("promotion", promotion);
         return "admin/promotion/product/create";
     }
 
