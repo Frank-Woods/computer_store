@@ -76,35 +76,11 @@ public class AttributeValueService {
         productDataService.saveWithAttributes(productData);
     }
 
-    public void update(ru.fwoods.computerstore.model.Attribute attribute, Long id) {
-        List<AttributeValue> attributeValues = getAttributeValueWithOneProduct(id);
-
-        AttributeValue attributeValue = attributeValueRepository.getOne(id);
-
-        for (AttributeValue av : attributeValues) {
-            if (av.getId().equals(attributeValue.getId())) {
-                deleteById(attributeValue.getId());
-                attributeService.deleteById(attributeValue.getAttribute().getId());
-                valueService.deleteById(attributeValue.getValue());
-            }
-        }
-
-        ProductData productData = productDataService.getProductDataById(id);
-
+    public void update(ru.fwoods.computerstore.model.Attribute attribute) {
         AttributeCategory attributeCategory = attributeCategoryService.save(attribute.getAttributeCategory());
         Attribute attributeDomain = attributeService.save(attribute, attributeCategory);
         Value value = valueService.save(attribute);
-        AttributeValue attributeValueDomain = save(attributeDomain, value);
-
-        if (productData.getAttributes() != null) {
-            productData.getAttributes().add(attributeValueDomain);
-        } else {
-            Set<AttributeValue> attributeValueSet = new HashSet<>();
-            attributeValueSet.add(attributeValueDomain);
-            productData.setAttributes(attributeValueSet);
-        }
-
-        productDataService.saveWithAttributes(productData);
+        save(attributeDomain, value);
     }
 
     public void delete(Long id, Long productId) {

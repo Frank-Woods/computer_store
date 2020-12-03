@@ -25,12 +25,11 @@ public class AttributeRestController {
         return ResponseEntity.ok().body(null);
     }
 
-    @PostMapping(value = "/admin/product/{id}/attribute/update")
+    @PostMapping(value = "/admin/product/attribute/update")
     public ResponseEntity updateAttribute(
-            @PathVariable Long id,
             @RequestPart(name = "attribute") Attribute attribute
     ) {
-        attributeValueService.update(attribute, id);
+        attributeValueService.update(attribute);
         return ResponseEntity.ok().body(null);
     }
 
