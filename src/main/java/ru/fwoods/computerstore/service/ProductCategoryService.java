@@ -9,10 +9,7 @@ import ru.fwoods.computerstore.domain.ProductCategory;
 import ru.fwoods.computerstore.model.Category;
 import ru.fwoods.computerstore.repository.ProductCategoryRepository;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -70,14 +67,13 @@ public class ProductCategoryService {
 
     public void updateCategory(ru.fwoods.computerstore.model.ProductCategory productCategory) {
         ProductCategory productCategoryDomain = productCategoryRepository.getOne(productCategory.getId());
+
         productCategoryDomain.setName(productCategory.getName());
         productCategoryDomain.setDescription(productCategory.getDescription());
+        productCategoryDomain.setParent(productCategoryRepository.getOne(productCategory.getParent()));
 
         productCategoryRepository.save(productCategoryDomain);
 
-        productCategory.getVertexes().forEach(category -> {
-            updateProductCategoryParent(category, null);
-        });
     }
 
     public List<ProductCategory> getNeighboringAndChildCategories(ProductCategory productCategory) {
@@ -105,23 +101,12 @@ public class ProductCategoryService {
 
     public void saveProductCategory(ru.fwoods.computerstore.model.ProductCategory productCategory) {
         ProductCategory productCategoryDomain = new ProductCategory();
-        productCategoryDomain.setId(productCategory.getId());
+
         productCategoryDomain.setName(productCategory.getName());
         productCategoryDomain.setDescription(productCategory.getDescription());
+        productCategoryDomain.setParent(productCategoryRepository.getOne(productCategory.getParent()));
 
-        Set<Attribute> attributes = productCategory.getAttribute().stream().map(attributeModel -> {
-            Attribute attribute = attributeService.getAttributeById(attributeModel.getId());
-            return attribute;
-        }).collect(Collectors.toSet());
-
-        productCategoryDomain.setAttributes(attributes);
-
-        ProductCategory categorySaved = productCategoryRepository.save(productCategoryDomain);
-        productCategory.getVertexes().get(0).setId(categorySaved.getId());
-
-        productCategory.getVertexes().forEach(category -> {
-            updateProductCategoryParent(category, categorySaved);
-        });
+        productCategoryRepository.save(productCategoryDomain);
     }
 
     public void updateProductCategoryParent(Category category, ProductCategory categorySaved) {

@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import ru.fwoods.computerstore.domain.Attribute;
+import ru.fwoods.computerstore.domain.ProductCategory;
 
 @Repository
 public interface AttributeRepository extends JpaRepository<Attribute, Long> {
@@ -17,4 +18,6 @@ public interface AttributeRepository extends JpaRepository<Attribute, Long> {
             "from Attribute a join a.category c " +
             "where c.id = ?1")
     Page<Attribute> findByCategory(Long id, Pageable pageable);
+
+    Page<Attribute> getAllByProductCategoriesContains(ProductCategory productCategory, Pageable pageable);
 }

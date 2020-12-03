@@ -24,7 +24,7 @@ public class PromotionProductRestController {
         return ResponseEntity.ok().body(null);
     }
 
-    @PostMapping(value = "/admib/promotion/product/update")
+    @PostMapping(value = "/admin/promotion/product/update")
     public ResponseEntity updatePromotionProduct(
             @RequestPart(name = "product") DiscountProduct discountProduct
     ) {
