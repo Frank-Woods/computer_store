@@ -8,7 +8,7 @@
 <#assign body>
     <div class="card shadow container p-0">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Изменение продукта #${promotionProduct.id}</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Изменение продукта #${product.id}</h6>
         </div>
         <div class="card-body">
             <form name="create">
@@ -27,7 +27,7 @@
                 </div>
                 <div class="custom-input">
                     <div class="custom-input__settings">
-                        <span class="custom-input__settings__attributes">{"name":"id", type:"hidden", "defaultValue":"${promotionProduct.id}"}</span>
+                        <span class="custom-input__settings__attributes">{"name":"id", type:"hidden", "defaultValue":"${product.id}"}</span>
                     </div>
                 </div>
                 <button class="custom-button">Изменить</button>
