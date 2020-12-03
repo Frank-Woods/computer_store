@@ -35,10 +35,6 @@ public class ProductData {
     )
     private Double cost;
 
-    @NotEmpty(message = "error.validation.productData.shelfLife.empty")
-    @Column(name = "shelf_life")
-    private Integer shelfLife;
-
     @ManyToOne(
             fetch = FetchType.EAGER
     )
@@ -58,8 +54,7 @@ public class ProductData {
     private ProductCategory category;
 
     @ManyToMany(
-            fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL
+            fetch = FetchType.EAGER
     )
     @JoinTable(
             name = "product_attribute",
@@ -101,14 +96,6 @@ public class ProductData {
 
     public void setCost(Double cost) {
         this.cost = cost;
-    }
-
-    public Integer getShelfLife() {
-        return shelfLife;
-    }
-
-    public void setShelfLife(Integer shelfLife) {
-        this.shelfLife = shelfLife;
     }
 
     public Manufacturer getManufacturer() {
