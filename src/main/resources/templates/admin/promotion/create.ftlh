@@ -15,16 +15,18 @@
                 <div class="custom-input">
                     <div class="custom-input__settings">
                         <span class="custom-input__settings__attributes">{"name":"name", "label":"Название"}</span>
+                        <span class="custom-input__settings__validation">{"required": true}</span>
                     </div>
                 </div>
                 <div class="custom-input">
                     <div class="custom-input__settings">
-                        <span class="custom-input__settings__attributes">{"name":"dateStart", "label":"Дата начала", "type": "datetime"}</span>
+                        <span class="custom-input__settings__attributes">{"name":"dateStart", "label":"Дата начала", "type": "datetime-local"}</span>
                     </div>
                 </div>
                 <div class="custom-input">
                     <div class="custom-input__settings">
-                        <span class="custom-input__settings__attributes">{"name":"dateEnd", "label":"Дата окончания", "type": "datetime"}</span>
+                        <span class="custom-input__settings__attributes">{"name":"dateEnd", "label":"Дата окончания", "type": "datetime-local"}</span>
+                        <span class="custom-input__settings__validation">{"laterThan": "dateStart"}</span>
                     </div>
                 </div>
                 <div class="custom-textarea">

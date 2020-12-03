@@ -33,7 +33,7 @@ class Validation {
         errorNode.classList.add('custom-validation-error');
 
         const errorIcon = document.createElement('i');
-        errorIcon.classList.add('ion-close-round', 'custom-validation-error__icon');
+        errorIcon.classList.add('fas', 'fa-exclamation-circle', 'custom-validation-error__icon');
 
         const errorText = document.createElement('div');
         errorText.classList.add('custom-validation-error__text');

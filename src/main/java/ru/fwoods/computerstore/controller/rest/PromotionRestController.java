@@ -28,8 +28,7 @@ public class PromotionRestController {
     @Autowired
     private ControllerUtils controllerUtils;
 
-    @PreAuthorize("hasAuthority('ADMIN')")
-    @PostMapping(value = "admin/promotion/create", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/admin/promotion/create", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity createPromotion(
             @RequestPart(name = "promotion", required = false) @Validated Promotion promotion,
             @RequestPart(name = "promotionBanner", required = false) List<MultipartFile> promotionBanner,
@@ -43,8 +42,7 @@ public class PromotionRestController {
         return ResponseEntity.ok().body(null);
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
-    @PostMapping(value = "admin/promotion/update", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/admin/promotion/update", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity updatePromotion(
             @RequestPart(name = "promotion") @Validated Promotion promotion,
             @RequestPart(name = "promotionBanner", required = false) List<MultipartFile> promotionBanner,
@@ -58,7 +56,6 @@ public class PromotionRestController {
         return ResponseEntity.ok().body(null);
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping(value = "/admin/promotion/delete")
     public ResponseEntity<Map<String, String>> deletePromotion(@RequestPart(name = "promotion") IdWrapper idWrapper) {
         try {
