@@ -58,8 +58,7 @@ public class ProductDataService {
 
         productDataDomain.setName(productData.getName());
         productDataDomain.setDescription(productData.getDescription());
-        productDataDomain.setCost(productDataDomain.getCost());
-        productDataDomain.setShelfLife(productDataDomain.getShelfLife());
+        productDataDomain.setCost(productData.getCost());
         productDataDomain.setCategory(productCategoryService.getCategoryById(productData.getCategory()));
         productDataDomain.setCountry(countryService.getCountryById(productData.getCountry()));
         productDataDomain.setManufacturer(manufacturerService.getManufacturerById(productData.getManufacturer()));
@@ -112,7 +111,6 @@ public class ProductDataService {
         productDataDomain.setName(productData.getName());
         productDataDomain.setDescription(productData.getDescription());
         productDataDomain.setCost(productDataDomain.getCost());
-        productDataDomain.setShelfLife(productDataDomain.getShelfLife());
         productDataDomain.setCategory(productCategoryService.getCategoryById(productData.getCategory()));
         productDataDomain.setCountry(countryService.getCountryById(productData.getCountry()));
         productDataDomain.setManufacturer(manufacturerService.getManufacturerById(productData.getManufacturer()));
@@ -159,7 +157,6 @@ public class ProductDataService {
         productDataDomain.setName(productData.getName());
         productDataDomain.setDescription(productData.getDescription());
         productDataDomain.setCost(productData.getCost());
-        productDataDomain.setShelfLife(productData.getShelfLife());
 
         Manufacturer manufacturer = manufacturerService.getManufacturerById(productData.getManufacturer());
         Country country = countryService.getCountryById(productData.getCountry());
@@ -179,7 +176,6 @@ public class ProductDataService {
         productDataModel.setName(productData.getName());
         productDataModel.setDescription(productData.getDescription());
         productDataModel.setCost(productData.getCost());
-        productDataModel.setShelfLife(productData.getShelfLife());
         productDataModel.setManufacturer(productData.getManufacturer().getId());
         productDataModel.setCountry(productData.getCountry().getId());
         productDataModel.setCategory(productData.getCategory().getId());
