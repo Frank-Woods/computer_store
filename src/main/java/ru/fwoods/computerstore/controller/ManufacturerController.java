@@ -33,9 +33,7 @@ public class ManufacturerController {
     private ImageService imageService;
 
     @GetMapping("/admin/manufacturer/create")
-    public String getManufacturersCreate(Map<String, Object> model) {
-        List<Country> countries = countryService.getAllCountries();
-        model.put("countries", countries);
+    public String getManufacturersCreate() {
         return "admin/manufacturer/create";
     }
 
@@ -46,11 +44,9 @@ public class ManufacturerController {
     ) {
         Manufacturer manufacturer = manufacturerService.getManufacturerById(id);
         String logo = imageService.getImageByManufacturerId(id);
-        List<Country> countries = countryService.getAllCountries();
 
         model.addAttribute("manufacturer", manufacturer);
         model.addAttribute("logo", logo);
-        model.addAttribute("countries", countries);
 
         return "admin/manufacturer/update";
     }
