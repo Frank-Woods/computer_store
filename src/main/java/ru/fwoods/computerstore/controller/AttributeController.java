@@ -64,6 +64,6 @@ public class AttributeController {
 
         model.put("productData", productData);
         model.put("attribute", attribute);
-        return "admin/category/attribute/update";
+        return "admin/product/attribute/update";
     }
 }
