@@ -12,6 +12,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import ru.fwoods.computerstore.controller.ControllerUtils;
+import ru.fwoods.computerstore.domain.ProductData;
 import ru.fwoods.computerstore.model.IdWrapper;
 import ru.fwoods.computerstore.model.Manufacturer;
 import ru.fwoods.computerstore.service.ManufacturerService;
@@ -28,6 +29,14 @@ public class ManufacturerRestController {
 
     @Autowired
     private ControllerUtils controllerUtils;
+
+    @GetMapping(value = "/admin/manufacturer/get/search")
+    public ResponseEntity getManufacturerSearch(
+            @RequestParam(required = false, defaultValue = "") String searchParam
+    ) {
+        List<ru.fwoods.computerstore.domain.Manufacturer> manufacturerList = manufacturerService.getManufacturerSearch(searchParam);
+        return ResponseEntity.ok().body(manufacturerList);
+    }
 
     @PostMapping(value = "/admin/manufacturer/create", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity createManufacturer(

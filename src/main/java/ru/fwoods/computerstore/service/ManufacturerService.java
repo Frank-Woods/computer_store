@@ -12,6 +12,7 @@ import ru.fwoods.computerstore.repository.CountryRepository;
 import ru.fwoods.computerstore.repository.ManufacturerRepository;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -106,5 +107,10 @@ public class ManufacturerService {
 
     public List<Manufacturer> getAllManufacturers() {
         return manufacturerRepository.findAll();
+    }
+
+    public List<Manufacturer> getManufacturerSearch(String searchParam) {
+        if (searchParam.length() > 0) return manufacturerRepository.findAllByNameContainsIgnoreCase( searchParam);
+        else return manufacturerRepository.findAll();
     }
 }
