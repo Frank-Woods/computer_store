@@ -9,7 +9,7 @@
 <#assign body>
     <div class="card shadow container p-0">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Характеристики категории #${category.id}</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Характеристики категории #${productCategory.id}</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -42,7 +42,7 @@
                                         <i class="fas fa-caret-down"></i>
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right shadow" aria-labelledby="dropdownMenuButton" x-placement="bottom-start">
-                                        <a class="dropdown-item" href="/admin/category/attribute/update/${attribute.id}">Изменить</a>
+                                        <a class="dropdown-item" href="/admin/productCategories/attributes/update/${attribute.id}">Изменить</a>
                                         <form class="dropdown-item" name="delete">
                                             <div class="custom-input">
                                                 <div class="custom-input__settings">
@@ -64,7 +64,7 @@
                 </table>
             </div>
             <@pagination.template
-            url = "/admin/category/${category.id}/attribute/all"
+            url = "/admin/productCategories/${productCategory.id}/attributes/all"
             page = attributes
             ></@pagination.template>
         </div>

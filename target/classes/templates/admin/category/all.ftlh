@@ -46,7 +46,9 @@
                                             <i class="fas fa-caret-down"></i>
                                         </button>
                                         <div class="dropdown-menu dropdown-menu-right shadow" aria-labelledby="dropdownMenuButton" x-placement="bottom-start">
-                                            <a class="dropdown-item" href="/admin/category/update/${category.id}">Изменить</a>
+                                            <a class="dropdown-item" href="/admin/productCategory/${category.id}/attributes/all">Все характеристики</a>
+                                            <a class="dropdown-item" href="/admin/productCategory/${category.id}/attribute/create">Добавить характеристику</a>
+                                            <a class="dropdown-item" href="/admin/productCategories/update/${category.id}">Изменить</a>
                                             <form class="dropdown-item" name="delete">
                                                 <div class="custom-input">
                                                     <div class="custom-input__settings">

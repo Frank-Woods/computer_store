@@ -27,8 +27,7 @@
                 <div class="custom-select">
                     <div class="custom-select__settings">
                         <span class="custom-select__settings__attributes">{"name":"parent", "label":"Категория", "itemVisibleValue":["name"]}</span>
-                        <span class="custom-select__settings__request">{"ajax":true, "url":"http://localhost:8080/admin/country/get/search"}</span>
-                        <span class="custom-select__settings__validation">{"required":true}</span>
+                        <span class="custom-select__settings__request">{"ajax":true, "url":"http://localhost:8080/admin/productCategory/parent/product/null"}</span>
                     </div>
                 </div>
                 <button class="custom-button">Создать</button>

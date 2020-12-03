@@ -73,7 +73,7 @@ public class ProductCategoryRestController {
         }
     }
 
-    @PostMapping(value = "/admin/productCategory/attribute/create")
+    @PostMapping(value = "/admin/productCategory/{id}/attribute/create")
     public ResponseEntity createAttribute(
             @RequestPart(name = "productCategory") IdWrapper idWrapper,
             @RequestPart(name = "attribute") Attribute attribute
@@ -91,10 +91,7 @@ public class ProductCategoryRestController {
     }
 
     @GetMapping("/admin/productCategory/parent/product/null")
-    public Page<ProductCategory> getCategoriesWithoutParentAndProduct(
-            @RequestParam(required = false, defaultValue = "0") Integer page
-    ) {
-        Pageable pageable = PageRequest.of(page, 15);
-        return productCategoryService.getCategoriesWithoutParentAndProduct(pageable);
+    public List<ProductCategory> getCategoriesWithoutParentAndProduct() {
+        return productCategoryService.getCategoriesWithoutParentAndProduct();
     }
 }

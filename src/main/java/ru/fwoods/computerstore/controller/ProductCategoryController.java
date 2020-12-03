@@ -40,7 +40,7 @@ public class ProductCategoryController {
     ) {
         ProductCategory productCategory = productCategoryService.getCategoryById(id);
         model.put("productCategory", productCategory);
-        return "productCategory/update";
+        return "admin/category/update";
     }
 
     @GetMapping("/admin/productCategory/{id}/attributes/all")
@@ -55,7 +55,7 @@ public class ProductCategoryController {
 
         model.put("productCategory", productCategory);
         model.put("attributes", attributes);
-        return "admin/productCategory/product/all";
+        return "admin/category/attribute/all";
     }
 
     @GetMapping("/admin/productCategory/{id}/attribute/create")
@@ -66,10 +66,10 @@ public class ProductCategoryController {
         ProductCategory productCategory = productCategoryService.getCategoryById(id);
 
         model.put("productCategory", productCategory);
-        return "admin/productCategory/attribute/create";
+        return "admin/category/attribute/create";
     }
 
-    @GetMapping("/admin/productCategory/product/update/{id}")
+    @GetMapping("/admin/productCategory/attribute/update/{id}")
     public String getPromotionProductUpdate(
             @PathVariable Long id,
             Map<String, Object> model
@@ -77,6 +77,6 @@ public class ProductCategoryController {
         Attribute attribute = attributeService.getAttributeModelById(id);
 
         model.put("attribute", attribute);
-        return "admin/productCategory/product/update";
+        return "admin/category/attribute/update";
     }
 }
