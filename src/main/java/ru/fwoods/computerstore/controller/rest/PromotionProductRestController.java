@@ -2,6 +2,7 @@ package ru.fwoods.computerstore.controller.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,12 +16,12 @@ public class PromotionProductRestController {
     @Autowired
     private PromotionProductService promotionProductService;
 
-    @PostMapping(value = "/admin/promotion/product/create")
+    @PostMapping(value = "/admin/promotion/{id}/product/create")
     public ResponseEntity createPromotionProduct(
-            @RequestPart(name = "promotion") IdWrapper idWrapper,
+            @PathVariable Long id,
             @RequestPart(name = "product") DiscountProduct discountProduct
     ) {
-        promotionProductService.save(discountProduct, idWrapper);
+        promotionProductService.save(discountProduct, id);
         return ResponseEntity.ok().body(null);
     }
 

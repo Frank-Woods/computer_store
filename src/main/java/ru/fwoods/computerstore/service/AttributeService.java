@@ -72,12 +72,12 @@ public class AttributeService {
         return attributeModel;
     }
 
-    public void saveAttribute(ru.fwoods.computerstore.model.rest.Attribute attribute, IdWrapper idWrapper) {
+    public void saveAttribute(ru.fwoods.computerstore.model.rest.Attribute attribute, Long id) {
         ru.fwoods.computerstore.domain.Attribute attributeDomain = new ru.fwoods.computerstore.domain.Attribute();
 
         attributeDomain.setName(attribute.getName());
         attributeDomain.setDescription(attribute.getDescription());
-        attributeDomain.getProductCategories().add(productCategoryService.getCategoryById(idWrapper.getId()));
+        attributeDomain.getProductCategories().add(productCategoryService.getCategoryById(id));
 
         attributeRepository.save(attributeDomain);
     }

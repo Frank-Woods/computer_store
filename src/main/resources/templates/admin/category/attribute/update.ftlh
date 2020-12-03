@@ -37,6 +37,7 @@
 </#assign>
 
 <#assign scripts>
+    <script>const categoryId = ${category.id};</script>
     <script src="/static/js/admin/category/attribute/update.js"></script>
     <@form.js></@form.js>
 </#assign>

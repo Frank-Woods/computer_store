@@ -105,7 +105,7 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Страницы:</h6>
                     <a class="collapse-item" href="/admin/category/all">Все категории</a>
-                    <a class="collapse-item" href="/admin/productCategories/create">Добавить</a>
+                    <a class="collapse-item" href="/admin/category/create">Добавить</a>
                 </div>
             </div>
         </li>

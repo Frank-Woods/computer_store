@@ -34,9 +34,9 @@ public class ProductCategoryRestController {
     @Autowired
     private AttributeService attributeService;
 
-    @PostMapping(value = "/admin/productCategory/create", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/admin/category/create", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity createCategory(
-            @RequestPart(name = "productCategory") @Validated ProductCategory productCategory,
+            @RequestPart(name = "category") @Validated ProductCategory productCategory,
             BindingResult bindingResult
     ) {
         if (bindingResult.hasErrors()) {
@@ -47,9 +47,9 @@ public class ProductCategoryRestController {
         return ResponseEntity.ok().body(null);
     }
 
-    @PostMapping(value = "/admin/productCategory/update", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/admin/category/update", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity updateCategory(
-            @RequestPart(name = "productCategory") @Validated ProductCategory productCategory,
+            @RequestPart(name = "category") @Validated ProductCategory productCategory,
             BindingResult bindingResult
     ) {
         if (bindingResult.hasErrors()) {
@@ -60,9 +60,9 @@ public class ProductCategoryRestController {
         return ResponseEntity.ok().body(null);
     }
 
-    @PostMapping(value = "/admin/productCategory/delete")
+    @PostMapping(value = "/admin/category/delete")
     public ResponseEntity deleteCategory(
-            @RequestPart(name = "productCategory") IdWrapper idWrapper
+            @RequestPart(name = "category") IdWrapper idWrapper
     ) {
         try {
             productCategoryService.deleteCategoryById(idWrapper.getId());
@@ -73,16 +73,16 @@ public class ProductCategoryRestController {
         }
     }
 
-    @PostMapping(value = "/admin/productCategory/{id}/attribute/create")
+    @PostMapping(value = "/admin/category/{id}/attribute/create")
     public ResponseEntity createAttribute(
-            @RequestPart(name = "productCategory") IdWrapper idWrapper,
+            @PathVariable Long id,
             @RequestPart(name = "attribute") Attribute attribute
     ) {
-        attributeService.saveAttribute(attribute, idWrapper);
+        attributeService.saveAttribute(attribute, id);
         return ResponseEntity.ok().body(null);
     }
 
-    @PostMapping(value = "/admin/productCategory/attribute/update")
+    @PostMapping(value = "/admin/category/attribute/update")
     public ResponseEntity updateAttribute(
             @RequestPart(name = "attribute") Attribute attribute
     ) {
@@ -90,7 +90,7 @@ public class ProductCategoryRestController {
         return ResponseEntity.ok().body(null);
     }
 
-    @GetMapping("/admin/productCategory/parent/product/null")
+    @GetMapping("admin/category/parent/product/null")
     public List<ProductCategory> getCategoriesWithoutParentAndProduct() {
         return productCategoryService.getCategoriesWithoutParentAndProduct();
     }

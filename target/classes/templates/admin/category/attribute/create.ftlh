@@ -8,7 +8,7 @@
 <#assign body>
     <div class="card shadow container p-0">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Добавление характеристики в категорию #${productCategory.id}</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Добавление характеристики в категорию #${category.id}</h6>
         </div>
         <div class="card-body">
             <form name="create">
@@ -19,10 +19,10 @@
                         <span class="custom-select__settings__validation">{"required":true}</span>
                     </div>
                 </div>
-                <div class="custom-input">
-                    <div class="custom-input__settings">
-                        <span class="custom-input__settings__attributes">{"name": "description", "label":"Описание", "inputValueFormat": { "type":"var", "pattern": ["name"] }, "outputValueFormat": { "type": "var", "pattern": ["name"] }}</span>
-                        <span class="custom-input__settings__validation">{"required":true}</span>
+                <div class="custom-textarea">
+                    <div class="custom-textarea__settings">
+                        <span class="custom-textarea__settings__attributes">{"name": "description", "label":"Описание", "inputValueFormat": { "type":"var", "pattern": ["name"] }, "outputValueFormat": { "type": "var", "pattern": ["name"] }}</span>
+                        <span class="custom-textarea__settings__validation">{"required":true}</span>
                     </div>
                 </div>
                 <button class="custom-button">Создать</button>
@@ -32,6 +32,7 @@
 </#assign>
 
 <#assign scripts>
+    <script>const categoryId = ${category.id};</script>
     <script src="/static/js/admin/category/attribute/create.js"></script>
     <@form.js></@form.js>
 </#assign>

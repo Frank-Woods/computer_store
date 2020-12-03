@@ -9,7 +9,7 @@
 <#assign body>
     <div class="card shadow container p-0">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Характеристики категории #${productCategory.id}</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Характеристики категории #${category.id}</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -64,7 +64,7 @@
                 </table>
             </div>
             <@pagination.template
-            url = "/admin/productCategories/${productCategory.id}/attributes/all"
+            url = "/admin/category/${category.id}/attribute/all"
             page = attributes
             ></@pagination.template>
         </div>
