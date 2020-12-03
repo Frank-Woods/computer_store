@@ -9,11 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
-import ru.fwoods.computerstore.domain.Country;
-import ru.fwoods.computerstore.domain.Image;
-import ru.fwoods.computerstore.domain.Manufacturer;
-import ru.fwoods.computerstore.domain.ProductCategory;
-import ru.fwoods.computerstore.model.ProductData;
+import ru.fwoods.computerstore.domain.*;
 import ru.fwoods.computerstore.service.*;
 
 import java.util.List;
@@ -55,20 +51,14 @@ public class ProductDataController {
             @PathVariable Long id,
             Map<String, Object> model
     ) {
-        ProductData productDataModel = productDataService.getProductDataModelById(id);
+        ProductData productData = productDataService.getProductDataById(id);
         List<Country> countries = countryService.getAllCountries();
         List<Manufacturer> manufacturers = manufacturerService.getAllManufacturers();
-        Country country = countryService.getCountryById(productDataModel.getCountry());
-        Manufacturer manufacturer = manufacturerService.getManufacturerById(productDataModel.getManufacturer());
-        ProductCategory productCategory = productCategoryService.getCategoryById(productDataModel.getCategory());
-        List<Image> images = imageService.getImagesByProductDataId(productDataModel.getId());
+        List<Image> images = imageService.getImagesByProductDataId(id);
 
-        model.put("productData", productDataModel);
+        model.put("productData", productData);
         model.put("countries", countries);
-        model.put("country", country);
         model.put("manufacturers", manufacturers);
-        model.put("manufacturer", manufacturer);
-        model.put("productCategory", productCategory);
         model.put("images", images);
 
         return "admin/product/update";
