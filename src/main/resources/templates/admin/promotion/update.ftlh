@@ -35,7 +35,7 @@
                 </div>
                 <div class="custom-file-input">
                     <div class="custom-file-input__settings">
-                        <span class="custom-file-input__settings__attributes">{"name": "banner", "label": "Логотип", "type": "file"}</span>
+                        <span class="custom-file-input__settings__attributes">{"name": "banner", "label": "Логотип", "type": "file", "files": [{"id":${promotion.banner.id}, "src": "/image/promotionBanner/${promotion.banner.filename}"}]}</span>
                         <span class="custom-file-input__settings__validation">{"imageTypes":["image.png", "image.jpeg"], "required": true}</span>
                     </div>
                 </div>

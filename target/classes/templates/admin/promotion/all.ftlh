@@ -43,7 +43,7 @@
                                     <td>${promotion.id}</td>
                                     <td>${promotion.name}</td>
                                     <td><#noautoesc>${promotion.description}</#noautoesc></td>
-                                    <td><a href="/image/manufacturerLogo/${promotion.banner.filename}" target="_blank"><img src="/image/manufacturerLogo/${promotion.banner.filename}" alt="logo"></a></td>
+                                    <td><a href="/image/promotionBanner/${promotion.banner.filename}" target="_blank"><img src="/image/promotionBanner/${promotion.banner.filename}" alt="logo"></a></td>
                                     <td>${promotion.dateStart}</td>
                                     <td>${promotion.dateEnd}</td>
                                     <td class="dropdown no-arrow table-action">
@@ -66,7 +66,7 @@
                             </#list>
                         <#else>
                             <tr>
-                                <td colspan="6" class="text-center">Пусто</td>
+                                <td colspan="7" class="text-center">Пусто</td>
                             </tr>
                         </#if>
                     </tbody>
