@@ -11,6 +11,7 @@ import java.util.regex.Pattern;
 
 @Service
 public class FileService {
+
     private void checkDir(String path) {
         File dir = new File(path);
         if (!dir.exists()) dir.mkdir();
@@ -37,5 +38,10 @@ public class FileService {
 
     private String generateFilename(String contentType) {
         return UUID.randomUUID().toString() + "." + getExtensionFile(contentType);
+    }
+
+    public void deleteFile(String path, String filename) {
+        File file = new File(path + "/" + filename);
+        file.delete();
     }
 }
