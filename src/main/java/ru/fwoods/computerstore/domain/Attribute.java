@@ -27,7 +27,7 @@ public class Attribute {
     private String description;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "attribute_category_id", nullable = false)
+    @JoinColumn(name = "attribute_category_id")
     private AttributeCategory category;
 
     @ManyToMany(
