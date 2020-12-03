@@ -46,7 +46,7 @@
                 </div>
                 <div class="custom-file-input">
                     <div class="custom-file-input__settings">
-                        <span class="custom-file-input__settings__attributes">{"name": "images", "label": "Изображения", "type": "file"}</span>
+                        <span class="custom-file-input__settings__attributes">{"name": "images", "label": "Изображения", "type": "file", "multiple":true}</span>
                         <span class="custom-file-input__settings__validation">{"imageTypes":["image.png", "image.jpeg"], "required": true}</span>
                     </div>
                 </div>
