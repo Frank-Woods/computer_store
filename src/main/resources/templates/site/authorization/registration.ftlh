@@ -34,6 +34,33 @@
                                             </div>
                                             <div class="custom-input custom-input-strict-style">
                                                 <div class="custom-input__settings">
+                                                    <span class="custom-input__settings__attributes">{"name":"firstName", "label":"Имя"}</span>
+                                                </div>
+                                            </div>
+                                            <div class="custom-input custom-input-strict-style">
+                                                <div class="custom-input__settings">
+                                                    <span class="custom-input__settings__attributes">{"name":"lastName", "label":"Фамилия"}</span>
+                                                </div>
+                                            </div>
+                                            <div class="custom-input custom-input-strict-style">
+                                                <div class="custom-input__settings">
+                                                    <span class="custom-input__settings__attributes">{"name":"patronymic", "label":"Отчество"}</span>
+                                                </div>
+                                            </div>
+                                            <div class="custom-input custom-input-strict-style">
+                                                <div class="custom-input__settings">
+                                                    <span class="custom-input__settings__attributes">{"name":"telephone", "label":"Телефон"}</span>
+                                                </div>
+                                            </div>
+                                            <div class="custom-select custom-select-strict-style">
+                                                <div class="custom-select__settings">
+                                                    <span class="custom-select__settings__attributes">{"name":"city", "label":"Город", "itemVisibleValue":["name"]}</span>
+                                                    <span class="custom-select__settings__request">{"ajax":true, "url":"http://localhost:8080/admin/city/get/search"}</span>
+                                                    <span class="custom-select__settings__validation">{"required":true}</span>
+                                                </div>
+                                            </div>
+                                            <div class="custom-input custom-input-strict-style">
+                                                <div class="custom-input__settings">
                                                     <span class="custom-input__settings__attributes">{"name":"password", "label":"Пароль", "type":"password"}</span>
                                                 </div>
                                             </div>
