@@ -26,9 +26,6 @@ public class Promotion {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateEnd;
 
-    @NotEmpty(message = "error.validation.promotion.products.empty")
-    private List<DiscountProduct> products;
-
     public Long getId() {
         return id;
     }
@@ -67,13 +64,5 @@ public class Promotion {
 
     public void setDateEnd(Date dateEnd) {
         this.dateEnd = dateEnd;
-    }
-
-    public List<DiscountProduct> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<DiscountProduct> products) {
-        this.products = products;
     }
 }
