@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import ru.fwoods.computerstore.domain.Image;
+import ru.fwoods.computerstore.domain.Manufacturer;
 import ru.fwoods.computerstore.domain.Promotion;
 import ru.fwoods.computerstore.domain.PromotionProduct;
 import ru.fwoods.computerstore.model.DiscountProduct;
@@ -38,6 +39,13 @@ public class PromotionService {
     private String promotionUploadPath;
 
     public void deletePromotion(Long id) {
+        Promotion manufacturerDomain = promotionRepository.getOne(id);
+        List<Image> promotionImages = imageService.getImagesByManufacturerId(manufacturerDomain.getId());
+
+        promotionImages.forEach(manufacturerImage -> {
+            imageService.deleteManufacturerImage(manufacturerImage.getId());
+        });
+
         promotionRepository.deleteById(id);
     }
 
