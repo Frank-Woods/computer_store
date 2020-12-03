@@ -1,9 +1,12 @@
 package ru.fwoods.computerstore.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ru.fwoods.computerstore.domain.Attribute;
 import ru.fwoods.computerstore.domain.AttributeValue;
+import ru.fwoods.computerstore.domain.ProductData;
 import ru.fwoods.computerstore.domain.Value;
 import ru.fwoods.computerstore.repository.AttributeValueRepository;
 
@@ -31,5 +34,13 @@ public class AttributeValueService {
 
     public void deleteById(Long id) {
         attributeValueRepository.deleteById(id);
+    }
+
+    public Page<AttributeValue> getAttributeValueByProductId(ProductData productData, Pageable pageable) {
+        return attributeValueRepository.getAllByProductsContains(productData, pageable);
+    }
+
+    public AttributeValue findById(Long id) {
+        return attributeValueRepository.getOne(id);
     }
 }
