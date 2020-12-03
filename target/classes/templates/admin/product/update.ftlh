@@ -14,13 +14,13 @@
             <form name="update">
                 <div class="custom-input">
                     <div class="custom-input__settings">
-                        <span class="custom-input__settings__attributes">{"name":"name", "label":"Название", "defaultValue":${productData.name}</span>
+                        <span class="custom-input__settings__attributes">{"name":"name", "label":"Название", "defaultValue":${productData.name}}</span>
                         <span class="custom-input__settings__validation">{"required": true}</span>
                     </div>
                 </div>
                 <div class="custom-textarea">
                     <div class="custom-textarea__settings">
-                        <span class="custom-textarea__settings__attributes">{"name":"description", "label":"Описание", "defaultValue":${productData.description}</span>
+                        <span class="custom-textarea__settings__attributes">{"name":"description", "label":"Описание", "defaultValue":${productData.description}}</span>
                         <span class="custom-textarea__settings__validation">{"required":true}</span>
                     </div>
                 </div>
@@ -33,7 +33,7 @@
                 </div>
                 <div class="custom-select">
                     <div class="custom-select__settings">
-                        <span class="custom-select__settings__attributes">{"name":"manufacturer", "label":"Производитель", "itemVisibleValue":["name"]}, "defaultValue":{"id":${productData.manufacturer.id}, "name":"${productData.manufacturer.name}"}}</span>
+                        <span class="custom-select__settings__attributes">{"name":"manufacturer", "label":"Производитель", "itemVisibleValue":["name"], "defaultValue":{"id":${productData.manufacturer.id}, "name":"${productData.manufacturer.name}"}}</span>
                         <span class="custom-select__settings__request">{"ajax":true, "url":"http://localhost:8080/admin/country/get/search"}</span>
                         <span class="custom-select__settings__validation">{"required":true}</span>
                     </div>
@@ -47,7 +47,7 @@
                 </div>
                 <div class="custom-input">
                     <div class="custom-input__settings">
-                        <span class="custom-input__settings__attributes">{"name":"cost", "label":"Стоимость", "type":"number", "defaultValue":${productData.cost}</span>
+                        <span class="custom-input__settings__attributes">{"name":"cost", "label":"Стоимость", "type":"number", "defaultValue":${productData.cost?c}}</span>
                         <span class="custom-input__settings__validation">{"required":true, "min":0}</span>
                     </div>
                 </div>
@@ -59,7 +59,7 @@
                 </div>
                 <div class="custom-input">
                     <div class="custom-input__settings">
-                        <span class="custom-input__settings__attributes">{"name":"id", "type":"hidden", "defaultValue":${productData.id}</span>
+                        <span class="custom-input__settings__attributes">{"name":"id", "type":"hidden", "defaultValue":${productData.id}}</span>
                     </div>
                 </div>
                 <button class="custom-button">Изменить</button>
