@@ -164,7 +164,6 @@ public class ProductCategoryService {
             productCategoryModel.setId(productCategory.getId());
             productCategoryModel.setName(productCategory.getName());
             productCategoryModel.setDescription(productCategory.getDescription());
-            productCategoryModel.setParent(productCategory.getParent().getId());
 
             return productCategoryModel;
         }).collect(Collectors.toList());
