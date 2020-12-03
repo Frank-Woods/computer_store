@@ -116,6 +116,7 @@ public class ProductDataService {
         productDataDomain.setCategory(productCategoryService.getCategoryById(productData.getCategory()));
         productDataDomain.setCountry(countryService.getCountryById(productData.getCountry()));
         productDataDomain.setManufacturer(manufacturerService.getManufacturerById(productData.getManufacturer()));
+
         List<Image> productDataImages = imageService.getImagesByProductDataId(productDataDomain.getId());
         List<Long> imageIds = new ArrayList<>();
 
@@ -139,6 +140,8 @@ public class ProductDataService {
                 imageService.deleteProductDataImage(productDataImage.getId());
             }
         });
+
+        productDataRepository.save(productDataDomain);
     }
 
     private void saveImage(List<MultipartFile> image, ProductData productDataDomain) {
