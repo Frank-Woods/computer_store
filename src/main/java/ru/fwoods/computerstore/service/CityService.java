@@ -53,4 +53,9 @@ public class CityService {
         cityDomain.setCountry(countryRepository.getOne(city.getCountry()));
         cityRepository.save(cityDomain);
     }
+
+    public List<City> getCitySearch(String searchParam) {
+        if (searchParam.length() > 0) return cityRepository.findAllByNameContainsIgnoreCase(searchParam);
+        else return cityRepository.findAll();
+    }
 }

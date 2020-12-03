@@ -12,9 +12,6 @@ public class AttributeCategory {
     @NotEmpty(message = "error.validation.attributeCategory.name.empty")
     private String name;
 
-    @NotEmpty(message = "error.validation.attributeCategory.attributes.empty")
-    private List<Attribute> attributes;
-
     public Long getId() {
         return id;
     }
@@ -29,13 +26,5 @@ public class AttributeCategory {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public List<Attribute> getAttributes() {
-        return attributes;
-    }
-
-    public void setAttributes(List<Attribute> attributes) {
-        this.attributes = attributes;
     }
 }

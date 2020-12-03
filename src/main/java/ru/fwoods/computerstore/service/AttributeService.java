@@ -120,7 +120,12 @@ public class AttributeService {
             attributeModel.setDescription(attributeValue.getAttribute().getDescription());
             attributeModel.setValue(attributeValue.getValue().getValue());
             attributeModel.setUnit(attributeValue.getValue().getUnit());
-            attributeModel.setAttributeCategory(attributeValue.getAttribute().getCategory().getId());
+
+            ru.fwoods.computerstore.model.AttributeCategory attributeCategory = new ru.fwoods.computerstore.model.AttributeCategory();
+            attributeCategory.setId(attributeValue.getAttribute().getCategory().getId());
+            attributeCategory.setName(attributeValue.getAttribute().getCategory().getName());
+
+            attributeModel.setAttributeCategory(attributeCategory);
 
             return attributeModel;
         });
@@ -136,7 +141,12 @@ public class AttributeService {
         attribute.setDescription(attributeValue.getAttribute().getDescription());
         attribute.setValue(attributeValue.getValue().getValue());
         attribute.setUnit(attributeValue.getValue().getUnit());
-        attribute.setAttributeCategory(attributeValue.getAttribute().getCategory().getId());
+
+        ru.fwoods.computerstore.model.AttributeCategory attributeCategory = new ru.fwoods.computerstore.model.AttributeCategory();
+        attributeCategory.setId(attributeValue.getAttribute().getCategory().getId());
+        attributeCategory.setName(attributeValue.getAttribute().getCategory().getName());
+
+        attribute.setAttributeCategory(attributeCategory);
 
         return attribute;
     }
