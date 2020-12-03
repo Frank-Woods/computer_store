@@ -42,6 +42,7 @@
                                     <td>${manufacturer.name}</td>
                                     <td>${manufacturer.description}</td>
                                     <td>${manufacturer.country.name}</td>
+                                    <td><a href="/image/manufacturerLogo/${manufacturer.logo.filename}" target="_blank"><img src="/image/manufacturerLogo/${manufacturer.logo.filename}" alt="logo"></a></td>
                                     <td class="dropdown no-arrow table-action">
                                         <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                             <i class="fas fa-caret-down"></i>

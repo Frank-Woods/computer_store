@@ -189,6 +189,8 @@ class FileInput extends Input {
                 node: this.createFile(event.target.result, file.name, true, 0)
             };
 
+            this.files.forEach(file => file.node.node.remove());
+            this.files = [];
             this.files.push(createdFile);
             this.fileWrapper.node.append(this.files[this.files.length - 1].node.node);
         }
