@@ -74,8 +74,8 @@
                  data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Страницы:</h6>
-                    <a class="collapse-item" href="#">Все акции</a>
-                    <a class="collapse-item" href="#">Добавить</a>
+                    <a class="collapse-item" href="/admin/promotion/all">Все акции</a>
+                    <a class="collapse-item" href="/admin/promotion/create">Добавить</a>
                 </div>
             </div>
         </li>
@@ -89,8 +89,8 @@
                  data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Страницы:</h6>
-                    <a class="collapse-item" href="#">Все продукты</a>
-                    <a class="collapse-item" href="#">Добавить</a>
+                    <a class="collapse-item" href="/admin/product/all">Все продукты</a>
+                    <a class="collapse-item" href="/admin/product/create">Добавить</a>
                 </div>
             </div>
         </li>

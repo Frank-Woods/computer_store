@@ -15,12 +15,14 @@
                 <div class="custom-input">
                     <div class="custom-input__settings">
                         <span class="custom-input__settings__attributes">{"name":"name", "label":"Название"}</span>
+                        <span class="custom-input__settings__validation">{"required":true}</span>
                     </div>
                 </div>
                 <div class="custom-select">
                     <div class="custom-select__settings">
                         <span class="custom-select__settings__attributes">{"name":"country", "label":"Страна", "itemVisibleValue":["name"]}</span>
                         <span class="custom-select__settings__request">{"ajax":true, "url":"http://localhost:8080/admin/country/get/search"}</span>
+                        <span class="custom-select__settings__validation">{"required":true}</span>
                     </div>
                 </div>
                 <button class="custom-button">Создать</button>

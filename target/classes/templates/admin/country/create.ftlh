@@ -15,6 +15,7 @@
                 <div class="custom-input">
                     <div class="custom-input__settings">
                         <span class="custom-input__settings__attributes">{"name":"name", "label":"Название"}</span>
+                        <span class="custom-input__settings__validation">{"required":true}</span>
                     </div>
                 </div>
                 <button class="custom-button">Создать</button>

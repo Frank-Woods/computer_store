@@ -15,22 +15,25 @@
                 <div class="custom-input">
                     <div class="custom-input__settings">
                         <span class="custom-input__settings__attributes">{"name":"name", "label":"Название", "defaultValue":"${promotion.name}"}</span>
+                        <span class="custom-input__settings__validation">{"required":true}</span>
                     </div>
                 </div>
                 <div class="custom-input">
                     <div class="custom-input__settings">
                         <span class="custom-input__settings__attributes">{"name":"dateStart", "label":"Дата начала", "type": "datetime-local", "defaultValue":"${promotion.dateStart?iso_m_nz("Europe/Samara")}"}</span>
+                        <span class="custom-input__settings__validation">{"required":true}</span>
                     </div>
                 </div>
                 <div class="custom-input">
                     <div class="custom-input__settings">
                         <span class="custom-input__settings__attributes">{"name":"dateEnd", "label":"Дата окончания", "type": "datetime-local", "defaultValue":"${promotion.dateEnd?iso_m_nz("Europe/Samara")}"}</span>
-                        <span class="custom-input__settings__validation">{"laterThan": "dateStart"}</span>
+                        <span class="custom-input__settings__validation">{"laterThan": "dateStart", "required":true}</span>
                     </div>
                 </div>
                 <div class="custom-textarea">
                     <div class="custom-textarea__settings">
                         <span class="custom-textarea__settings__attributes">{"name":"description", "label":"Описание", "defaultValue":"${promotion.description}"}</span>
+                        <span class="custom-textarea__settings__validation">{"required":true}</span>
                     </div>
                 </div>
                 <div class="custom-file-input">
@@ -44,7 +47,7 @@
                         <span class="custom-input__settings__attributes">{"name":"id", "type": "hidden", "defaultValue":"${promotion.id}"}</span>
                     </div>
                 </div>
-                <button class="custom-button">Создать</button>
+                <button class="custom-button">Изменить</button>
             </form>
         </div>
     </div>

@@ -51,6 +51,8 @@
                                             <i class="fas fa-caret-down"></i>
                                         </button>
                                         <div class="dropdown-menu dropdown-menu-right shadow" aria-labelledby="dropdownMenuButton" x-placement="bottom-start">
+                                            <a class="dropdown-item" href="/admin/promotion/${promotion.id}/product/all">Все продукты</a>
+                                            <a class="dropdown-item" href="/admin/promotion/${promotion.id}/product/create">Добавить продукт</a>
                                             <a class="dropdown-item" href="/admin/promotion/update/${promotion.id}">Изменить</a>
                                             <form class="dropdown-item" name="delete">
                                                 <div class="custom-input">
