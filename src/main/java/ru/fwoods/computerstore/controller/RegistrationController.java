@@ -14,7 +14,7 @@ public class RegistrationController {
 
     @GetMapping("user/registration")
     public String getRegistrationPage() {
-        return "user/registration";
+        return "site/authorization/registration";
     }
 
     @PostMapping("user/registration")
