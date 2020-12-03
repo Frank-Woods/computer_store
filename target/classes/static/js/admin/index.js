@@ -1,0 +1,1 @@
+const forms = document.getElementsByName("sales");
