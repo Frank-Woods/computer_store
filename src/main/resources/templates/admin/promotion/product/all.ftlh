@@ -42,7 +42,7 @@
                                         <i class="fas fa-caret-down"></i>
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right shadow" aria-labelledby="dropdownMenuButton" x-placement="bottom-start">
-                                        <a class="dropdown-item" href="/admin/promotion/product/update/${promotionProduct.id}">Изменить</a>
+                                        <a class="dropdown-item" href="/admin/promotion/${promotion.id}/product/update/${promotionProduct.id}">Изменить</a>
                                         <form class="dropdown-item" name="delete">
                                             <div class="custom-input">
                                                 <div class="custom-input__settings">
