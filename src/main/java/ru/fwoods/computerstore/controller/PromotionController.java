@@ -43,7 +43,7 @@ public class PromotionController {
         return "admin/promotion/update";
     }
 
-    @GetMapping("/admin/promotion/${promotionId}/product/all")
+    @GetMapping("/admin/promotion/{id}/product/all")
     public String getPromotionProductPage(
             @PathVariable Long id,
             Map<String, Object> model
@@ -59,7 +59,7 @@ public class PromotionController {
         return "admin/promotion/product/create";
     }
 
-    @GetMapping("/admin/promotion/product/update/${productId}")
+    @GetMapping("/admin/promotion/product/update/{id}")
     public String getPromotionProductUpdate(
             @PathVariable Long id,
             Map<String, Object> model

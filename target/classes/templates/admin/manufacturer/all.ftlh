@@ -40,7 +40,7 @@
                                 <tr>
                                     <td>${manufacturer.id}</td>
                                     <td>${manufacturer.name}</td>
-                                    <td>${manufacturer.description}</td>
+                                    <td><#noautoesc>${manufacturer.description}</#noautoesc></td>
                                     <td>${manufacturer.country.name}</td>
                                     <td><a href="/image/manufacturerLogo/${manufacturer.logo.filename}" target="_blank"><img src="/image/manufacturerLogo/${manufacturer.logo.filename}" alt="logo"></a></td>
                                     <td class="dropdown no-arrow table-action">
