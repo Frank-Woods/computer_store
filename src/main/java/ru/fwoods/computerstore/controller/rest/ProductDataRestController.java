@@ -35,7 +35,7 @@ public class ProductDataRestController {
     @PostMapping(value = "/admin/product/create", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity createProduct(
             @RequestPart(name = "product", required = false) @Validated ru.fwoods.computerstore.model.ProductData productData,
-            @RequestPart(name = "productImage", required = false) List<MultipartFile> images,
+            @RequestPart(name = "productImages", required = false) List<MultipartFile> images,
             BindingResult bindingResult
     ) {
         if (bindingResult.hasErrors()) {
