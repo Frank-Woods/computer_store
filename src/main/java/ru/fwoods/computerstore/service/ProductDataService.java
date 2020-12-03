@@ -115,7 +115,7 @@ public class ProductDataService {
         List<AttributeValue> attributeValues = attributeValueService.getAttributeValueWithOneProduct(productData.getId());
 
         attributeValues.forEach(attributeValue -> {
-            attributeService.deleteById(attributeValue.getAttribute());
+            attributeService.deleteById(attributeValue.getAttribute().getId());
             valueService.deleteById(attributeValue.getValue());
             attributeValueService.deleteById(attributeValue.getId());
         });
