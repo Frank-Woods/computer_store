@@ -52,6 +52,13 @@ public class ManufacturerService {
     }
 
     public void deleteManufacturerById(Long id) {
+        Manufacturer manufacturerDomain = manufacturerRepository.getOne(id);
+        List<Image> manufacturerImages = imageService.getImagesByManufacturerId(manufacturerDomain.getId());
+
+        manufacturerImages.forEach(manufacturerImage -> {
+            imageService.deleteManufacturerImage(manufacturerImage.getId());
+        });
+
         manufacturerRepository.deleteById(id);
     }
 
