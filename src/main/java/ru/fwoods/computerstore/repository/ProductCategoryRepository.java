@@ -26,4 +26,6 @@ public interface ProductCategoryRepository extends JpaRepository<ProductCategory
     ProductCategory getProductCategoryByName(String name);
 
     Page<ProductCategory> getProductCategoriesByChildrenNull(Pageable pageable);
+
+    List<ProductCategory> findAllByNameContainsIgnoreCase(String searchParam);
 }

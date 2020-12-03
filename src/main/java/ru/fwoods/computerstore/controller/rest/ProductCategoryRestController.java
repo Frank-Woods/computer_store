@@ -1,16 +1,12 @@
 package ru.fwoods.computerstore.controller.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.fwoods.computerstore.controller.ControllerUtils;
-import ru.fwoods.computerstore.model.DiscountProduct;
 import ru.fwoods.computerstore.model.IdWrapper;
 import ru.fwoods.computerstore.model.ProductCategory;
 import ru.fwoods.computerstore.model.rest.Attribute;
@@ -20,7 +16,6 @@ import ru.fwoods.computerstore.service.ProductCategoryService;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @RestController
 public class ProductCategoryRestController {
@@ -101,5 +96,13 @@ public class ProductCategoryRestController {
     @GetMapping("admin/category/parent/product/null")
     public List<ProductCategory> getCategoriesWithoutParentAndProduct() {
         return productCategoryService.getCategoriesWithoutParentAndProduct();
+    }
+
+    @GetMapping(value = "/admin/category/get/search")
+    public ResponseEntity getCategorySearch(
+            @RequestParam(required = false, defaultValue = "") String searchParam
+    ) {
+        List<ru.fwoods.computerstore.domain.ProductCategory> counties = productCategoryService.getProductCategorySearch(searchParam);
+        return ResponseEntity.ok().body(counties);
     }
 }

@@ -152,4 +152,9 @@ public class ProductCategoryService {
             return productCategoryModel;
         }).collect(Collectors.toList());
     }
+
+    public List<ProductCategory> getProductCategorySearch(String searchParam) {
+        if (searchParam.length() > 0) return productCategoryRepository.findAllByNameContainsIgnoreCase(searchParam);
+        else return productCategoryRepository.findAll();
+    }
 }
