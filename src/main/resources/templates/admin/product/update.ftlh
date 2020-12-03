@@ -47,7 +47,7 @@
                 </div>
                 <div class="custom-input">
                     <div class="custom-input__settings">
-                        <span class="custom-input__settings__attributes">{"name":"price", "label":"Стоимость", "type":"number", "defaultValue":${product.price}</span>
+                        <span class="custom-input__settings__attributes">{"name":"cost", "label":"Стоимость", "type":"number", "defaultValue":${product.cost}</span>
                         <span class="custom-input__settings__validation">{"required":true, "min":0}</span>
                     </div>
                 </div>
