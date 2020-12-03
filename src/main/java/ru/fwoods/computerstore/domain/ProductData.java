@@ -33,7 +33,7 @@ public class ProductData {
             name = "cost",
             nullable = false
     )
-    private Double cost;
+    private Double price;
 
     @NotEmpty(message = "error.validation.productData.shelfLife.empty")
     @Column(name = "shelf_life")
@@ -58,8 +58,7 @@ public class ProductData {
     private ProductCategory category;
 
     @ManyToMany(
-            fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL
+            fetch = FetchType.EAGER
     )
     @JoinTable(
             name = "product_attribute",
@@ -96,11 +95,11 @@ public class ProductData {
     }
 
     public Double getCost() {
-        return cost;
+        return price;
     }
 
     public void setCost(Double cost) {
-        this.cost = cost;
+        this.price = cost;
     }
 
     public Integer getShelfLife() {
