@@ -2,6 +2,10 @@
 <#import "../../macro/pagination.ftlh" as pagination>
 <#import "../../macro/form.ftlh" as form>
 
+<#assign links>
+    <@form.links></@form.links>
+</#assign>
+    
 <#assign body>
     <div class="card shadow container p-0">
         <div class="card-header py-3">
@@ -27,21 +31,22 @@
                     </tr>
                     </tfoot>
                     <tbody>
-                        <#if countriesPage??>
-                            <#list countriesPage.getContent() as country>
+                        <#if citiesPage??>
+                            <#list citiesPage.getContent() as city>
                                 <tr>
-                                    <td>${country.id}</td>
-                                    <td>${country.name}</td>
+                                    <td>${city.id}</td>
+                                    <td>${city.name}</td>
+                                    <td>${city.country.name}</td>
                                     <td class="dropdown no-arrow table-action">
                                         <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                             <i class="fas fa-caret-down"></i>
                                         </button>
                                         <div class="dropdown-menu dropdown-menu-right shadow" aria-labelledby="dropdownMenuButton" x-placement="bottom-start">
-                                            <a class="dropdown-item" href="/admin/country/update/${country.id}">Изменить</a>
+                                            <a class="dropdown-item" href="/admin/city/update/${city.id}">Изменить</a>
                                             <form class="dropdown-item" name="delete">
                                                 <div class="custom-input">
                                                     <div class="custom-input__settings">
-                                                        <span class="custom-input__settings__attributes">{"name": "id", "type": "hidden", "defaultValue": "${country.id}"}</span>
+                                                        <span class="custom-input__settings__attributes">{"name": "id", "type": "hidden", "defaultValue": "${city.id}"}</span>
                                                     </div>
                                                 </div>
                                                 <button>Удалить</button>
@@ -55,14 +60,21 @@
                 </table>
             </div>
             <@pagination.template
-            url = "/admin/country/all"
-            page = countriesPage
+            url = "/admin/city/all"
+            page = citiesPage
             ></@pagination.template>
         </div>
     </div>
 </#assign>
 
+<#assign scripts>
+    <script src="/static/js/admin/country/delete.js"></script>
+    <@form.js></@form.js>
+</#assign>
+
 <@main.template
-    body = body
-    page = "Города"
+links = links
+body = body
+page = "Города"
+scripts = scripts
 ></@main.template>
