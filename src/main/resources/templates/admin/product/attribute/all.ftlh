@@ -41,7 +41,7 @@
                         <#list attributes.getContent() as attribute>
                             <tr>
                                 <td>${attribute.id}</td>
-                                <td><#if attribute.category??>${attribute.attributeCategory.name}</#if></td>
+                                <td><#if attribute.attributeCategory??>${attribute.attributeCategory}</#if></td>
                                 <td>${attribute.name}</td>
                                 <td>${attribute.description}</td>
                                 <td>${attribute.value}</td>
@@ -51,7 +51,7 @@
                                         <i class="fas fa-caret-down"></i>
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right shadow" aria-labelledby="dropdownMenuButton" x-placement="bottom-start">
-                                        <a class="dropdown-item" href="/admin/product/attribute/update/${attribute.id}">Изменить</a>
+                                        <a class="dropdown-item" href="/admin/product/${productData.id}/attribute/update/${attribute.id}">Изменить</a>
                                         <form class="dropdown-item" name="delete">
                                             <div class="custom-input">
                                                 <div class="custom-input__settings">
