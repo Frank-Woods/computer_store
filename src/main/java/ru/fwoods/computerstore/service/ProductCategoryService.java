@@ -70,7 +70,9 @@ public class ProductCategoryService {
 
         productCategoryDomain.setName(productCategory.getName());
         productCategoryDomain.setDescription(productCategory.getDescription());
-        productCategoryDomain.setParent(productCategoryRepository.getOne(productCategory.getParent()));
+        if (productCategory.getParent() != null) {
+            productCategoryDomain.setParent(productCategoryRepository.getOne(productCategory.getParent()));
+        }
 
         productCategoryRepository.save(productCategoryDomain);
 
@@ -104,7 +106,9 @@ public class ProductCategoryService {
 
         productCategoryDomain.setName(productCategory.getName());
         productCategoryDomain.setDescription(productCategory.getDescription());
-        productCategoryDomain.setParent(productCategoryRepository.getOne(productCategory.getParent()));
+        if (productCategory.getParent() != null) {
+            productCategoryDomain.setParent(productCategoryRepository.getOne(productCategory.getParent()));
+        }
 
         productCategoryRepository.save(productCategoryDomain);
     }

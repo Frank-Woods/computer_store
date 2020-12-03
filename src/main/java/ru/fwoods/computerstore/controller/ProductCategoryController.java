@@ -33,7 +33,7 @@ public class ProductCategoryController {
         return "admin/category/create";
     }
 
-    @GetMapping("/admin/productCategories/update/{id}")
+    @GetMapping("/admin/category/update/{id}")
     public String getProductCategoryUpdate(
             @PathVariable Long id,
             Map<String, Object> model

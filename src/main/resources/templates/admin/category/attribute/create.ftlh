@@ -14,15 +14,15 @@
             <form name="create">
                 <div class="custom-select">
                     <div class="custom-select__settings">
-                        <span class="edjll-select__settings__attributes">{"name":"name", "inputValueFormat": { "type":"json", "pattern": ["name"] }, "itemVisibleValue": ["name"], "outputValueFormat": { "type": "var", "pattern": ["name"] }}</span>
-                        <span class="edjll-select__settings__request">{"ajax":true,"url":"http://localhost:8080/admin/attribute/get/all","tracking":"category","excludedValues":"attribute","urlAfterSelected":"http://localhost:8080/admin/attribute/get/info"}</span>
-                        <span class="edjll-select__settings__validation">{"required":true}</span>
+                        <span class="custom-select__settings__attributes">{"name":"name", "label":"Название", "inputValueFormat": { "type":"json", "pattern": ["name"] }, "itemVisibleValue": ["name"], "outputValueFormat": { "type": "var", "pattern": ["name"] }}</span>
+                        <span class="custom-select__settings__request">{"ajax":true,"url":"http://localhost:8080/admin/attribute/get/all","tracking":"category","excludedValues":"attribute","urlAfterSelected":"http://localhost:8080/admin/attribute/get/info"}</span>
+                        <span class="custom-select__settings__validation">{"required":true}</span>
                     </div>
                 </div>
-                <div class="custom-input">
-                    <div class="custom-input__settings">
-                        <span class="edjll-input__settings__attributes">{"name": "description", "inputValueFormat": { "type":"var", "pattern": ["name"] }, "outputValueFormat": { "type": "var", "pattern": ["name"] }}</span>
-                        <span class="edjll-input__settings__validation">{"required":true}</span>
+                <div class="custom-textarea">
+                    <div class="custom-textarea__settings">
+                        <span class="custom-textarea__settings__attributes">{"name": "description", "label":"Описание", "inputValueFormat": { "type":"var", "pattern": ["name"] }, "outputValueFormat": { "type": "var", "pattern": ["name"] }}</span>
+                        <span class="custom-textarea__settings__validation">{"required":true}</span>
                     </div>
                 </div>
                 <button class="custom-button">Создать</button>

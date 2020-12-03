@@ -18,6 +18,8 @@
 }
 .custom-select:focus-within .custom-select__label__text {
   transform: translateY(-35px) scale(0.9);
+  position: absolute;
+  right: 0;
 }
 .custom-select__settings {
   display: none;
