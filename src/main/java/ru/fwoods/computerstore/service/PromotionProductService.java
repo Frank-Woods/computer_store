@@ -65,6 +65,7 @@ public class PromotionProductService {
         return promotionProducts.map(promotionProduct -> {
             DiscountProduct discountProduct = new DiscountProduct();
 
+            discountProduct.setId(promotionProduct.getId());
             discountProduct.setProduct(promotionProduct.getProductData().getId());
             discountProduct.setName(promotionProduct.getProductData().getName());
             discountProduct.setDiscount(promotionProduct.getDiscount());
