@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 public class ManufacturerService {
@@ -109,8 +110,20 @@ public class ManufacturerService {
         return manufacturerRepository.findAll();
     }
 
-    public List<Manufacturer> getManufacturerSearch(String searchParam) {
-        if (searchParam.length() > 0) return manufacturerRepository.findAllByNameContainsIgnoreCase( searchParam);
-        else return manufacturerRepository.findAll();
+    public List<ru.fwoods.computerstore.model.Manufacturer> getManufacturerSearch(String searchParam) {
+        List<Manufacturer> manufacturers;
+        if (searchParam.length() > 0) manufacturers = manufacturerRepository.findAllByNameContainsIgnoreCase( searchParam);
+        else manufacturers = manufacturerRepository.findAll();
+
+        return manufacturers.stream().map(manufacturer -> {
+            ru.fwoods.computerstore.model.Manufacturer manufacturerModel = new ru.fwoods.computerstore.model.Manufacturer();
+
+            manufacturerModel.setId(manufacturer.getId());
+            manufacturerModel.setName(manufacturer.getName());
+            manufacturerModel.setDescription(manufacturer.getDescription());
+            manufacturerModel.setCountry(manufacturer.getCountry().getId());
+
+            return manufacturerModel;
+        }).collect(Collectors.toList());
     }
 }

@@ -153,8 +153,20 @@ public class ProductCategoryService {
         }).collect(Collectors.toList());
     }
 
-    public List<ProductCategory> getProductCategorySearch(String searchParam) {
-        if (searchParam.length() > 0) return productCategoryRepository.findAllByNameContainsIgnoreCase(searchParam);
-        else return productCategoryRepository.findAll();
+    public List<ru.fwoods.computerstore.model.ProductCategory> getProductCategorySearch(String searchParam) {
+        List<ProductCategory> productCategories;
+        if (searchParam.length() > 0) productCategories = productCategoryRepository.findAllByNameContainsIgnoreCase(searchParam);
+        else productCategories = productCategoryRepository.findAll();
+
+        return productCategories.stream().map(productCategory -> {
+            ru.fwoods.computerstore.model.ProductCategory productCategoryModel = new ru.fwoods.computerstore.model.ProductCategory();
+
+            productCategoryModel.setId(productCategory.getId());
+            productCategoryModel.setName(productCategory.getName());
+            productCategoryModel.setDescription(productCategory.getDescription());
+            productCategoryModel.setParent(productCategory.getParent().getId());
+
+            return productCategoryModel;
+        }).collect(Collectors.toList());
     }
 }

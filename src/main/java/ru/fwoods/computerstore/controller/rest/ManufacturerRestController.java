@@ -34,7 +34,7 @@ public class ManufacturerRestController {
     public ResponseEntity getManufacturerSearch(
             @RequestParam(required = false, defaultValue = "") String searchParam
     ) {
-        List<ru.fwoods.computerstore.domain.Manufacturer> manufacturerList = manufacturerService.getManufacturerSearch(searchParam);
+        List<Manufacturer> manufacturerList = manufacturerService.getManufacturerSearch(searchParam);
         return ResponseEntity.ok().body(manufacturerList);
     }
 

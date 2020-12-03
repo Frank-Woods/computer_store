@@ -102,7 +102,7 @@ public class ProductCategoryRestController {
     public ResponseEntity getCategorySearch(
             @RequestParam(required = false, defaultValue = "") String searchParam
     ) {
-        List<ru.fwoods.computerstore.domain.ProductCategory> counties = productCategoryService.getProductCategorySearch(searchParam);
+        List<ProductCategory> counties = productCategoryService.getProductCategorySearch(searchParam);
         return ResponseEntity.ok().body(counties);
     }
 }
