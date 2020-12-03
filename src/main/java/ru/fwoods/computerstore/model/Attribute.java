@@ -20,7 +20,7 @@ public class Attribute {
     @NotEmpty(message = "error.validation.attribute.unit.empty")
     private String unit;
 
-    private Long attributeCategory;
+    private AttributeCategory attributeCategory;
 
     public Long getId() {
         return id;
@@ -62,11 +62,11 @@ public class Attribute {
         this.unit = unit;
     }
 
-    public Long getAttributeCategory() {
+    public AttributeCategory getAttributeCategory() {
         return attributeCategory;
     }
 
-    public void setAttributeCategory(Long attributeCategory) {
+    public void setAttributeCategory(AttributeCategory attributeCategory) {
         this.attributeCategory = attributeCategory;
     }
 }

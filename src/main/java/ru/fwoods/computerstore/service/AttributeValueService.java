@@ -4,18 +4,31 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import ru.fwoods.computerstore.domain.Attribute;
-import ru.fwoods.computerstore.domain.AttributeValue;
-import ru.fwoods.computerstore.domain.ProductData;
-import ru.fwoods.computerstore.domain.Value;
+import ru.fwoods.computerstore.domain.*;
 import ru.fwoods.computerstore.repository.AttributeValueRepository;
+import sun.dc.pr.PRError;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class AttributeValueService {
+
     @Autowired
     private AttributeValueRepository attributeValueRepository;
+
+    @Autowired
+    private AttributeCategoryService attributeCategoryService;
+
+    @Autowired
+    private AttributeService attributeService;
+
+    @Autowired
+    private ValueService valueService;
+
+    @Autowired
+    private ProductDataService productDataService;
 
     public AttributeValue save(Attribute attribute, Value value) {
         AttributeValue attributeValueDomain = attributeValueRepository.findByAttributeAndValue(attribute, value);
@@ -42,5 +55,69 @@ public class AttributeValueService {
 
     public AttributeValue findById(Long id) {
         return attributeValueRepository.getOne(id);
+    }
+
+    public void saveAttribute(ru.fwoods.computerstore.model.Attribute attribute, Long id) {
+        ProductData productData = productDataService.getProductDataById(id);
+
+        AttributeCategory attributeCategory = attributeCategoryService.save(attribute.getAttributeCategory());
+        Attribute attributeDomain = attributeService.save(attribute, attributeCategory);
+        Value value = valueService.save(attribute);
+        AttributeValue attributeValue = save(attributeDomain, value);
+
+        if (productData.getAttributes() != null) {
+            productData.getAttributes().add(attributeValue);
+        } else {
+            Set<AttributeValue> attributeValueSet = new HashSet<>();
+            attributeValueSet.add(attributeValue);
+            productData.setAttributes(attributeValueSet);
+        }
+
+        productDataService.saveWithAttributes(productData);
+    }
+
+    public void update(ru.fwoods.computerstore.model.Attribute attribute, Long id) {
+        List<AttributeValue> attributeValues = getAttributeValueWithOneProduct(id);
+
+        AttributeValue attributeValue = attributeValueRepository.getOne(id);
+
+        for (AttributeValue av : attributeValues) {
+            if (av.getId().equals(attributeValue.getId())) {
+                deleteById(attributeValue.getId());
+                attributeService.deleteById(attributeValue.getAttribute().getId());
+                valueService.deleteById(attributeValue.getValue());
+            }
+        }
+
+        ProductData productData = productDataService.getProductDataById(id);
+
+        AttributeCategory attributeCategory = attributeCategoryService.save(attribute.getAttributeCategory());
+        Attribute attributeDomain = attributeService.save(attribute, attributeCategory);
+        Value value = valueService.save(attribute);
+        AttributeValue attributeValueDomain = save(attributeDomain, value);
+
+        if (productData.getAttributes() != null) {
+            productData.getAttributes().add(attributeValueDomain);
+        } else {
+            Set<AttributeValue> attributeValueSet = new HashSet<>();
+            attributeValueSet.add(attributeValueDomain);
+            productData.setAttributes(attributeValueSet);
+        }
+
+        productDataService.saveWithAttributes(productData);
+    }
+
+    public void delete(Long id, Long productId) {
+        List<AttributeValue> attributeValues = getAttributeValueWithOneProduct(productId);
+
+        AttributeValue attributeValue = attributeValueRepository.getOne(id);
+
+        for (AttributeValue av : attributeValues) {
+            if (av.getId().equals(attributeValue.getId())) {
+                deleteById(attributeValue.getId());
+                attributeService.deleteById(attributeValue.getAttribute().getId());
+                valueService.deleteById(attributeValue.getValue());
+            }
+        }
     }
 }

@@ -192,4 +192,8 @@ public class ProductDataService {
         if (searchParam.length() > 0) return productDataRepository.findAllWithoutPromotionAndSearchParam(new Date(), searchParam);
         else return productDataRepository.findAllWithoutPromotion(new Date());
     }
+
+    public ProductData saveWithAttributes(ProductData productData) {
+        return productDataRepository.save(productData);
+    }
 }
