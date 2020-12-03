@@ -32,6 +32,10 @@ public class AttributeService {
 
     public ru.fwoods.computerstore.domain.Attribute save(Attribute attribute, AttributeCategory attributeCategory) {
         ru.fwoods.computerstore.domain.Attribute attributeDomain = attributeRepository.findByName(attribute.getName());
+        if (attributeDomain != null) {
+            attributeDomain.setCategory(attributeCategory);
+            attributeDomain = attributeRepository.save(attributeDomain);
+        }
         if (attributeDomain == null) {
             attributeDomain = new ru.fwoods.computerstore.domain.Attribute();
             attributeDomain.setName(attribute.getName());
