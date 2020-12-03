@@ -22,8 +22,6 @@ public class ProductData {
 
     private Long category;
 
-    private List<AttributeCategory> attributeCategories;
-
     public Long getId() {
         return id;
     }
@@ -86,13 +84,5 @@ public class ProductData {
 
     public void setCategory(Long category) {
         this.category = category;
-    }
-
-    public List<AttributeCategory> getAttributeCategories() {
-        return attributeCategories;
-    }
-
-    public void setAttributeCategories(List<AttributeCategory> attributeCategories) {
-        this.attributeCategories = attributeCategories;
     }
 }

@@ -103,4 +103,8 @@ public class ManufacturerService {
 
         manufacturerRepository.save(manufacturerDomain);
     }
+
+    public List<Manufacturer> getAllManufacturers() {
+        return manufacturerRepository.findAll();
+    }
 }
