@@ -1,11 +1,21 @@
 package ru.fwoods.computerstore.model;
 
 public class DiscountProduct {
+    private Long id;
+
     private Long product;
 
     private String name;
 
     private Integer discount;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Long getProduct() {
         return product;

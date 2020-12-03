@@ -4,17 +4,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.fwoods.computerstore.domain.PromotionProduct;
 import ru.fwoods.computerstore.model.DiscountProduct;
+import ru.fwoods.computerstore.model.IdWrapper;
 import ru.fwoods.computerstore.repository.PromotionProductRepository;
 
+import javax.persistence.Id;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 public class PromotionProductService {
+
     @Autowired
     private PromotionProductRepository promotionProductRepository;
 
-    public PromotionProduct save(PromotionProduct promotionProduct) {
+    @Autowired
+    private PromotionService promotionService;
+
+    @Autowired
+    private ProductDataService productDataService;
+
+    public PromotionProduct save(DiscountProduct discountProduct, IdWrapper idWrapper) {
+        PromotionProduct promotionProduct = new PromotionProduct();
+
+        promotionProduct.setProductData(productDataService.getProductDataById(discountProduct.getProduct()));
+        promotionProduct.setPromotion(promotionService.findById(idWrapper.getId()));
+        promotionProduct.setDiscount(discountProduct.getDiscount());
+
         return promotionProductRepository.save(promotionProduct);
     }
 
@@ -45,5 +60,14 @@ public class PromotionProductService {
         discountProduct.setDiscount(promotionProduct.getDiscount());
 
         return discountProduct;
+    }
+
+    public void update(DiscountProduct discountProduct) {
+        PromotionProduct promotionProduct = promotionProductRepository.getOne(discountProduct.getId());
+
+        promotionProduct.setProductData(productDataService.getProductDataById(discountProduct.getProduct()));
+        promotionProduct.setDiscount(discountProduct.getDiscount());
+
+        promotionProductRepository.save(promotionProduct);
     }
 }
