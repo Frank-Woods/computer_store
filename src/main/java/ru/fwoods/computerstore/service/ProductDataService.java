@@ -9,6 +9,7 @@ import ru.fwoods.computerstore.domain.*;
 import ru.fwoods.computerstore.repository.ProductDataRepository;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductDataService {
@@ -188,9 +189,17 @@ public class ProductDataService {
         return productDataModel;
     }
 
-    public List<ProductData> getProductDataSearch(String searchParam) {
-        if (searchParam.length() > 0) return productDataRepository.findAllWithoutPromotionAndSearchParam(new Date(), searchParam);
-        else return productDataRepository.findAllWithoutPromotion(new Date());
+    public List<ru.fwoods.computerstore.model.ProductData> getProductDataSearch(String searchParam) {
+        List<ProductData> productDataList;
+        if (searchParam.length() > 0) productDataList = productDataRepository.findAllWithoutPromotionAndSearchParam(new Date(), searchParam);
+        else productDataList = productDataRepository.findAllWithoutPromotion(new Date());
+
+        return productDataList.stream().map(productData -> {
+            ru.fwoods.computerstore.model.ProductData productDataModel = new ru.fwoods.computerstore.model.ProductData();
+            productDataModel.setId(productData.getId());
+            productDataModel.setName(productData.getName());
+            return productDataModel;
+        }).collect(Collectors.toList());
     }
 
     public ProductData saveWithAttributes(ProductData productData) {

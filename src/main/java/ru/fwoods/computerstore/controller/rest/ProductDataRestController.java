@@ -9,7 +9,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import ru.fwoods.computerstore.controller.ControllerUtils;
-import ru.fwoods.computerstore.domain.ProductData;
+import ru.fwoods.computerstore.model.ProductData;
 import ru.fwoods.computerstore.service.ProductDataService;
 
 import java.util.List;
