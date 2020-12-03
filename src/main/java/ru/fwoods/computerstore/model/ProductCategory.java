@@ -17,9 +17,7 @@ public class ProductCategory {
     @NotEmpty(message = "error.validation.productCategory.description.empty")
     private String description;
 
-    private List<Category> vertexes;
-
-    private Set<CategoryAttribute> attributes;
+    private Long parent;
 
     public Long getId() {
         return id;
@@ -45,19 +43,11 @@ public class ProductCategory {
         this.description = description;
     }
 
-    public List<Category> getVertexes() {
-        return vertexes;
+    public Long getParent() {
+        return parent;
     }
 
-    public void setVertexes(List<Category> vertexes) {
-        this.vertexes = vertexes;
-    }
-
-    public Set<CategoryAttribute> getAttribute() {
-        return attributes;
-    }
-
-    public void setAttribute(Set<CategoryAttribute> attribute) {
-        this.attributes = attribute;
+    public void setParent(Long parent) {
+        this.parent = parent;
     }
 }

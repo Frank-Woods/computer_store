@@ -2,6 +2,7 @@ package ru.fwoods.computerstore.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.Set;
 
 @Entity
 @Table(name = "attribute")
@@ -28,6 +29,17 @@ public class Attribute {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "attribute_category_id", nullable = false)
     private AttributeCategory category;
+
+    @ManyToMany(
+            fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL
+    )
+    @JoinTable(
+            name = "attribute_product_category",
+            joinColumns = @JoinColumn(name = "attribute_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_category_id")
+    )
+    private Set<ProductCategory> productCategories;
 
     public Long getId() {
         return id;
@@ -59,5 +71,13 @@ public class Attribute {
 
     public void setCategory(AttributeCategory category) {
         this.category = category;
+    }
+
+    public Set<ProductCategory> getProductCategories() {
+        return productCategories;
+    }
+
+    public void setProductCategories(Set<ProductCategory> productCategories) {
+        this.productCategories = productCategories;
     }
 }
