@@ -5,6 +5,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,7 +18,9 @@ import ru.fwoods.computerstore.service.AttributeService;
 import ru.fwoods.computerstore.service.ProductCategoryService;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 public class ProductCategoryRestController {
@@ -85,5 +88,16 @@ public class ProductCategoryRestController {
     ) {
         attributeService.update(attribute);
         return ResponseEntity.ok().body(null);
+    }
+
+    @GetMapping("admin/productCategory/parent/null")
+    public List<Object> getCategoriesWithoutParent() {
+        List<ru.fwoods.computerstore.domain.ProductCategory> categories = productCategoryService.getCategoriesWithoutParent();
+        return categories.stream()
+                .map(category -> new Object() {
+                            public Long id = category.getId();
+                            public String name = category.getName();
+                        }
+                ).collect(Collectors.toList());
     }
 }
