@@ -10,6 +10,7 @@ import ru.fwoods.computerstore.domain.ProductCategory;
 
 @Repository
 public interface AttributeRepository extends JpaRepository<Attribute, Long> {
+
     Attribute findByName(String Name);
 
     Attribute getAttributeByName(String name);

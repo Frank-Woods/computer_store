@@ -2,6 +2,7 @@ package ru.fwoods.computerstore.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -39,6 +40,9 @@ public class Attribute {
             inverseJoinColumns = @JoinColumn(name = "product_category_id")
     )
     private Set<ProductCategory> productCategories;
+
+    @OneToMany(mappedBy = "attribute")
+    private List<AttributeValue> attributeValueList;
 
     public Long getId() {
         return id;
@@ -78,5 +82,13 @@ public class Attribute {
 
     public void setProductCategories(Set<ProductCategory> productCategories) {
         this.productCategories = productCategories;
+    }
+
+    public List<AttributeValue> getAttributeValueList() {
+        return attributeValueList;
+    }
+
+    public void setAttributeValueList(List<AttributeValue> attributeValueList) {
+        this.attributeValueList = attributeValueList;
     }
 }

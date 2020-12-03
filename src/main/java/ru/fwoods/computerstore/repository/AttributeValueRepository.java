@@ -1,10 +1,13 @@
 package ru.fwoods.computerstore.repository;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import ru.fwoods.computerstore.domain.Attribute;
 import ru.fwoods.computerstore.domain.AttributeValue;
+import ru.fwoods.computerstore.domain.ProductData;
 import ru.fwoods.computerstore.domain.Value;
 
 import java.util.List;
@@ -22,4 +25,6 @@ public interface AttributeValueRepository extends JpaRepository<AttributeValue, 
             "on pa.attribute_value_id = pTmp.id " +
             "and pa.product_data_id != ?1", nativeQuery = true)
     List<AttributeValue> getAttributeValueWithOneProduct(Long id);
+
+    Page<AttributeValue> getAllByProductsContains(ProductData productData, Pageable pageable);
 }

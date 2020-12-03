@@ -5,7 +5,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ru.fwoods.computerstore.domain.AttributeCategory;
+import ru.fwoods.computerstore.domain.AttributeValue;
 import ru.fwoods.computerstore.domain.ProductCategory;
+import ru.fwoods.computerstore.domain.ProductData;
 import ru.fwoods.computerstore.model.Attribute;
 import ru.fwoods.computerstore.model.IdWrapper;
 import ru.fwoods.computerstore.repository.AttributeRepository;
@@ -21,6 +23,12 @@ public class AttributeService {
 
     @Autowired
     private ProductCategoryService productCategoryService;
+
+    @Autowired
+    private AttributeValueService attributeValueService;
+
+    @Autowired
+    private ProductDataService productDataService;
 
     public ru.fwoods.computerstore.domain.Attribute save(Attribute attribute, AttributeCategory attributeCategory) {
         ru.fwoods.computerstore.domain.Attribute attributeDomain = attributeRepository.findByName(attribute.getName());
@@ -98,5 +106,38 @@ public class AttributeService {
         attributeDomain.setDescription(attribute.getDescription());
 
         attributeRepository.save(attributeDomain);
+    }
+
+    public Page<Attribute> getAllAttributesByProductId(Long id, Pageable pageable) {
+        ProductData productData = productDataService.getProductDataById(id);
+        Page<AttributeValue> attributeValues = attributeValueService.getAttributeValueByProductId(productData, pageable);
+
+        return attributeValues.map(attributeValue -> {
+            Attribute attributeModel = new Attribute();
+
+            attributeModel.setId(attributeValue.getId());
+            attributeModel.setName(attributeValue.getAttribute().getName());
+            attributeModel.setDescription(attributeValue.getAttribute().getDescription());
+            attributeModel.setValue(attributeValue.getValue().getValue());
+            attributeModel.setUnit(attributeValue.getValue().getUnit());
+            attributeModel.setAttributeCategory(attributeValue.getAttribute().getCategory().getId());
+
+            return attributeModel;
+        });
+    }
+
+    public Attribute getAttributeValueModelById(Long id) {
+        AttributeValue attributeValue = attributeValueService.findById(id);
+
+        Attribute attribute = new Attribute();
+
+        attribute.setId(attributeValue.getId());
+        attribute.setName(attributeValue.getAttribute().getName());
+        attribute.setDescription(attributeValue.getAttribute().getDescription());
+        attribute.setValue(attributeValue.getValue().getValue());
+        attribute.setUnit(attributeValue.getValue().getUnit());
+        attribute.setAttributeCategory(attributeValue.getAttribute().getCategory().getId());
+
+        return attribute;
     }
 }
