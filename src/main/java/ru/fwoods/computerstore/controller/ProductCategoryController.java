@@ -30,7 +30,7 @@ public class ProductCategoryController {
 
     @GetMapping("/admin/productCategories/create")
     public String getProductCategoryCreate() {
-        return "productCategory/create";
+        return "admin/category/create";
     }
 
     @GetMapping("/admin/productCategories/update/{id}")

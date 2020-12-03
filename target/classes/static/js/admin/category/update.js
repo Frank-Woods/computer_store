@@ -1,8 +1,8 @@
-const forms = document.getElementsByName("create");
+const forms = document.getElementsByName("update");
 
 const param = {
     body: 'category',
-    url: '/admin/productCategory/create',
+    url: '/admin/category/update',
     redirect: '/admin/category/all',
     method: 'post',
 }

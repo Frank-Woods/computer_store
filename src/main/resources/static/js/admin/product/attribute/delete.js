@@ -1,8 +1,8 @@
 const forms = document.getElementsByName("delete");
 
 const param = {
-    body: 'product',
-    url: '/admin/promotion/product/delete',
+    body: 'attribute',
+    url: '/admin/product/attribute/delete',
     redirect: `${window.location}`,
     method: 'post',
 }

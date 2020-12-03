@@ -8,7 +8,7 @@
 <#assign body>
     <div class="card shadow container p-0">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Добавление продукта в акцию #${promotion.id}</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Изменение продукта #${promotionProduct.id}</h6>
         </div>
         <div class="card-body">
             <form name="create">
