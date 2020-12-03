@@ -19,9 +19,9 @@
                         <span class="custom-select__settings__validation">{"required":true}</span>
                     </div>
                 </div>
-                <div class="custom-input">
+                <div class="custom-textarea">
                     <div class="custom-textarea__settings">
-                        <span class="custom-textarea__settings__attributes">{"name": "description", "defaultValue":"${attribute.description}"}</span>
+                        <span class="custom-textarea__settings__attributes">{"name": "description", "label":"Описание", "defaultValue":"${attribute.description}"}</span>
                         <span class="custom-textarea__settings__validation">{"required":true}</span>
                     </div>
                 </div>
