@@ -22,6 +22,9 @@ public class MvcConfig implements WebMvcConfigurer {
     @Value("${promotion.upload.path}")
     private String promotionUploadPath;
 
+    @Value("${productData.upload.path}")
+    private String productUploadPath;
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/static/**")
@@ -30,6 +33,8 @@ public class MvcConfig implements WebMvcConfigurer {
                 .addResourceLocations("file://" + manufacturerUploadPath + "/");
         registry.addResourceHandler("/image/promotionBanner/**")
                 .addResourceLocations("file://" + promotionUploadPath + "/");
+        registry.addResourceHandler("/image/productImage/**")
+                .addResourceLocations("file://" + productUploadPath + "/");
     }
 
     @Bean
