@@ -14,11 +14,11 @@ public class AttributeCategoryService {
     @Autowired
     private AttributeCategoryRepository attributeCategoryRepository;
 
-    public AttributeCategory save(ru.fwoods.computerstore.model.AttributeCategory attributeCategory) {
-        AttributeCategory attributeCategoryDomain = attributeCategoryRepository.findByName(attributeCategory.getName());
+    public AttributeCategory save(String attributeCategory) {
+        AttributeCategory attributeCategoryDomain = attributeCategoryRepository.findByName(attributeCategory);
         if (attributeCategoryDomain == null) {
             attributeCategoryDomain = new AttributeCategory();
-            attributeCategoryDomain.setName(attributeCategory.getName());
+            attributeCategoryDomain.setName(attributeCategory);
             attributeCategoryDomain = attributeCategoryRepository.save(attributeCategoryDomain);
         }
         return attributeCategoryDomain;

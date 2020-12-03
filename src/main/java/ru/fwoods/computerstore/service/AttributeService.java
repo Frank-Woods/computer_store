@@ -125,7 +125,7 @@ public class AttributeService {
             attributeCategory.setId(attributeValue.getAttribute().getCategory().getId());
             attributeCategory.setName(attributeValue.getAttribute().getCategory().getName());
 
-            attributeModel.setAttributeCategory(attributeCategory);
+            attributeModel.setAttributeCategory(attributeCategory.getName());
 
             return attributeModel;
         });
@@ -146,7 +146,7 @@ public class AttributeService {
         attributeCategory.setId(attributeValue.getAttribute().getCategory().getId());
         attributeCategory.setName(attributeValue.getAttribute().getCategory().getName());
 
-        attribute.setAttributeCategory(attributeCategory);
+        attribute.setAttributeCategory(attributeCategory.getName());
 
         return attribute;
     }
