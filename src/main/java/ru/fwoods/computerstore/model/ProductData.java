@@ -12,9 +12,7 @@ public class ProductData {
 
     private String description;
 
-    private Double cost;
-
-    private Integer shelfLife;
+    private Integer cost;
 
     private Long manufacturer;
 
@@ -46,20 +44,12 @@ public class ProductData {
         this.description = description;
     }
 
-    public Double getCost() {
+    public Integer getCost() {
         return cost;
     }
 
-    public void setCost(Double cost) {
+    public void setCost(Integer cost) {
         this.cost = cost;
-    }
-
-    public Integer getShelfLife() {
-        return shelfLife;
-    }
-
-    public void setShelfLife(Integer shelfLife) {
-        this.shelfLife = shelfLife;
     }
 
     public Long getManufacturer() {

@@ -33,7 +33,7 @@ public class ProductData {
             name = "cost",
             nullable = false
     )
-    private Double cost;
+    private Integer cost;
 
     @ManyToOne(
             fetch = FetchType.EAGER
@@ -90,11 +90,11 @@ public class ProductData {
         this.description = description;
     }
 
-    public Double getCost() {
+    public Integer getCost() {
         return cost;
     }
 
-    public void setCost(Double cost) {
+    public void setCost(Integer cost) {
         this.cost = cost;
     }
 
