@@ -1,6 +1,8 @@
 package ru.fwoods.computerstore.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ru.fwoods.computerstore.domain.PromotionProduct;
 import ru.fwoods.computerstore.model.DiscountProduct;
@@ -37,20 +39,6 @@ public class PromotionProductService {
         promotionProductRepository.delete(promotionProduct);
     }
 
-    public List<DiscountProduct> getAllByPromotionId(Long id) {
-        List<PromotionProduct> promotionProducts = promotionProductRepository.getAllByPromotionId(id);
-
-        return promotionProducts.stream().map(promotionProduct -> {
-            DiscountProduct discountProduct = new DiscountProduct();
-
-            discountProduct.setProduct(promotionProduct.getProductData().getId());
-            discountProduct.setName(promotionProduct.getProductData().getName());
-            discountProduct.setDiscount(promotionProduct.getDiscount());
-
-            return discountProduct;
-        }).collect(Collectors.toList());
-    }
-
     public DiscountProduct getDiscountProductById(Long id) {
         PromotionProduct promotionProduct = promotionProductRepository.getOne(id);
 
@@ -69,5 +57,19 @@ public class PromotionProductService {
         promotionProduct.setDiscount(discountProduct.getDiscount());
 
         promotionProductRepository.save(promotionProduct);
+    }
+
+    public Page<DiscountProduct> getAllByPromotionIdPage(Long id, Pageable pageable) {
+        Page<PromotionProduct> promotionProducts = promotionProductRepository.getAllByPromotionId(id, pageable);
+
+        return promotionProducts.map(promotionProduct -> {
+            DiscountProduct discountProduct = new DiscountProduct();
+
+            discountProduct.setProduct(promotionProduct.getProductData().getId());
+            discountProduct.setName(promotionProduct.getProductData().getName());
+            discountProduct.setDiscount(promotionProduct.getDiscount());
+
+            return discountProduct;
+        });
     }
 }
