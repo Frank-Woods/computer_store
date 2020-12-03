@@ -15,7 +15,7 @@ public class PromotionProductRestController {
     @Autowired
     private PromotionProductService promotionProductService;
 
-    @PostMapping(value = "/admib/promotion/product/create")
+    @PostMapping(value = "/admin/promotion/product/create")
     public ResponseEntity createPromotionProduct(
             @RequestPart(name = "promotion") IdWrapper idWrapper,
             @RequestPart(name = "product") DiscountProduct discountProduct
