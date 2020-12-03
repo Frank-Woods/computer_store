@@ -8,34 +8,39 @@
 <#assign body>
     <div class="card shadow container p-0">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Добавление акции</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Изменение акции</h6>
         </div>
         <div class="card-body">
-            <form name="create">
+            <form name="update">
                 <div class="custom-input">
                     <div class="custom-input__settings">
-                        <span class="custom-input__settings__attributes">{"name":"name", "label":"Название"}</span>
+                        <span class="custom-input__settings__attributes">{"name":"name", "label":"Название", "defaultValue":"${promotion.name}"}</span>
                     </div>
                 </div>
                 <div class="custom-input">
                     <div class="custom-input__settings">
-                        <span class="custom-input__settings__attributes">{"name":"dateStart", "label":"Дата начала", "type": "datetime"}</span>
+                        <span class="custom-input__settings__attributes">{"name":"dateStart", "label":"Дата начала", "type": "datetime", "defaultValue":"${promotion.dateStart}"}</span>
                     </div>
                 </div>
                 <div class="custom-input">
                     <div class="custom-input__settings">
-                        <span class="custom-input__settings__attributes">{"name":"dateEnd", "label":"Дата окончания", "type": "datetime"}</span>
+                        <span class="custom-input__settings__attributes">{"name":"dateEnd", "label":"Дата окончания", "type": "datetime", "defaultValue":"${promotion.dateEnd}"}</span>
                     </div>
                 </div>
                 <div class="custom-textarea">
                     <div class="custom-textarea__settings">
-                        <span class="custom-textarea__settings__attributes">{"name":"description", "label":"Описание"}</span>
+                        <span class="custom-textarea__settings__attributes">{"name":"description", "label":"Описание", "defaultValue":"${promotion.description}"}</span>
                     </div>
                 </div>
                 <div class="custom-file-input">
                     <div class="custom-file-input__settings">
                         <span class="custom-file-input__settings__attributes">{"name": "logo", "label": "Логотип", "type": "file"}</span>
                         <span class="custom-file-input__settings__validation">{"imageTypes":["image.png", "image.jpeg"], "required": true}</span>
+                    </div>
+                </div>
+                <div class="custom-input">
+                    <div class="custom-input__settings">
+                        <span class="custom-input__settings__attributes">{"name":"id", "type": "hidden", "defaultValue":"${promotion.id}"}</span>
                     </div>
                 </div>
                 <button class="custom-button">Создать</button>
@@ -45,7 +50,7 @@
 </#assign>
 
 <#assign scripts>
-    <script src="/static/js/admin/promotion/create.js"></script>
+    <script src="/static/js/admin/promotion/update.js"></script>
     <@form.js></@form.js>
 </#assign>
 
