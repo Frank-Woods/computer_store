@@ -14,7 +14,7 @@
             <form name="create">
                 <div class="custom-select">
                     <div class="custom-select__settings">
-                        <span class="custom-select__settings__attributes">{"name":"category", "label":"Категория", "inputValueFormat": { "type":"var", "pattern": ["name"] }, "itemVisibleValue":["name"], "outputValueFormat": { "type": "var", "pattern": ["name"] }}</span>
+                        <span class="custom-select__settings__attributes">{"name":"attributeCategory", "label":"Категория", "inputValueFormat": { "type":"var", "pattern": ["name"] }, "itemVisibleValue":["name"], "outputValueFormat": { "type": "var", "pattern": ["name"] }}</span>
                         <span class="custom-select__settings__request">{"ajax":true, "url":"http://localhost:8080/admin/attributeCategories/get"}</span>
                         <span class="custom-select__settings__validation">{"required":true}</span>
                     </div>

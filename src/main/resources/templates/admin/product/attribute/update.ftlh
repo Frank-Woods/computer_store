@@ -53,7 +53,7 @@
 </#assign>
 
 <#assign scripts>
-    <script>const productId = ${product.id};</script>
+    <script>const productId = ${productData.id};</script>
     <script src="/static/js/admin/product/attribute/update.js"></script>
     <@form.js></@form.js>
 </#assign>
