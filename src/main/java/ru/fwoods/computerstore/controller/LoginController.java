@@ -13,6 +13,6 @@ public class LoginController {
         if (user != null) {
             return "redirect:/admin";
         }
-        return "user/login";
+        return "site/authorization/login";
     }
 }
