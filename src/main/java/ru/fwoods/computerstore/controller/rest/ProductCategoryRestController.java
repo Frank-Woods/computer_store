@@ -90,6 +90,14 @@ public class ProductCategoryRestController {
         return ResponseEntity.ok().body(null);
     }
 
+    @PostMapping(value = "/admin/category/attribute/delete")
+    public ResponseEntity deleteAttribute(
+            @RequestPart(name = "attribute") IdWrapper idWrapper
+    ) {
+        attributeService.deleteById(idWrapper.getId());
+        return ResponseEntity.ok().body(null);
+    }
+
     @GetMapping("admin/category/parent/product/null")
     public List<ProductCategory> getCategoriesWithoutParentAndProduct() {
         return productCategoryService.getCategoriesWithoutParentAndProduct();

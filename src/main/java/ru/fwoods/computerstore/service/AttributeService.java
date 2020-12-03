@@ -46,8 +46,8 @@ public class AttributeService {
         return attributeRepository.getOne(id);
     }
 
-    public void deleteById(ru.fwoods.computerstore.domain.Attribute attribute) {
-        attributeRepository.deleteById(attribute.getId());
+    public void deleteById(Long id) {
+        attributeRepository.deleteById(id);
     }
 
     public Page<ru.fwoods.computerstore.model.rest.Attribute> getAllByProductCategoryId(ProductCategory productCategory, Pageable pageable) {
