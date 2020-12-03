@@ -32,4 +32,12 @@ public class PromotionProductRestController {
         promotionProductService.update(discountProduct);
         return ResponseEntity.ok().body(null);
     }
+
+    @PostMapping(value = "/admin/promotion/product/delete")
+    public ResponseEntity updatePromotionProduct(
+            @RequestPart(name = "product") IdWrapper idWrapper
+    ) {
+        promotionProductService.delete(ByIddiscountProduct);
+        return ResponseEntity.ok().body(null);
+    }
 }
