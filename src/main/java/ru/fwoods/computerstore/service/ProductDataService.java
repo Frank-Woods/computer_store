@@ -63,11 +63,13 @@ public class ProductDataService {
         productDataDomain.setCountry(countryService.getCountryById(productData.getCountry()));
         productDataDomain.setManufacturer(manufacturerService.getManufacturerById(productData.getManufacturer()));
 
+        ProductData productDataDomainSaved = productDataRepository.save(productDataDomain);
+
         if (images != null && !images.isEmpty()) {
-            images.forEach(image -> imageService.saveProductDataImage(image, productDataDomain));
+            images.forEach(image -> imageService.saveProductDataImage(image, productDataDomainSaved));
         }
 
-        productDataRepository.save(productDataDomain);
+        productDataRepository.save(productDataDomainSaved);
     }
 
     public Page<ProductData> getPageProducts(Pageable pageable) {
