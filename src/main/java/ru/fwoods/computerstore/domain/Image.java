@@ -24,22 +24,14 @@ public class Image {
     @JoinColumn(name = "product_data_id")
     private ProductData productData;
 
-    @ManyToOne(
-            fetch = FetchType.EAGER
-    )
-    @JoinColumn(name = "review_id")
-    private Review review;
-
     @OneToOne(
-            fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL
+            fetch = FetchType.EAGER
     )
     @JoinColumn(name = "promotion_id")
     private Promotion promotion;
 
     @OneToOne(
-            fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL
+            fetch = FetchType.EAGER
     )
     @JoinColumn(name = "manufacturer_id")
     private Manufacturer manufacturer;
@@ -66,14 +58,6 @@ public class Image {
 
     public void setProductData(ProductData productData) {
         this.productData = productData;
-    }
-
-    public Review getReview() {
-        return review;
-    }
-
-    public void setReview(Review review) {
-        this.review = review;
     }
 
     public Promotion getPromotion() {
