@@ -31,8 +31,7 @@ public class Attribute {
     private AttributeCategory category;
 
     @ManyToMany(
-            fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL
+            fetch = FetchType.EAGER
     )
     @JoinTable(
             name = "attribute_product_category",

@@ -27,8 +27,7 @@ public class Manufacturer {
     private String description;
 
     @OneToOne(
-            fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL
+            fetch = FetchType.EAGER
     )
     @JoinColumn(name = "country_id", nullable = false)
     private Country country;

@@ -11,15 +11,13 @@ public class AttributeValue {
     private Long id;
 
     @ManyToOne(
-            fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL
+            fetch = FetchType.EAGER
     )
     @JoinColumn(name = "value_id", nullable = false)
     private Value value;
 
     @ManyToOne(
-            fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL
+            fetch = FetchType.EAGER
     )
     @JoinColumn(name = "attribute_id", nullable = false)
     private Attribute attribute;
