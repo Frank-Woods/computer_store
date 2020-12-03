@@ -27,14 +27,14 @@
                 <div class="custom-select">
                     <div class="custom-select__settings">
                         <span class="custom-select__settings__attributes">{"name":"category", "label":"Категория", "itemVisibleValue":["name"]}</span>
-                        <span class="custom-select__settings__request">{"ajax":true, "url":"http://localhost:8080/admin/country/get/search"}</span>
+                        <span class="custom-select__settings__request">{"ajax":true, "url":"http://localhost:8080/admin/category/get/search"}</span>
                         <span class="custom-select__settings__validation">{"required":true}</span>
                     </div>
                 </div>
                 <div class="custom-select">
                     <div class="custom-select__settings">
                         <span class="custom-select__settings__attributes">{"name":"manufacturer", "label":"Производитель", "itemVisibleValue":["name"]}</span>
-                        <span class="custom-select__settings__request">{"ajax":true, "url":"http://localhost:8080/admin/country/get/search"}</span>
+                        <span class="custom-select__settings__request">{"ajax":true, "url":"http://localhost:8080/admin/manufacturer/get/search"}</span>
                         <span class="custom-select__settings__validation">{"required":true}</span>
                     </div>
                 </div>
