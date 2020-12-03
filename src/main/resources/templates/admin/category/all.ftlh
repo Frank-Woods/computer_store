@@ -1,4 +1,11 @@
 <#import "../macro/main.ftlh" as main>
+<#import "../../macro/pagination.ftlh" as pagination>
+<#import "../../macro/form.ftlh" as form>
+
+<#assign links>
+    <@form.links></@form.links>
+</#assign>
+
 
 <#assign body>
     <div class="card shadow container p-0">
@@ -27,44 +34,55 @@
                     </tr>
                     </tfoot>
                     <tbody>
-                    <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>Tiger Nixon</td>
-                        <td class="dropdown no-arrow table-action">
-                            <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                <i class="fas fa-caret-down"></i>
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-right shadow" aria-labelledby="dropdownMenuButton" x-placement="bottom-start">
-                                <a class="dropdown-item" href="#">Изменить</a>
-                                <a class="dropdown-item" href="#">Удалить</a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Garrett Winters</td>
-                        <td>Accountant</td>
-                        <td>Tokyo</td>
-                        <td>System Architect</td>
-                        <td class="dropdown no-arrow table-action">
-                            <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                <i class="fas fa-caret-down"></i>
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-right shadow" aria-labelledby="dropdownMenuButton" x-placement="bottom-start">
-                                <a class="dropdown-item" href="#">Изменить</a>
-                                <a class="dropdown-item" href="#">Удалить</a>
-                            </div>
-                        </td>
-                    </tr>
+                        <#if 0 < categoriesPage.numberOfElements>
+                            <#list categoriesPage.getContent() as category>
+                                <tr>
+                                    <td>${category.id}</td>
+                                    <td>${category.name}</td>
+                                    <td><#noautoesc>${category.description}</#noautoesc></td>
+                                    <td><#if category.parent??>${category.parent.name}</#if></td>
+                                    <td class="dropdown no-arrow table-action">
+                                        <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                            <i class="fas fa-caret-down"></i>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-right shadow" aria-labelledby="dropdownMenuButton" x-placement="bottom-start">
+                                            <a class="dropdown-item" href="/admin/category/update/${category.id}">Изменить</a>
+                                            <form class="dropdown-item" name="delete">
+                                                <div class="custom-input">
+                                                    <div class="custom-input__settings">
+                                                        <span class="custom-input__settings__attributes">{"name": "id", "type": "hidden", "defaultValue": "${category.id}"}</span>
+                                                    </div>
+                                                </div>
+                                                <button>Удалить</button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </#list>
+                        <#else>
+                            <tr>
+                                <td colspan="5" class="text-center">Пусто</td>
+                            </tr>
+                        </#if>
                     </tbody>
                 </table>
             </div>
+            <@pagination.template
+            url = "/admin/category/all"
+            page = categoriesPage
+            ></@pagination.template>
         </div>
     </div>
 </#assign>
 
+<#assign scripts>
+    <script src="/static/js/admin/category/delete.js"></script>
+    <@form.js></@form.js>
+</#assign>
+
 <@main.template
+links = links
 body = body
 page = "Категории"
+scripts = scripts
 ></@main.template>
