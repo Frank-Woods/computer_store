@@ -9,7 +9,7 @@
 <#assign body>
     <div class="card shadow container p-0">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Характеристики продукта #${product.id}</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Характеристики продукта #${productData.id}</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -41,7 +41,7 @@
                         <#list attributes.getContent() as attribute>
                             <tr>
                                 <td>${attribute.id}</td>
-                                <td><#if attribute.category??>${attribute.category.name}</#if></td>
+                                <td><#if attribute.category??>${attribute.attributeCategory.name}</#if></td>
                                 <td>${attribute.name}</td>
                                 <td>${attribute.description}</td>
                                 <td>${attribute.value}</td>
@@ -66,14 +66,14 @@
                         </#list>
                     <#else>
                         <tr>
-                            <td colspan="4" class="text-center">Пусто</td>
+                            <td colspan="7" class="text-center">Пусто</td>
                         </tr>
                     </#if>
                     </tbody>
                 </table>
             </div>
             <@pagination.template
-            url = "/admin/product/${product.id}/attribute/all"
+            url = "/admin/product/${productData.id}/attribute/all"
             page = attributes
             ></@pagination.template>
         </div>

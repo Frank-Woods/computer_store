@@ -11,23 +11,23 @@
             <h6 class="m-0 font-weight-bold text-primary">Изменение продукта #${product.id}</h6>
         </div>
         <div class="card-body">
-            <form name="create">
+            <form name="update">
                 <div class="custom-select">
                     <div class="custom-select__settings">
-                        <span class="custom-select__settings__attributes">{"name":"product", "label":"Продукт", "itemVisibleValue":["name"]}</span>
+                        <span class="custom-select__settings__attributes">{"name":"product", "label":"Продукт", "itemVisibleValue":["name"], "defaultValue":{"id":${product.product}, "name":"${product.name}"}}</span>
                         <span class="custom-select__settings__request">{"ajax":true, "url":"http://localhost:8080/admin/country/get/search"}</span>
                         <span class="custom-select__settings__validation">{"required":true}</span>
                     </div>
                 </div>
                 <div class="custom-input">
                     <div class="custom-input__settings">
-                        <span class="custom-input__settings__attributes">{"name":"discount", "label":"Скидка", type:"number"}
+                        <span class="custom-input__settings__attributes">{"name":"discount", "label":"Скидка", "type":"number", "defaultValue":${product.discount?c}}</span>
                         <span class="custom-input__settings__validation">{"required":true}</span>
                     </div>
                 </div>
                 <div class="custom-input">
                     <div class="custom-input__settings">
-                        <span class="custom-input__settings__attributes">{"name":"id", type:"hidden", "defaultValue":"${product.id}"}</span>
+                        <span class="custom-input__settings__attributes">{"name":"id", "type":"hidden", "defaultValue":${product.id}}</span>
                     </div>
                 </div>
                 <button class="custom-button">Изменить</button>
