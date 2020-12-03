@@ -26,10 +26,9 @@ public class PromotionProductRestController {
 
     @PostMapping(value = "/admib/promotion/product/update")
     public ResponseEntity updatePromotionProduct(
-            @RequestPart(name = "promotion") IdWrapper idWrapper,
             @RequestPart(name = "product") DiscountProduct discountProduct
     ) {
-        promotionProductService.update(discountProduct, idWrapper);
+        promotionProductService.update(discountProduct);
         return ResponseEntity.ok().body(null);
     }
 }
