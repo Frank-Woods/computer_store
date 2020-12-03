@@ -66,6 +66,9 @@ public class ProductData {
     @OneToMany(mappedBy = "productData")
     private List<PromotionProduct> promotionProducts;
 
+    @OneToMany(mappedBy = "productData")
+    private List<Image> images;
+
     public Long getId() {
         return id;
     }
@@ -136,5 +139,13 @@ public class ProductData {
 
     public void setPromotionProducts(List<PromotionProduct> promotionProducts) {
         this.promotionProducts = promotionProducts;
+    }
+
+    public List<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(List<Image> images) {
+        this.images = images;
     }
 }
