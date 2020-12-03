@@ -35,22 +35,19 @@ public class ProductCategory {
     private ProductCategory parent;
 
     @OneToMany(
-            fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL
+            fetch = FetchType.EAGER
     )
     @JoinColumn(name = "parent_id")
     private List<ProductCategory> children;
 
     @OneToMany(
-            fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL
+            fetch = FetchType.EAGER
     )
     @JoinColumn(name = "product_category_id")
     private Set<ProductData> products;
 
     @ManyToMany(
-            fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL
+            fetch = FetchType.EAGER
     )
     @JoinTable(
             name = "attribute_product_category",
