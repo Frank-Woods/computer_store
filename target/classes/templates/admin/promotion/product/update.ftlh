@@ -30,7 +30,7 @@
                         <span class="custom-input__settings__attributes">{"name":"id", type:"hidden", "defaultValue":"${promotionProduct.id}"}</span>
                     </div>
                 </div>
-                <button class="custom-button">Создать</button>
+                <button class="custom-button">Изменить</button>
             </form>
         </div>
     </div>

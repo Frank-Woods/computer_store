@@ -104,6 +104,15 @@
   }
 
   &__buttons-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+
+    & > .custom-validation-error {
+      position: absolute;
+      top: 5px;
+    }
 
     &__label {
       height: 100%;

@@ -235,7 +235,7 @@ class FileInput extends Input {
             this.validation.error.text.textContent = message;
         } else {
             this.validation.error = Validation.createError(message);
-            this.fileWrapper.node.after(this.validation.error.node);
+            this.buttons.node.append(this.validation.error.node);
         }
     }
 
