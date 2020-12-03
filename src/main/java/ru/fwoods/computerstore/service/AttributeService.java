@@ -10,6 +10,9 @@ import ru.fwoods.computerstore.model.Attribute;
 import ru.fwoods.computerstore.model.IdWrapper;
 import ru.fwoods.computerstore.repository.AttributeRepository;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Service
 public class AttributeService {
 
@@ -77,8 +80,14 @@ public class AttributeService {
 
         attributeDomain.setName(attribute.getName());
         attributeDomain.setDescription(attribute.getDescription());
-        attributeDomain.getProductCategories().add(productCategoryService.getCategoryById(id));
 
+        if (attributeDomain.getProductCategories() != null) {
+            attributeDomain.getProductCategories().add(productCategoryService.getCategoryById(id));
+        } else {
+            Set<ProductCategory> productCategories = new HashSet<>();
+            productCategories.add(productCategoryService.getCategoryById(id));
+            attributeDomain.setProductCategories(productCategories);
+        }
         attributeRepository.save(attributeDomain);
     }
 
