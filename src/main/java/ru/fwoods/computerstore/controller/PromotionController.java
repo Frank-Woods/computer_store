@@ -1,9 +1,13 @@
 package ru.fwoods.computerstore.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import ru.fwoods.computerstore.domain.Promotion;
 import ru.fwoods.computerstore.domain.PromotionProduct;
 import ru.fwoods.computerstore.model.DiscountProduct;
@@ -45,11 +49,13 @@ public class PromotionController {
 
     @GetMapping("/admin/promotion/{id}/product/all")
     public String getPromotionProductPage(
+            @RequestParam(required = false, defaultValue = "0") Integer page,
             @PathVariable Long id,
             Map<String, Object> model
     ) {
         Promotion promotion = promotionService.findById(id);
-        List<DiscountProduct> promotionProducts = promotionProductService.getAllByPromotionId(id);
+        Pageable pageable = PageRequest.of(page, 15);
+        Page<DiscountProduct> promotionProducts = promotionProductService.getAllByPromotionIdPage(id, pageable);
 
         model.put("promotion", promotion);
         model.put("products", promotionProducts);
