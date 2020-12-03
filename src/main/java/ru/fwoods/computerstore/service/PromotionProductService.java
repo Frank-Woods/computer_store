@@ -25,11 +25,11 @@ public class PromotionProductService {
     @Autowired
     private ProductDataService productDataService;
 
-    public PromotionProduct save(DiscountProduct discountProduct, IdWrapper idWrapper) {
+    public PromotionProduct save(DiscountProduct discountProduct, Long id) {
         PromotionProduct promotionProduct = new PromotionProduct();
 
         promotionProduct.setProductData(productDataService.getProductDataById(discountProduct.getProduct()));
-        promotionProduct.setPromotion(promotionService.findById(idWrapper.getId()));
+        promotionProduct.setPromotion(promotionService.findById(id));
         promotionProduct.setDiscount(discountProduct.getDiscount());
 
         return promotionProductRepository.save(promotionProduct);

@@ -97,7 +97,7 @@ public class AdminController {
     ) {
         Pageable pageable = PageRequest.of(page, 15);
         Page<Sale> salesPage = saleService.getPageSales(pageable);
-        model.put("sales", salesPage);
+        model.put("salesPage", salesPage);
         return "admin/sale/all";
     }
 
@@ -108,7 +108,7 @@ public class AdminController {
     ) {
         Pageable pageable = PageRequest.of(page, 15);
         Page<ProductData> productsPage = productDataService.getPageProducts(pageable);
-        model.put("products", productsPage);
+        model.put("productsPage", productsPage);
         return "admin/product/all";
     }
 
@@ -119,7 +119,7 @@ public class AdminController {
     ) {
         Pageable pageable = PageRequest.of(page, 15);
         Page<Promotion> promotionsPage = promotionService.getPagePromotion(pageable);
-        model.put("promotions", promotionsPage);
+        model.put("promotionsPage", promotionsPage);
         return "admin/promotion/all";
     }
 
@@ -130,7 +130,7 @@ public class AdminController {
     ) {
         Pageable pageable = PageRequest.of(page, 15);
         Page<User> usersPage = userService.getPageUser(pageable);
-        model.put("users", usersPage);
+        model.put("usersPage", usersPage);
         return "admin/user/all";
     }
 }

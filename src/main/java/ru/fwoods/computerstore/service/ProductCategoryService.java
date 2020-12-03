@@ -136,16 +136,16 @@ public class ProductCategoryService {
         });
     }
 
-    public Page<ru.fwoods.computerstore.model.ProductCategory> getCategoriesWithoutParentAndProduct(Pageable pageable) {
-        Page<ProductCategory> productCategories = productCategoryRepository.getCategoriesByParentNullAndProductsNull(pageable);
+    public List<ru.fwoods.computerstore.model.ProductCategory> getCategoriesWithoutParentAndProduct() {
+        List<ProductCategory> productCategories = productCategoryRepository.getCategoriesByParentNullAndProductsNull();
 
-        return productCategories.map(productCategory -> {
+        return productCategories.stream().map(productCategory -> {
             ru.fwoods.computerstore.model.ProductCategory productCategoryModel = new ru.fwoods.computerstore.model.ProductCategory();
 
             productCategoryModel.setId(productCategory.getId());
             productCategoryModel.setName(productCategory.getName());
 
             return productCategoryModel;
-        });
+        }).collect(Collectors.toList());
     }
 }

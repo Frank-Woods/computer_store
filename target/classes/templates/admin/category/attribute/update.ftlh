@@ -8,26 +8,26 @@
 <#assign body>
     <div class="card shadow container p-0">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Изменение продукта #${promotionProduct.id}</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Изменение характеристики #${attribute.id}</h6>
         </div>
         <div class="card-body">
-            <form name="create">
+            <form name="update">
                 <div class="custom-select">
                     <div class="custom-select__settings">
-                        <span class="custom-select__settings__attributes">{"name":"product", "label":"Продукт", "itemVisibleValue":["name"]}</span>
+                        <span class="custom-select__settings__attributes">{"name":"name", "inputValueFormat": { "type":"json", "pattern": ["name"] }, "itemVisibleValue": ["name"], "outputValueFormat": { "type": "var", "pattern": ["name"] }, "defaultValue":{"name":"${categoryAttribute.attribute.name}"}}</span>
                         <span class="custom-select__settings__request">{"ajax":true, "url":"http://localhost:8080/admin/country/get/search"}</span>
                         <span class="custom-select__settings__validation">{"required":true}</span>
                     </div>
                 </div>
                 <div class="custom-input">
                     <div class="custom-input__settings">
-                        <span class="custom-input__settings__attributes">{"name":"discount", "label":"Скидка", type:"number"}
+                        <span class="custom-input__settings__attributes">{"name":"description", "label":"Описание", "defaultValue":"${categoryAttribute.attribute.description}"}</span>
                         <span class="custom-input__settings__validation">{"required":true}</span>
                     </div>
                 </div>
                 <div class="custom-input">
                     <div class="custom-input__settings">
-                        <span class="custom-input__settings__attributes">{"name":"id", type:"hidden", "defaultValue":"${promotionProduct.id}"}</span>
+                        <span class="custom-input__settings__attributes">{"name":"id", "type":"hidden", "defaultValue":"${categoryAttribute.id}"}</span>
                     </div>
                 </div>
                 <button class="custom-button">Изменить</button>
@@ -37,14 +37,13 @@
 </#assign>
 
 <#assign scripts>
-    <script>const promotionId = ${promotion.id};</script>
-    <script src="/static/js/admin/promotion/product/update.js"></script>
+    <script src="/static/js/admin/category/attribute/update.js"></script>
     <@form.js></@form.js>
 </#assign>
 
 <@main.template
 links = links
 body = body
-page = "Акции"
+page = "Категории"
 scripts = scripts
 ></@main.template>
