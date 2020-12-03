@@ -22,13 +22,13 @@ import java.util.Map;
 
 @RestController
 public class ManufacturerRestController {
+
     @Autowired
     private ManufacturerService manufacturerService;
 
     @Autowired
     private ControllerUtils controllerUtils;
 
-    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping(value = "/admin/manufacturer/create", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity createManufacturer(
             @RequestPart(name = "manufacturer", required = false) @Validated Manufacturer manufacturer,
@@ -43,7 +43,6 @@ public class ManufacturerRestController {
         return ResponseEntity.ok().body(null);
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping(value = "/admin/manufacturer/update", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity updateManufacturer(
             @RequestPart(name = "manufacturer", required = false) @Validated Manufacturer manufacturer,
@@ -58,7 +57,6 @@ public class ManufacturerRestController {
         return ResponseEntity.ok().body(null);
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping(value = "/admin/manufacturer/delete")
     public ResponseEntity<Map<String, String>> deleteManufacturer(@RequestPart(name = "manufacturer") IdWrapper idWrapper) {
         try {
