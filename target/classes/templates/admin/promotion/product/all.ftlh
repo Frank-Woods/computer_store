@@ -31,8 +31,8 @@
                     </tr>
                     </tfoot>
                     <tbody>
-                    <#if 0 < productsPage.numberOfElements>
-                        <#list productsPage.getContent() as promotionProduct>
+                    <#if 0 < products.numberOfElements>
+                        <#list products.getContent() as promotionProduct>
                             <tr>
                                 <td>${promotionProduct.id}</td>
                                 <td>${promotionProduct.name}</td>
@@ -57,7 +57,7 @@
                         </#list>
                     <#else>
                         <tr>
-                            <td colspan="6" class="text-center">Пусто</td>
+                            <td colspan="4" class="text-center">Пусто</td>
                         </tr>
                     </#if>
                     </tbody>
@@ -65,7 +65,7 @@
             </div>
             <@pagination.template
             url = "/admin/promotion/${promotion.id}/product/all"
-            page = productsPage
+            page = products
             ></@pagination.template>
         </div>
     </div>

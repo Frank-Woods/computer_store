@@ -98,7 +98,7 @@ class Toast {
         headerCloseButton.onclick = this.close.bind(this);
 
         const headerCloseButtonIcon = document.createElement('i');
-        headerCloseButtonIcon.classList.add('ion-close-round', 'custom-toasts__item__header__close-button__icon');
+        headerCloseButtonIcon.classList.add('fas', 'fa-times', 'custom-toasts__item__header__close-button__icon');
 
         headerCloseButton.append(headerCloseButtonIcon);
 
