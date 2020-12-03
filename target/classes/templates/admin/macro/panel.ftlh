@@ -1,7 +1,7 @@
 <#macro template>
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin">
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
             </div>
@@ -11,7 +11,7 @@
         <hr class="sidebar-divider my-0">
 
         <li class="nav-item active">
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="/admin">
                 <span>Главная</span></a>
         </li>
 
@@ -104,8 +104,8 @@
                  data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Страницы:</h6>
-                    <a class="collapse-item" href="#">Все категории</a>
-                    <a class="collapse-item" href="#">Добавить</a>
+                    <a class="collapse-item" href="/admin/category/all">Все категории</a>
+                    <a class="collapse-item" href="/admin/productCategories/create">Добавить</a>
                 </div>
             </div>
         </li>
