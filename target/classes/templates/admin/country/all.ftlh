@@ -29,7 +29,7 @@
                     </tr>
                     </tfoot>
                     <tbody>
-                        <#if countriesPage??>
+                        <#if 0 < countriesPage.numberOfElements>
                             <#list countriesPage.getContent() as country>
                                 <tr>
                                     <td>${country.id}</td>
@@ -52,6 +52,10 @@
                                     </td>
                                 </tr>
                             </#list>
+                        <#else>
+                            <tr>
+                                <td colspan="3" class="text-center">Пусто</td>
+                            </tr>
                         </#if>
                     </tbody>
                 </table>
