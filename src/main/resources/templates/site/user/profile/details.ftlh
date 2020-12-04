@@ -80,6 +80,11 @@
                                                     </div>
                                                 </div>
                                             </fieldset>
+                                            <div class="custom-input custom-input-strict-style">
+                                                <div class="custom-input__settings">
+                                                    <span class="custom-input__settings__attributes">{"name":"id", "type":"hidden", "defaultValue":${security.user.id}}</span>
+                                                </div>
+                                            </div>
                                             <div class="single-input-item">
                                                 <button class="check-btn sqr-btn ">Сохранить изменения</button>
                                             </div>
