@@ -300,42 +300,16 @@ public class ProductDataService {
         return productDataRepository.getAllByPromotion(id, pageable);
     }
 
-    public ProductDataCart getProductDataCartById(Long id) {
+    public Integer getDiscountCost(Long id) {
         ProductData pd = productDataRepository.getOne(id);
-
-        ProductDataCart productDataCart = new ProductDataCart();
-
-        productDataCart.setId(pd.getId());
-        productDataCart.setName(pd.getName());
-        productDataCart.setDescription(pd.getDescription());
-        Image image = imageService.getFirstImageByProductDataId(pd.getId());
-        if (image != null) {
-            productDataCart.setImage(image.getFilename());
-        }
-        productDataCart.setCost(pd.getCost());
-
-        if (pd.getReviews().size() > 0) {
-            Integer ratingAll = pd.getReviews().stream()
-                    .filter(review -> review.getStatusReview() == StatusReview.CONFIRMED)
-                    .reduce(0, (integer, review) -> integer + review.getRating(), Integer::sum);
-            productDataCart.setRating(((double)ratingAll / pd.getReviews().size()));
-        } else {
-            productDataCart.setRating(0.0);
-        }
 
         PromotionProduct promotionProduct = promotionProductService.getPromotionProductByProductData(pd);
         Integer discountCost = pd.getCost();
-        Integer discount = 0;
         if (promotionProduct != null) {
             if (new Date().getTime() < promotionProduct.getPromotion().getDateEnd().getTime()) {
-                discount = promotionProduct.getDiscount();
                 discountCost = pd.getCost() * promotionProduct.getDiscount() / 100;
-                productDataCart.setDiscount(promotionProduct.getDiscount());
             }
         }
-        productDataCart.setDiscount(discount);
-        productDataCart.setDiscountCost(discountCost);
-
-        return productDataCart;
+        return discountCost;
     }
 }
