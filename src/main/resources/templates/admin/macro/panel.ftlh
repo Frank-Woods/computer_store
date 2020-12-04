@@ -126,6 +126,11 @@
                 <span>Обзоры</span></a>
         </li>
 
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                <span>Рассылка</span></a>
+        </li>
+
 
         <hr class="sidebar-divider d-none d-md-block">
 
