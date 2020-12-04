@@ -14,59 +14,20 @@
                 <div class="col-xl-6 col-lg-6 col-md-12">
                     <div class="product-details-tab-wrap">
                         <div class="product-details-tab-large tab-content pt-40 text-center">
-                            <div class="tab-pane active" id="pro-details1">
-                                <div class="product-details-2-img ">
-                                    <img src="/static/assets/images/product-details/product-details-img-1.png" alt="">
+                            <#list productData.images as image>
+                                <div class="tab-pane<#if image?index == 0> active</#if>" id="pro-details${image?index}">
+                                    <div class="product-details-2-img ">
+                                        <img src="/image/productImage/${image.filename}" alt="">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="tab-pane" id="pro-details2">
-                                <div class="product-details-2-img ">
-                                    <img src="/static/assets/images/product-details/product-details-slider-2.png" alt="">
-                                </div>
-                            </div>
-                            <div class="tab-pane" id="pro-details3">
-                                <div class="product-details-2-img">
-                                    <img src="/static/assets/images/product-details/product-details-slider-3.png" alt="">
-                                </div>
-                            </div>
-                            <div class="tab-pane" id="pro-details4">
-                                <div class="product-details-2-img ">
-                                    <img src="/static/assets/images/product-details/product-details-slider-4.png" alt="">
-                                </div>
-                            </div>
-                            <div class="tab-pane" id="pro-details5">
-                                <div class="product-details-2-img ">
-                                    <img src="/static/assets/images/product-details/product-details-slider-5.png" alt="">
-                                </div>
-                            </div>
-                            <div class="tab-pane" id="pro-details6">
-                                <div class="product-details-2-img ">
-                                    <img src="/static/assets/images/product-details/product-details-slider-2.png" alt="">
-                                </div>
-                            </div>
-                            <div class="product-details-shape pro-dec-shape1">
-                                <img src="/static/assets/images/product-details/product-details-shape.png" alt="">
-                            </div>
+                            </#list>
                         </div>
                         <div class="product-details-tab-small nav">
-                            <a class="active" href="#pro-details1">
-                                <img src="/static/assets/images/product-details/small-7.jpg" alt="">
-                            </a>
-                            <a href="#pro-details2">
-                                <img src="/static/assets/images/product-details/small-8.jpg" alt="">
-                            </a>
-                            <a href="#pro-details3">
-                                <img src="/static/assets/images/product-details/small-1.jpg" alt="">
-                            </a>
-                            <a href="#pro-details4">
-                                <img src="/static/assets/images/product-details/small-5.jpg" alt="">
-                            </a>
-                            <a href="#pro-details5">
-                                <img src="/static/assets/images/product-details/small-3.jpg" alt="">
-                            </a>
-                            <a href="#pro-details6">
-                                <img src="/static/assets/images/product-details/small-8.jpg" alt="">
-                            </a>
+                            <#list productData.images as image>
+                                <a <#if image?index == 0>class="active"</#if> href="#pro-details${image?index}">
+                                    <img src="/image/productImage/${image.filename}" alt="">
+                                </a>
+                            </#list>
                         </div>
                     </div>
                 </div>
@@ -144,9 +105,9 @@
                                                 <tr>
                                                     <#if at?index == 0>
                                                         <td rowspan="${atts?size}">${ac.name}</td>
-                                                        <td class="width1">${at.attribute.name}</td>
-                                                        <td>${at.value.value + " " + at.value.unit}</td>
                                                     </#if>
+                                                    <td class="width1">${at.attribute.name}</td>
+                                                    <td>${at.value.value + " " + at.value.unit}</td>
                                                 </tr>
                                             </#list>
                                         </#list>
@@ -175,79 +136,74 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="ratting-form-wrapper">
-                                <span>Добавьте свой отзыв</span>
-                                <div class="ratting-form">
-                                    <form name="review">
-                                        <div class="row">
-                                            <#if !security.isAuthorized>
-                                                <div class="col-lg-3 col-md-6">
-                                                    <div class="custom-input custom-input-strict-style">
-                                                        <div class="custom-input__settings">
-                                                            <span class="custom-input__settings__attributes">{"name":"email", "label":"Почта"}</span>
-                                                            <span class="custom-input__settings__validation">{"required":true}</span>
+                            <#if security.isAuthorized>
+                                <div class="ratting-form-wrapper">
+                                    <span>Добавьте свой отзыв</span>
+                                    <div class="ratting-form">
+                                        <form name="review">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="star-box-wrap">
+                                                        <div class="single-ratting-star">
+                                                            <i class="icon-rating"></i>
+                                                        </div>
+                                                        <div class="single-ratting-star">
+                                                           <i class="icon-rating"></i>
+                                                            <i class="icon-rating"></i>
+                                                        </div>
+                                                        <div class="single-ratting-star">
+                                                           <i class="icon-rating"></i>
+                                                           <i class="icon-rating"></i>
+                                                            <i class="icon-rating"></i>
+                                                        </div>
+                                                        <div class="single-ratting-star">
+                                                            <i class="icon-rating"></i>
+                                                            <i class="icon-rating"></i>
+                                                            <i class="icon-rating"></i>
+                                                           <i class="icon-rating"></i>
+                                                        </div>
+                                                        <div class="single-ratting-star">
+                                                            <i class="icon-rating"></i>
+                                                            <i class="icon-rating"></i>
+                                                            <i class="icon-rating"></i>
+                                                            <i class="icon-rating"></i>
+                                                            <i class="icon-rating"></i>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </#if>
-                                            <div class="col-lg-12">
-                                                <div class="star-box-wrap">
-                                                    <div class="single-ratting-star">
-                                                        <a href="#"><i class="icon-rating"></i></a>
+                                                <div class="col-md-12">
+                                                    <div class="custom-textarea custom-textarea-strict-style">
+                                                        <div class="custom-textarea__settings">
+                                                            <span class="custom-textarea__settings__attributes">{"name":"advantages", "label":"Плюсы"}</span>
+                                                            <span class="custom-textarea__settings__validation">{"required":true}</span>
+                                                        </div>
                                                     </div>
-                                                    <div class="single-ratting-star">
-                                                        <a href="#"><i class="icon-rating"></i></a>
-                                                        <a href="#"><i class="icon-rating"></i></a>
+                                                    <div class="custom-textarea custom-textarea-strict-style">
+                                                        <div class="custom-textarea__settings">
+                                                            <span class="custom-textarea__settings__attributes">{"name":"disadvantage", "label":"Минусы"}</span>
+                                                            <span class="custom-textarea__settings__validation">{"required":true}</span>
+                                                        </div>
                                                     </div>
-                                                    <div class="single-ratting-star">
-                                                        <a href="#"><i class="icon-rating"></i></a>
-                                                        <a href="#"><i class="icon-rating"></i></a>
-                                                        <a href="#"><i class="icon-rating"></i></a>
+                                                    <div class="custom-textarea custom-textarea-strict-style">
+                                                        <div class="custom-textarea__settings">
+                                                            <span class="custom-textarea__settings__attributes">{"name":"comment", "label":"Комментарий"}</span>
+                                                            <span class="custom-textarea__settings__validation">{"required":true}</span>
+                                                        </div>
                                                     </div>
-                                                    <div class="single-ratting-star">
-                                                        <a href="#"><i class="icon-rating"></i></a>
-                                                        <a href="#"><i class="icon-rating"></i></a>
-                                                        <a href="#"><i class="icon-rating"></i></a>
-                                                        <a href="#"><i class="icon-rating"></i></a>
-                                                    </div>
-                                                    <div class="single-ratting-star">
-                                                        <a href="#"><i class="icon-rating"></i></a>
-                                                        <a href="#"><i class="icon-rating"></i></a>
-                                                        <a href="#"><i class="icon-rating"></i></a>
-                                                        <a href="#"><i class="icon-rating"></i></a>
-                                                        <a href="#"><i class="icon-rating"></i></a>
+                                                </div>
+                                                <div class="custom-input__settings">
+                                                    <span class="custom-input__settings__attributes">{"name":"productData", "type":"hidden", "defaultValue":${productData.id}}</span>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="form-submit">
+                                                        <input type="submit" value="Отправить">
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-12">
-                                                <div class="custom-textarea custom-textarea-strict-style">
-                                                    <div class="custom-textarea__settings">
-                                                        <span class="custom-textarea__settings__attributes">{"name":"advantages", "label":"Плюсы"}</span>
-                                                        <span class="custom-textarea__settings__validation">{"required":true}</span>
-                                                    </div>
-                                                </div>
-                                                <div class="custom-textarea custom-textarea-strict-style">
-                                                    <div class="custom-textarea__settings">
-                                                        <span class="custom-textarea__settings__attributes">{"name":"disadvantage", "label":"Минусы"}</span>
-                                                        <span class="custom-textarea__settings__validation">{"required":true}</span>
-                                                    </div>
-                                                </div>
-                                                <div class="custom-textarea custom-textarea-strict-style">
-                                                    <div class="custom-textarea__settings">
-                                                        <span class="custom-textarea__settings__attributes">{"name":"comment", "label":"Комментарий"}</span>
-                                                        <span class="custom-textarea__settings__validation">{"required":true}</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12">
-                                                <div class="form-submit">
-                                                    <input type="submit" value="Отправить">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
+                                        </form>
+                                    </div>
                                 </div>
-                            </div>
+                            </#if>
                         </div>
                     </div>
                 </div>
@@ -259,6 +215,7 @@
 <#assign scripts>
     <script src="/static/js/site/store/product/review/main.js"></script>
     <@form.js></@form.js>
+    <script src="/static/js/site/store/product/review/rating.js"></script>
 </#assign>
 
 <@main.template

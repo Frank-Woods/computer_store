@@ -10,7 +10,7 @@
                 <div class="col-lg-8">
                     <div class="offer-product-wrap mr-60">
                         <div class="product-img product-img-zoom">
-                            <a href="#">
+                            <a href="/promotions/${promotion.id}/products">
                                 <img src="/image/promotionBanner/${promotion.banner.filename}" alt="">
                             </a>
                             <div class="title-timer product-timer-2 text-center">

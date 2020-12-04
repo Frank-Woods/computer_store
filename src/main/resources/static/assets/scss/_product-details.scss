@@ -885,10 +885,11 @@
                 .single-ratting-star {
                     margin-right: 17px;
                     display: flex;
-                    a {
-                        color: #535353;
-                    }
+                    cursor: pointer;
                     &:hover i {
+                        color: #f5b223;
+                    }
+                    &.current {
                         color: #f5b223;
                     }
                 }
