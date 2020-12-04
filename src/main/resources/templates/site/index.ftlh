@@ -2,6 +2,10 @@
 <#import "macro/slider.ftlh" as slider>
 <#import "macro/product.ftlh" as product>
 
+<#assign links>
+    <link rel="stylesheet" href="/static/vendor/form/scss/toast.css">
+</#assign>
+
 <#assign body>
     <@slider.template></@slider.template>
     <div class="deal-product-service-area pt-160 pb-120">
@@ -49,10 +53,14 @@
 </#assign>
 
 <#assign scripts>
+    <script src="/static/vendor/form/js/ToastEvent.js"></script>
+    <script src="/static/vendor/form/js/Timer.js"></script>
+    <script src="/static/vendor/form/js/Toast.js"></script>
     <script src="/static/js/site/cart/addProductToCart.js"></script>
 </#assign>
 
 <@main.template
+    links = links
     body = body
     scripts = scripts
 >

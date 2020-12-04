@@ -503,7 +503,7 @@
             @media #{$xs-layout} {
                 margin: 10px 0 12px;
             }
-            > button {
+            > button, > a {
                 border: none;
                 padding: 7px 32px 7px;
                 background-color: #333333;
