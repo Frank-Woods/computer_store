@@ -44,21 +44,17 @@ public class UserService implements UserDetailsService {
         return userRepository.findByEmail(email);
     }
 
-    public boolean updateUser(ru.fwoods.computerstore.model.User user) {
+    public void updateUser(ru.fwoods.computerstore.model.User user) {
         User userDomain = userRepository.getOne(user.getId());
 
-        if (passwordEncoder.matches(user.getPassword(), userDomain.getPassword())) {
-            userDomain.setFirstName(user.getFirstName());
-            userDomain.setLastName(user.getLastName());
-            userDomain.setPatronymic(user.getPatronymic());
-            userDomain.setEmail(user.getEmail());
-            userDomain.setPhone(user.getPhone());
-            userDomain.setCity(cityService.getCity(user.getCity()));
-            userRepository.save(userDomain);
-            securityService.updateAuthenticationToken();
-            return true;
-        }
-        return false;
+        userDomain.setFirstName(user.getFirstName());
+        userDomain.setLastName(user.getLastName());
+        userDomain.setPatronymic(user.getPatronymic());
+        userDomain.setEmail(user.getEmail());
+        userDomain.setPhone(user.getPhone());
+        userDomain.setCity(cityService.getCity(user.getCity()));
+        userRepository.save(userDomain);
+        securityService.updateAuthenticationToken();
     }
 
     public boolean changePassword(UserPassword userPassword) {

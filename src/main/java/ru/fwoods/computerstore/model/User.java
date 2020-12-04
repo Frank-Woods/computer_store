@@ -46,6 +46,20 @@ public class User {
 
     private Long city;
 
+    public User() { }
+
+    public User(ru.fwoods.computerstore.domain.User user) {
+        this.id = user.getId();
+        this.firstName = user.getFirstName();
+        this.lastName = user.getLastName();
+        this.patronymic = user.getPatronymic();
+        this.email = user.getEmail();
+        this.password = user.getPassword();
+        this.phone = user.getPhone();
+        this.registrationDate = user.getRegistrationDate();
+        this.city = user.getCity().getId();
+    }
+
     public Long getId() {
         return id;
     }

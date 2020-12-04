@@ -36,14 +36,9 @@ public class UserRestController {
             Map<String, String> errors = controllerUtils.getErrors(bindingResult);
             return ResponseEntity.badRequest().body(errors);
         }
-        Map<String, String> errors = new HashMap<>();
-        errors.put("user.password", "");;
-        errors.put("error", "Неверный пароль");
 
-        if (userService.updateUser(user)) {
-            return ResponseEntity.ok().body(null);
-        }
-        return ResponseEntity.badRequest().body(errors);
+        userService.updateUser(user);
+        return ResponseEntity.ok().body(null);
     }
 
     @PostMapping(value = "/user/profile/password/update")
