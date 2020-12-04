@@ -96,17 +96,17 @@ public class UserController {
 
     @PostMapping("/admin/user/add")
     public String addAdmin(
-            @RequestPart(name = "user") IdWrapper idWrapper
+            @RequestParam(name = "id") Long id
     ) {
-        userService.addAdmin(idWrapper.getId());
+        userService.addAdmin(id);
         return "redirect:/admin/user/all";
     }
 
     @PostMapping("/admin/user/dismiss")
     public String deleteAdmin(
-            @RequestPart(name = "user") IdWrapper idWrapper
+            @RequestParam(name = "id") Long id
     ) {
-        userService.deleteAdmin(idWrapper.getId());
+        userService.deleteAdmin(id);
         return "redirect:/admin/user/all";
     }
 }
