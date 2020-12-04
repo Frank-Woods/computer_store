@@ -30,8 +30,9 @@ public class User {
     @NotEmpty(message = "error.validation.user.email.empty")
     private String email;
 
-    @NotEmpty(message = "error.validation.user.password.empty")
     private String password;
+
+    private String newPassword;
 
     @NotEmpty(message = "error.validation.user.phone.empty")
     private String phone;
@@ -45,20 +46,6 @@ public class User {
     private Set<Role> roles;
 
     private Long city;
-
-    public User() { }
-
-    public User(ru.fwoods.computerstore.domain.User user) {
-        this.id = user.getId();
-        this.firstName = user.getFirstName();
-        this.lastName = user.getLastName();
-        this.patronymic = user.getPatronymic();
-        this.email = user.getEmail();
-        this.password = user.getPassword();
-        this.phone = user.getPhone();
-        this.registrationDate = user.getRegistrationDate();
-        this.city = user.getCity().getId();
-    }
 
     public Long getId() {
         return id;
@@ -106,6 +93,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getNewPassword() {
+        return newPassword;
+    }
+
+    public void setNewPassword(String newPassword) {
+        this.newPassword = newPassword;
     }
 
     public String getPhone() {
