@@ -16,6 +16,7 @@ import java.util.List;
 
 @Configuration
 public class MvcConfig implements WebMvcConfigurer {
+
     @Value("${manufacturer.upload.path}")
     private String manufacturerUploadPath;
 
