@@ -12486,10 +12486,13 @@ textarea:focus {
   position: relative;
 }
 .product-wrap .product-img a {
+  height: 210px;
   display: block;
 }
 .product-wrap .product-img a img {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .product-wrap .product-img.product-img-zoom a img {
   transition: all 0.5s ease 0s;

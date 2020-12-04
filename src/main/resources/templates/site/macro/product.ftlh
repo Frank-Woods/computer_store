@@ -1,33 +1,40 @@
-<#macro indexCart>
+<#macro indexCart
+    prod
+>
     <div class="col-lg-3 col-md-6 col-sm-6 col-12">
         <div class="product-wrap mb-50">
             <div class="product-img product-img-zoom mb-25">
                 <a href="#">
-                    <img src="/static/assets/images/product/product-138.jpg" alt="">
+                    <img src="/image/productImage/${prod.image}" alt="">
                 </a>
             </div>
             <div class="product-content">
-                <h4><a href="#">Eco Bag</a></h4>
+                <h4><a href="#">${prod.name}</a></h4>
                 <div class="product-price">
-                    <span>$ 124</span>
-                    <span class="old-price">$ 130</span>
+                    <#if 0 < prod.discount>
+                        <span>${prod.discountCost} ₽</span>
+                        <span class="old-price">${prod.cost} ₽</span>
+                    <#else>
+                        <span>${prod.cost} ₽</span>
+                    </#if>
                 </div>
             </div>
             <div class="product-action-position-1 text-center">
                 <div class="product-content">
-                    <h4><a href="#">Eco Bag</a></h4>
+                    <h4><a href="#">${prod.name}</a></h4>
                     <div class="product-price">
-                        <span>$ 124</span>
-                        <span class="old-price">$ 130</span>
+                        <#if 0 < prod.discount>
+                            <span>${prod.discountCost} ₽</span>
+                            <span class="old-price">${prod.cost} ₽</span>
+                        <#else>
+                            <span>${prod.cost} ₽</span>
+                        </#if>
                     </div>
                 </div>
                 <div class="product-action-wrap">
                     <div class="product-action-cart">
-                        <button title="Add to Cart">Add to cart</button>
+                        <button title="Add to Cart">В корзину</button>
                     </div>
-                    <button data-toggle="modal" data-target="#exampleModal"><i class="icon-zoom"></i></button>
-                    <button title="Add to Compare"><i class="icon-compare"></i></button>
-                    <button title="Add to Wishlist"><i class="icon-heart-empty"></i></button>
                 </div>
             </div>
         </div>
