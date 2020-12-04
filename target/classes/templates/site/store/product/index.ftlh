@@ -77,13 +77,13 @@
                                 </div>
                             </div>
                             <div class="product-review-order">
-                                <span>62 Отзыва</span>
-                                <span>242 продажи</span>
+                                <span>Отзывов <#if productData.reviews??>${productData.reviews?size}<#else>0</#if></span>
+                                <span>Продаж <#if productData.saleProducts??>${productData.saleProducts?size}<#else>0</#if></span>
                             </div>
                         </div>
                         <div class="pro-details-price">
-                            <#if 0 < productData.discount>
-                                <span>${productData.discountCost} ₽</span>
+                            <#if discountCost??>
+                                <span>${discountCost} ₽</span>
                                 <span class="old-price">${productData.cost} ₽</span>
                             <#else>
                                 <span>${productData.cost} ₽</span>
@@ -123,44 +123,27 @@
                     <div class="tab-content dec-review-bottom">
                         <div id="des-details1" class="tab-pane active">
                             <div class="description-wrap">
-                                <p>Crafted in premium watch quality, fenix Chronos is the first Garmin timepiece to combine a durable metal case with integrated performance GPS to support navigation and sport. In the tradition of classic tool watches it features a tough design and a set of modern meaningful tools like Elevate wrist heart rate, various sports apps.</p>
-                                <p> advanced performance metrics for endurance sports, Garmin quality navigation features and smart notifications. In fenix Chronos top-tier performance meets sophisticated design in a highly evolved timepiece that fits your style anywhere, anytime. Solid brushed 316L stainless steel case with brushed stainless steel bezel and integrated EXOTM antenna for GPS + GLONASS support. High-strength scratch resistant sapphire crystal. Brown vintage leather strap with hand-sewn contrast stitching and nubuck inner lining and quick release mechanism.</p>
+                                <p>${productData.description}</p>
                             </div>
                         </div>
                         <div id="des-details2" class="tab-pane">
                             <div class="specification-wrap table-responsive">
                                 <table>
                                     <tbody>
-                                    <tr>
-                                        <td rowspan="5">Категория</td>
-                                        <td class="width1">Name</td>
-                                        <td>Salwar Kameez</td>
-                                    </tr>
-                                    <tr>
-                                        <td>SKU</td>
-                                        <td>0x48e2c</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="width1">Models</td>
-                                        <td>FX 829 v1</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="width1">Categories</td>
-                                        <td>Digital Print</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="width1">Size</td>
-                                        <td>60’’ x 40’’</td>
-                                    </tr>
-                                    <tr>
-                                        <td rowspan="2">Категория</td>
-                                        <td class="width1">Brand </td>
-                                        <td>Individual Collections</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="width1">Color</td>
-                                        <td>Black, White</td>
-                                    </tr>
+                                    <#if attributeCategories?? && productData.attributes??>
+                                        <#list attributeCategories as ac>
+                                            <#assign atts = productData.attributes?filter(attr -> attr.attribute.category.id == ac.id)>
+                                            <#list atts as at>
+                                                <tr>
+                                                    <#if at?index == 0>
+                                                        <td rowspan="${atts?size}">Категория</td>
+                                                        <td class="width1">${at.attribute.name}</td>
+                                                        <td>${at.value.value + " " + at.value.unit}</td>
+                                                    </#if>
+                                                </tr>
+                                            </#list>
+                                        </#list>
+                                    </#if>
                                     </tbody>
                                 </table>
                             </div>
