@@ -80,12 +80,14 @@ public class ProductDataController {
         ProductData productData = productDataService.getProductDataById(id);
         List<AttributeCategory> attributeCategories = attributeCategoryService.getAttributeCategoriesByProductDataId(productData.getId());
         Integer discountCost = productDataService.getDiscountCost(id);
+        Double rating = productDataService.getRating(id);
         Review review = null;
         if (user != null) review = reviewService.getReviewByUserAndProductData(user.getId(), productData.getId());
 
         model.put("productData", productData);
         model.put("attributeCategories", attributeCategories);
         model.put("discountCost", discountCost);
+        model.put("rating", rating);
         model.put("review", review);
 
         return "site/store/product/index";
