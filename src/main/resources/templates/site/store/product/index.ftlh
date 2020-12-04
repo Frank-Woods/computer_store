@@ -78,12 +78,16 @@
                             </div>
                             <div class="product-review-order">
                                 <span>62 Отзыва</span>
-                                <span>242 заказа</span>
+                                <span>242 продажи</span>
                             </div>
                         </div>
                         <div class="pro-details-price">
-                            <span>1500 ₽</span>
-                            <span class="old-price">2000 ₽</span>
+                            <#if 0 < productData.discount>
+                                <span>${productData.discountCost} ₽</span>
+                                <span class="old-price">${productData.cost} ₽</span>
+                            <#else>
+                                <span>${productData.cost} ₽</span>
+                            </#if>
                         </div>
                         <div class="pro-details-quality">
                             <span>Количество:</span>
@@ -93,7 +97,7 @@
                         </div>
                         <div class="product-details-meta">
                             <ul>
-                                <li><span>Категория:</span> <span>Категория</span></li>
+                                <li><span>Категория:</span> <span></span></li>
                                 <li><span>Производитель:</span> <span class="pl-4">Производитель</span></li>
                             </ul>
                         </div>
