@@ -1,0 +1,15 @@
+<#assign known = Session.SPRING_SECURITY_CONTEXT??>
+
+<#if known>
+    <#assign
+    user = Session.SPRING_SECURITY_CONTEXT.authentication.principal
+    isAdmin = user.getAuthorities()?seq_contains('ADMIN')
+    isAuthorized = true
+    >
+<#else>
+    <#assign
+    name = ""
+    isAdmin = false
+    isAuthorized = false
+    >
+</#if>

@@ -513,6 +513,14 @@
   top: 5px;
 }
 
+.custom-textarea-strict-style .custom-textarea__label {
+  border-radius: 0;
+  border: 1px solid #ebebeb;
+}
+.custom-textarea-strict-style .custom-textarea__label__textarea:focus {
+  border: none;
+}
+
 .custom-file-input,
 .custom-file-input-style {
   width: 100%;

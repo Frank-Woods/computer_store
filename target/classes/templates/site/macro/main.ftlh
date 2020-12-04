@@ -37,6 +37,7 @@
         <link rel="stylesheet" href="/static/assets/css/plugins/magnific-popup.css">
         <link rel="stylesheet" href="/static/assets/css/plugins/jquery-ui.css">
         <link rel="stylesheet" href="/static/assets/scss/style.css">
+        <link href="/static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
         <!-- Use the minified version files listed below for better performance and remove the files listed above
         <link rel="stylesheet" href="/static/assets/css/vendor/vendor.min.css">
