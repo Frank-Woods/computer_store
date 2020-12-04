@@ -65,7 +65,7 @@
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-12">
                     <div class="product-details-content main-product-details-content">
-                        <h2>Название товара 1</h2>
+                        <h2>${productData.name}</h2>
                         <div class="product-ratting-review-wrap">
                             <div class="product-ratting-digit-wrap">
                                 <div class="product-ratting">
