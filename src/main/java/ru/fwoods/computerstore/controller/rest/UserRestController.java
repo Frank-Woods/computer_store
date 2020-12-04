@@ -45,23 +45,4 @@ public class UserRestController {
         }
         return ResponseEntity.badRequest().body(errors);
     }
-
-    @PostMapping(value = "/admin/add", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity addAdmin(
-            @RequestPart(name = "user") IdWrapper idWrapper,
-            BindingResult bindingResult
-    ) {
-        if (bindingResult.hasErrors()) {
-            Map<String, String> errors = controllerUtils.getErrors(bindingResult);
-            return ResponseEntity.badRequest().body(errors);
-        }
-        userService.addAdmin(idWrapper.getId());
-        return ResponseEntity.ok().body(null);
-    }
-
-    @PostMapping(value = "/admin/dismiss", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity deleteAdmin(@RequestPart(name = "user") IdWrapper idWrapper) {
-        userService.deleteAdmin(idWrapper.getId());
-        return ResponseEntity.ok().body(null);
-    }
 }

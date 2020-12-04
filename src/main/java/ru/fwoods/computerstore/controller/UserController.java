@@ -4,14 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import ru.fwoods.computerstore.domain.*;
+import ru.fwoods.computerstore.model.IdWrapper;
 import ru.fwoods.computerstore.service.*;
 
 import java.util.List;
@@ -91,5 +92,20 @@ public class UserController {
         List<SaleProduct> sales = saleProductService.getSaleProductsBySale(id);
         model.put("sales", sales);
         return "site/user/profile/orders";
+    }
+
+    @PostMapping("/admin/add")
+    public String addAdmin(
+            @RequestPart(name = "user") IdWrapper idWrapper,
+            BindingResult bindingResult
+    ) {
+        userService.addAdmin(idWrapper.getId());
+        return "admin/user/all";
+    }
+
+    @PostMapping("/admin/dismiss")
+    public String deleteAdmin(@RequestPart(name = "user") IdWrapper idWrapper) {
+        userService.deleteAdmin(idWrapper.getId());
+        return "admin/user/all";
     }
 }
