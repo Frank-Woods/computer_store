@@ -41,6 +41,9 @@ public class AdminController {
     @Autowired
     private CityService cityService;
 
+    @Autowired
+    private ReviewService reviewService;
+
     @GetMapping
     public String getAdminPanel() {
         return "admin/index";
@@ -132,5 +135,17 @@ public class AdminController {
         Page<User> usersPage = userService.getPageUser(pageable);
         model.put("usersPage", usersPage);
         return "admin/user/all";
+    }
+
+    @GetMapping("/review/all")
+    public String getReviewsPage(
+            @RequestParam(required = false, defaultValue = "0") Integer page,
+            Map<String, Object> model
+    ) {
+        Pageable pageable = PageRequest.of(page, 15);
+        Page<Review> reviewsPage = reviewService.getPageReview(pageable);
+        model.put("reviewsPage", reviewsPage);
+        model.put("statuses", StatusReview.values());
+        return "admin/review/all";
     }
 }
