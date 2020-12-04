@@ -33,7 +33,7 @@ public class ReviewController {
     @PostMapping("/admit/reviews/confirmation")
     public String confirmationReviews(Long id) {
         Review review = reviewService.findById(id);
-        review.setStatusReview(StatusReview.ACCEPTED);
+        review.setStatusReview(StatusReview.CONFIRMED);
         reviewService.save(review);
         return "redirect:/admin/reviews";
     }
