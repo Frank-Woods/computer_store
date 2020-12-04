@@ -24268,7 +24268,7 @@ textarea:focus {
   flex-direction: column;
   background-color: #fff;
 }
-.myaccount-tab-menu a {
+.myaccount-tab-menu a, .myaccount-tab-menu button {
   border: 1px solid #ccc;
   border-bottom: none;
   font-weight: 600;
@@ -24276,16 +24276,19 @@ textarea:focus {
   display: block;
   padding: 10px 15px;
   text-transform: uppercase;
+  width: 100%;
+  text-align: left;
+  background-color: transparent;
 }
-.myaccount-tab-menu a:last-child {
+.myaccount-tab-menu a:last-child, .myaccount-tab-menu button:last-child {
   border-bottom: 1px solid #ccc;
 }
-.myaccount-tab-menu a:hover, .myaccount-tab-menu a.active {
+.myaccount-tab-menu a:hover, .myaccount-tab-menu a.active, .myaccount-tab-menu button:hover, .myaccount-tab-menu button.active {
   background-color: #0A1039;
   border-color: #0A1039;
   color: #ffffff;
 }
-.myaccount-tab-menu a i.fa {
+.myaccount-tab-menu a i.fa, .myaccount-tab-menu button i.fa {
   font-size: 14px;
   text-align: center;
   width: 25px;
