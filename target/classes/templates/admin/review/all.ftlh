@@ -23,6 +23,7 @@
                         <th>Минусы</th>
                         <th>Комментарий</th>
                         <th>Рейтинг</th>
+                        <th>Статус</th>
                         <th>Действия</th>
                     </tr>
                     </thead>
@@ -35,35 +36,28 @@
                         <th>Минусы</th>
                         <th>Комментарий</th>
                         <th>Рейтинг</th>
+                        <th>Статус</th>
                         <th>Действия</th>
                     </tr>
                     </tfoot>
                     <tbody>
-                    <#if 0 < .numberOfElements>
-                        <#list promotionsPage.getContent() as promotion>
+                    <#if 0 < reviewsPage.numberOfElements>
+                        <#list reviewsPage.getContent() as review>
                             <tr>
-                                <td>${promotion.id}</td>
-                                <td>${promotion.name}</td>
-                                <td><#noautoesc>${promotion.description}</#noautoesc></td>
-                                <td><a href="/image/promotionBanner/${promotion.banner.filename}" target="_blank"><img src="/image/promotionBanner/${promotion.banner.filename}" alt="logo"></a></td>
-                                <td>${promotion.dateStart}</td>
-                                <td>${promotion.dateEnd}</td>
+                                <td>${review.id}</td>
+                                <td>${review.user.email}</td>
+                                <td><a href="/store/product/${review.productData.id}" target="_blank">${review.productData.name}</a></td>
+                                <td>${review.advantages}</td>
+                                <td>${review.disadvantages}</td>
+                                <td>${review.comment}</td>
+                                <td>${review.rating}</td>
+                                <td>${review.statusReview.text}</td>
                                 <td class="dropdown no-arrow table-action">
                                     <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                         <i class="fas fa-caret-down"></i>
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right shadow" aria-labelledby="dropdownMenuButton" x-placement="bottom-start">
-                                        <a class="dropdown-item" href="/admin/promotion/${promotion.id}/product/all">Все продукты</a>
-                                        <a class="dropdown-item" href="/admin/promotion/${promotion.id}/product/create">Добавить продукт</a>
-                                        <a class="dropdown-item" href="/admin/promotion/update/${promotion.id}">Изменить</a>
-                                        <form class="dropdown-item" name="delete">
-                                            <div class="custom-input">
-                                                <div class="custom-input__settings">
-                                                    <span class="custom-input__settings__attributes">{"name": "id", "type": "hidden", "defaultValue": "${promotion.id}"}</span>
-                                                </div>
-                                            </div>
-                                            <button>Удалить</button>
-                                        </form>
+                                        <a class="dropdown-item" href="/admin/review/update/${review.id}">Изменить</a>
                                     </div>
                                 </td>
                             </tr>
@@ -77,21 +71,16 @@
                 </table>
             </div>
             <@pagination.template
-            url = "/admin/promotion/all"
-            page = promotionsPage
+            url = "/admin/review/all"
+            page = reviewsPage
             ></@pagination.template>
         </div>
     </div>
 </#assign>
 
-<#assign scripts>
-    <script src="/static/js/admin/promotion/delete.js"></script>
-    <@form.js></@form.js>
-</#assign>
-
 <@main.template
 links = links
 body = body
-page = "Акции"
+page = "Отзывы"
 scripts = scripts
 ></@main.template>

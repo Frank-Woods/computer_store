@@ -53,7 +53,7 @@
                                 </div>
                             </div>
                             <div class="product-review-order">
-                                <span>Отзывов <#if productData.reviews??>${productData.reviews?size}<#else>0</#if></span>
+                                <span>Отзывов <#if productData.reviews??>${productData.reviews?filter(r -> r.statusReview.ordinal() == 1)?size}<#else>0</#if></span>
                                 <span>Продаж <#if productData.saleProducts??>${productData.saleProducts?size}<#else>0</#if></span>
                             </div>
                         </div>
@@ -126,23 +126,37 @@
                         </div>
                         <div id="des-details4" class="tab-pane">
                             <div class="review-wrapper">
-                                <div class="single-review">
-                                    <div class="review-content">
-                                        <div class="review-top-wrap">
-                                            <div class="review-name">
-                                                <h5><span>John Snow</span> - March 14, 2019</h5>
-                                            </div>
-                                            <div class="review-rating">
-                                                <i class="yellow icon-rating"></i>
-                                                <i class="yellow icon-rating"></i>
-                                                <i class="yellow icon-rating"></i>
-                                                <i class="yellow icon-rating"></i>
-                                                <i class="yellow icon-rating"></i>
+                                <#if productData.reviews??>
+                                    <#list productData.reviews?filter(r -> r.statusReview.ordinal() == 1) as r>
+                                        <div class="single-review">
+                                            <div class="review-content">
+                                                <div class="review-top-wrap">
+                                                    <div class="review-name">
+                                                        <h5><span>${r.user.firstName + " " + r.user.lastName}</span> - ${r.date?string("dd.MM.yyyy")}</h5>
+                                                    </div>
+                                                    <div class="review-rating pl-3">
+                                                        <#if 0 < rating>
+                                                            <#list 1..rating?floor as r>
+                                                               <i class="yellow icon-rating"></i>
+                                                            </#list>
+                                                        </#if>
+                                                        <#if rating?floor != rating?round>
+                                                            <i class="yellow icon-star-half"></i>
+                                                        </#if>
+                                                        <#if rating?round < 5>
+                                                            <#list rating?round + 1..5 as r>
+                                                               <i class="yellow icon-star-empty"></i>
+                                                            </#list>
+                                                        </#if>
+                                                    </div>
+                                                </div>
+                                                <p><strong>Плюсы:</strong> ${r.advantages}</p>
+                                                <p><strong>Минусы:</strong> ${r.disadvantages}</p>
+                                                <p><strong>Комментарий:</strong> ${r.comment}</p>
                                             </div>
                                         </div>
-                                        <p>Donec accumsan auctor iaculis. Sed suscipit arcu ligula, at egestas magna molestie a. Proin ac ex maximus, ultrices justo eget, sodales orci. Aliquam egestas libero ac turpis pharetra, in vehicula lacus scelerisque</p>
-                                    </div>
-                                </div>
+                                    </#list>
+                                </#if>
                             </div>
                             <#if security.isAuthorized>
                                 <#if review??>

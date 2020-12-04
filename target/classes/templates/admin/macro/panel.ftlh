@@ -122,8 +122,8 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="#">
-                <span>Обзоры</span></a>
+            <a class="nav-link" href="/admin/review/all">
+                <span>Отзывы</span></a>
         </li>
 
         <li class="nav-item">

@@ -113,26 +113,6 @@
   }
 }
 
-.custom-input-strict-style {
-  border-radius: 0;
-  border: 1px solid #ebebeb;
-
-  & .custom-input {
-    &__label {
-
-      &__text {
-        font-size: 16px;
-        color: #858796;
-      }
-
-      &__input {
-        font-size: 14px;
-        color: #010225;
-      }
-    }
-  }
-}
-
 .custom-input-style {
   width: 100%;
   position: relative;
@@ -243,6 +223,26 @@
 
       &[type=file] {
         display: none;
+      }
+    }
+  }
+}
+
+.custom-input-strict-style {
+  border-radius: 0;
+  border: 1px solid #ebebeb;
+
+  & .custom-input, & .custom-input-style {
+    &__label {
+
+      &__text {
+        font-size: 16px;
+        color: #858796;
+      }
+
+      &__input {
+        font-size: 14px;
+        color: #010225;
       }
     }
   }
