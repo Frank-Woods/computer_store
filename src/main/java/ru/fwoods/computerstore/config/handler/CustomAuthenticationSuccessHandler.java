@@ -9,6 +9,9 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationSu
 import org.springframework.security.web.savedrequest.DefaultSavedRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
+import ru.fwoods.computerstore.domain.User;
+import ru.fwoods.computerstore.model.CartProduct;
+import ru.fwoods.computerstore.service.BasketService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -21,8 +24,8 @@ import java.util.List;
 @Component
 public class CustomAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
-//    @Autowired
-//    private BasketService basketService;
+    @Autowired
+    private BasketService basketService;
 
     public CustomAuthenticationSuccessHandler() {
         super();
@@ -33,12 +36,12 @@ public class CustomAuthenticationSuccessHandler extends SimpleUrlAuthenticationS
         try {
             Gson gson = new Gson();
             Reader reader = new InputStreamReader(request.getPart("cart").getInputStream());
-//            List<CartProduct> cart = gson.fromJson(reader, new TypeToken<List<CartProduct>>() {}.getType());
-//            if (cart != null) {
-//                cart.forEach(cartProduct -> {
-//                    basketService.save((User) authentication.getPrincipal(), cartProduct);
-//                });
-//            }
+            List<CartProduct> cart = gson.fromJson(reader, new TypeToken<List<CartProduct>>() {}.getType());
+            if (cart != null) {
+                cart.forEach(cartProduct -> {
+                    basketService.save((User) authentication.getPrincipal(), cartProduct);
+                });
+            }
         } catch (JsonParseException exception) {
             exception.printStackTrace();
         }

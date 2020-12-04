@@ -11,6 +11,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @UniqueEmail
@@ -91,6 +92,9 @@ public class User implements UserDetails {
     )
     @JoinColumn(name = "city_id", nullable = false)
     private City city;
+
+    @OneToMany(mappedBy = "user")
+    private List<Basket> baskets;
 
     public Long getId() {
         return id;
@@ -200,5 +204,13 @@ public class User implements UserDetails {
 
     public void setCity(City city) {
         this.city = city;
+    }
+
+    public List<Basket> getBaskets() {
+        return baskets;
+    }
+
+    public void setBaskets(List<Basket> baskets) {
+        this.baskets = baskets;
     }
 }
