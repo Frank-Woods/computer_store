@@ -2,6 +2,7 @@ package ru.fwoods.computerstore.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -324,5 +325,10 @@ public class ProductDataService {
         } else {
             return 0.0;
         }
+    }
+
+    public Page<ProductData> getPageProductsByCategory(Long category, Pageable pageable) {
+        List<ProductData> productDataList = productDataRepository.getAllByCategoryId(category);
+        return new PageImpl<>(productDataList, pageable, 0);
     }
 }
