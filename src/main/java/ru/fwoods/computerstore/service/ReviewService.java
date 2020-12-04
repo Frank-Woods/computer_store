@@ -33,4 +33,8 @@ public class ReviewService {
     public void deleteReview(Long id) {
         reviewRepository.deleteById(id);
     }
+
+    public Review getReviewByUserAndProductData(Long user, Long productData) {
+        return reviewRepository.getByUserIdAndProductDataId(user, productData);
+    }
 }

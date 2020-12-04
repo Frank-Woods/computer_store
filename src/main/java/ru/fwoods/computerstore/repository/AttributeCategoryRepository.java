@@ -21,4 +21,7 @@ public interface AttributeCategoryRepository extends JpaRepository<AttributeCate
             "from AttributeCategory ac join Attribute a join AttributeValue av join ProductData pd " +
             "where pd.id = ?1")
     List<ru.fwoods.computerstore.model.AttributeCategory> getUseAttributeCategories(Long productData);
+
+    @Query("select new AttributeCategory(pda.category.id, pda.category.name) from ProductData pd join pd.attributes pdav join pdav.attribute pda join pda.category where pd.id = ?1 group by pda.category")
+    List<AttributeCategory> getAttributeCategoriesByProductDataId(Long id);
 }

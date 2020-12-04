@@ -123,4 +123,8 @@ public class PromotionService {
         }
         return null;
     }
+
+    public Promotion getPromotionById(Long id) {
+        return promotionRepository.getOne(id);
+    }
 }

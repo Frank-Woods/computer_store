@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,6 +35,12 @@ public class ProductDataController {
     @Autowired
     private ImageService imageService;
 
+    @Autowired
+    private AttributeCategoryService attributeCategoryService;
+
+    @Autowired
+    private ReviewService reviewService;
+
     @GetMapping("/admin/product/create")
     public String getProductsCreate(Map<String, Object> model) {
 
@@ -62,5 +69,23 @@ public class ProductDataController {
         model.put("images", images);
 
         return "admin/product/update";
+    }
+
+    @GetMapping("/site/product/{id}")
+    public String getProductPage(
+            @AuthenticationPrincipal User user,
+            @PathVariable Long id,
+            Map<String, Object> model
+    ) {
+        ProductData productData = productDataService.getProductDataById(id);
+        List<AttributeCategory> attributeCategories = attributeCategoryService.getAttributeCategoriesByProductDataId(productData.getId());
+        Review review = null;
+        if (user != null) review = reviewService.getReviewByUserAndProductData(user.getId(), productData.getId());
+
+        model.put("productData", productData);
+        model.put("attributeCategories", attributeCategories);
+        model.put("review", review);
+
+        return "site/product";
     }
 }
