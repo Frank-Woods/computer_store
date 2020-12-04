@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.fwoods.computerstore.domain.*;
-import ru.fwoods.computerstore.model.ProductDataCart;
 import ru.fwoods.computerstore.service.*;
 
 import java.util.List;
@@ -78,13 +77,15 @@ public class ProductDataController {
             @PathVariable Long id,
             Map<String, Object> model
     ) {
-        ProductDataCart productData = productDataService.getProductDataCartById(id);
+        ProductData productData = productDataService.getProductDataById(id);
         List<AttributeCategory> attributeCategories = attributeCategoryService.getAttributeCategoriesByProductDataId(productData.getId());
+        Integer discountCost = productDataService.getDiscountCost(id);
         Review review = null;
         if (user != null) review = reviewService.getReviewByUserAndProductData(user.getId(), productData.getId());
 
         model.put("productData", productData);
         model.put("attributeCategories", attributeCategories);
+        model.put("discountCost", discountCost);
         model.put("review", review);
 
         return "site/store/product/index";

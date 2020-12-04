@@ -72,6 +72,9 @@ public class ProductData {
     @OneToMany(mappedBy = "productData")
     private List<Review> reviews;
 
+    @OneToMany(mappedBy = "prductData")
+    private List<SaleProduct> saleProducts;
+
     public Long getId() {
         return id;
     }
@@ -158,5 +161,13 @@ public class ProductData {
 
     public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
+    }
+
+    public List<SaleProduct> getSaleProducts() {
+        return saleProducts;
+    }
+
+    public void setSaleProducts(List<SaleProduct> saleProducts) {
+        this.saleProducts = saleProducts;
     }
 }
