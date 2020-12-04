@@ -19,4 +19,8 @@ public class SaleService {
     public Sale getSaleById(Long id) {
         return saleRepository.getOne(id);
     }
+
+    public Page<Sale> getSalesPageByUser(Long id, Pageable pageable) {
+        return saleRepository.getAllByUserId(id, pageable);
+    }
 }
