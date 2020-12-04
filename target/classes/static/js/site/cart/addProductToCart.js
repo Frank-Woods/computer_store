@@ -44,17 +44,13 @@ function addToDatabaseCart(id) {
 function changeProduct(id) {
     const wrapper = document.getElementsByClassName(`product-item-${id}`)[0];
     if (wrapper) {
-        const btn = wrapper.getElementsByClassName('btn-add-to-cart')[0];
+        const btn = wrapper.getElementsByClassName('product-action-cart-button')[0];
         if (btn) {
             btn.onclick = () => { };
             const check = document.createElement('a');
-            check.classList.add('btn-add-to-cart');
+            check.classList.add('product-action-cart-button');
             check.href = '/shop/cart';
-
-            const icon = document.createElement('i');
-            icon.classList.add('ion-android-checkmark-circle');
-
-            check.append(icon);
+            check.textContent = 'В корзине';
 
             btn.before(check);
             btn.remove();
