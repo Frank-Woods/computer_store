@@ -9,15 +9,16 @@
                 <h2>Товары акции - Название</h2>
             </div>
             <div class="row">
-                <@product.indexCart></@product.indexCart>
-                <@product.indexCart></@product.indexCart>
-                <@product.indexCart></@product.indexCart>
-                <@product.indexCart></@product.indexCart>
-                <@product.indexCart></@product.indexCart>
-                <@product.indexCart></@product.indexCart>
-                <@product.indexCart></@product.indexCart>
-                <@product.indexCart></@product.indexCart>
+                <#list productsPage.getContent() as p>
+                    <@product.indexCart
+                        prod = p
+                    ></@product.indexCart>
+                </#list>
             </div>
+            <@pagination.template
+            page=productsPage
+            url="/promotions/${promotion.id}/products"
+            ></@pagination.template>
         </div>
     </div>
 </#assign>

@@ -29,7 +29,7 @@ public class ReviewRestController {
     @Autowired
     private ControllerUtils controllerUtils;
 
-    @PostMapping(value = "review/create", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/review/create", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity createReview(
             @AuthenticationPrincipal User user,
             @RequestPart(name = "review", required = false) Review review,

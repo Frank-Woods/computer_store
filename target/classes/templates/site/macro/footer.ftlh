@@ -20,9 +20,10 @@
                             <h3 class="footer-title">Подпишитесь на нас</h3>
                             <div class="subscribe-wrap">
                                 <div id="mc_embed_signup" class="subscribe-form">
-                                    <form id="mc-embedded-subscribe-form" class="validate subscribe-form-style" novalidate="" target="_blank" name="mc-embedded-subscribe-form" method="post" action="#">
+                                    <form id="mc-embedded-subscribe-form" class="validate subscribe-form-style" novalidate="" name="mc-embedded-subscribe-form" method="post" action="/add/email">
                                         <div id="mc_embed_signup_scroll" class="mc-form">
                                             <input class="email" type="email" required="" placeholder="Ваша почта" name="email">
+                                            <input type="hidden" name="_csrf" value="${_csrf.token}">
                                             <button id="mc-embedded-subscribe" class="button clear">
                                         </div>
                                     </form>

@@ -20676,11 +20676,12 @@ textarea:focus {
 .dec-review-bottom .ratting-form-wrapper .ratting-form .star-box-wrap .single-ratting-star {
   margin-right: 17px;
   display: flex;
-}
-.dec-review-bottom .ratting-form-wrapper .ratting-form .star-box-wrap .single-ratting-star a {
-  color: #535353;
+  cursor: pointer;
 }
 .dec-review-bottom .ratting-form-wrapper .ratting-form .star-box-wrap .single-ratting-star:hover i {
+  color: #f5b223;
+}
+.dec-review-bottom .ratting-form-wrapper .ratting-form .star-box-wrap .single-ratting-star.current {
   color: #f5b223;
 }
 .dec-review-bottom .ratting-form-wrapper .ratting-form .rating-form-style label {

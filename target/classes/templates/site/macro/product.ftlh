@@ -4,12 +4,12 @@
     <div class="col-lg-3 col-md-6 col-sm-6 col-12">
         <div class="product-wrap mb-50">
             <div class="product-img product-img-zoom mb-25">
-                <a href="#">
+                <a href="/store/product/${prod.id}">
                     <img src="/image/productImage/${prod.image}" alt="">
                 </a>
             </div>
             <div class="product-content">
-                <h4><a href="#">${prod.name}</a></h4>
+                <h4><a href="/store/product/${prod.id}">${prod.name}</a></h4>
                 <div class="product-price">
                     <#if 0 < prod.discount>
                         <span>${prod.discountCost} ₽</span>
@@ -21,7 +21,7 @@
             </div>
             <div class="product-action-position-1 text-center">
                 <div class="product-content">
-                    <h4><a href="#">${prod.name}</a></h4>
+                    <h4><a href="/store/product/${prod.id}">${prod.name}</a></h4>
                     <div class="product-price">
                         <#if 0 < prod.discount>
                             <span>${prod.discountCost} ₽</span>
