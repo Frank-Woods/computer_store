@@ -2,7 +2,7 @@ const forms = document.getElementsByName("login");
 
 const param = {
     body: 'user',
-    url: '/user/login',
+    url: '/login',
     redirect: '/user/profile/details',
     method: 'post',
 }
