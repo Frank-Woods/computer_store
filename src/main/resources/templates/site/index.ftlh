@@ -48,7 +48,12 @@
     </#if>
 </#assign>
 
+<#assign scripts>
+    <script src="/static/js/site/cart/addProductToCart.js"></script>
+</#assign>
+
 <@main.template
     body = body
+    scripts = scripts
 >
 </@main.template>

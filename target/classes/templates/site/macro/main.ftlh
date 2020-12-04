@@ -77,6 +77,7 @@
     <script src="/static/assets/js/plugins/scrollup.js"></script>
     <script src="/static/assets/js/plugins/ajax-mail.js"></script>
     <script src="/static/assets/js/main.js"></script>
+    <script src="/static/js/site/cart/main.js"></script>
 
     ${scripts}
 

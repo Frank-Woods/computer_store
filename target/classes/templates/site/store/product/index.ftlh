@@ -37,24 +37,19 @@
                         <div class="product-ratting-review-wrap">
                             <div class="product-ratting-digit-wrap">
                                 <div class="product-ratting">
-                                    <#if 0 < productData.rating>
-                                        <#list 1..productData.rating?floor as r>
-                                            <span><i class="ion-android-star"></i></span>
+                                    <#if 0 < rating>
+                                        <#list 1..rating?floor as r>
+                                            <span><i class="icon-rating"></i></span>
                                         </#list>
                                     </#if>
-                                    <#if prod.rating?floor != ?round>
-                                        <span><i class="ion-android-star-half"></i></span>
+                                    <#if rating?floor != rating?round>
+                                        <span><i class="icon-star-half"></i></span>
                                     </#if>
-                                    <#if prod.rating?round < 5>
-                                        <#list prod.rating?round + 1..5 as r>
-                                            <span><i class="ion-android-star-outline"></i></span>
+                                    <#if rating?round < 5>
+                                        <#list rating?round + 1..5 as r>
+                                            <span><i class="icon-star-empty"></i></span>
                                         </#list>
                                     </#if>
-                                    <i class="icon-rating"></i>
-                                    <i class="icon-rating"></i>
-                                    <i class="icon-rating"></i>
-                                    <i class="icon-rating"></i>
-                                    <i class="icon-star-empty"></i>
                                 </div>
                             </div>
                             <div class="product-review-order">
