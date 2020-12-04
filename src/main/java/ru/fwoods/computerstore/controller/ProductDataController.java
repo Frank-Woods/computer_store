@@ -86,6 +86,6 @@ public class ProductDataController {
         model.put("attributeCategories", attributeCategories);
         model.put("review", review);
 
-        return "store/product";
+        return "site/store/product/index";
     }
 }
