@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.fwoods.computerstore.controller.ControllerUtils;
 import ru.fwoods.computerstore.model.IdWrapper;
 import ru.fwoods.computerstore.model.User;
-import ru.fwoods.computerstore.model.UserPassword;
 import ru.fwoods.computerstore.service.UserService;
 
 import java.util.HashMap;
@@ -38,7 +37,7 @@ public class UserRestController {
             return ResponseEntity.badRequest().body(errors);
         }
         Map<String, String> errors = new HashMap<>();
-        errors.put("user.password", "");;
+        errors.put("user.password", "Неверный пароль");
         errors.put("error", "Неверный пароль");
 
         if (userService.updateUser(user)) {

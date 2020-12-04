@@ -10,7 +10,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.fwoods.computerstore.domain.Role;
 import ru.fwoods.computerstore.domain.User;
-import ru.fwoods.computerstore.model.UserPassword;
 import ru.fwoods.computerstore.repository.UserRepository;
 
 import java.time.LocalDate;
@@ -57,6 +56,9 @@ public class UserService implements UserDetailsService {
         if (user.getPassword() != null && user.getNewPassword() != null) {
             if (passwordEncoder.matches(user.getPassword(), userDomain.getPassword())) {
                 user.setPassword(passwordEncoder.encode(user.getNewPassword()));
+                userRepository.save(userDomain);
+                securityService.updateAuthenticationToken();
+                return true;
             }
             return false;
         }
