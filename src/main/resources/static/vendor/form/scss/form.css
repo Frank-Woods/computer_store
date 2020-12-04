@@ -271,19 +271,6 @@
   display: none;
 }
 
-.custom-input-strict-style {
-  border-radius: 0;
-  border: 1px solid #ebebeb;
-}
-.custom-input-strict-style .custom-input__label__text {
-  font-size: 16px;
-  color: #858796;
-}
-.custom-input-strict-style .custom-input__label__input {
-  font-size: 14px;
-  color: #010225;
-}
-
 .custom-input-style {
   width: 100%;
   position: relative;
@@ -377,6 +364,19 @@
 }
 .custom-input-style__label__input[type=file] {
   display: none;
+}
+
+.custom-input-strict-style {
+  border-radius: 0;
+  border: 1px solid #ebebeb;
+}
+.custom-input-strict-style .custom-input__label__text, .custom-input-strict-style .custom-input-style__label__text {
+  font-size: 16px;
+  color: #858796;
+}
+.custom-input-strict-style .custom-input__label__input, .custom-input-strict-style .custom-input-style__label__input {
+  font-size: 14px;
+  color: #010225;
 }
 
 .custom-form-group,

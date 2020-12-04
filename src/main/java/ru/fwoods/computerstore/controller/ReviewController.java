@@ -32,6 +32,6 @@ public class ReviewController {
         model.put("statuses", StatusReview.values());
         model.put("review", review);
 
-        return "admin/support/review/update";
+        return "admin/review/update";
     }
 }
