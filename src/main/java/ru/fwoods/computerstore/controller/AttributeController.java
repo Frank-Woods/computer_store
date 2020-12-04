@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,6 +28,7 @@ public class AttributeController {
     @Autowired
     private AttributeService attributeService;
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/admin/product/{id}/attribute/all")
     public String getAttributePage(
             @RequestParam(required = false, defaultValue = "0") Integer page,
@@ -42,6 +44,7 @@ public class AttributeController {
         return "admin/product/attribute/all";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/admin/product/{id}/attribute/create")
     public String getAttributeCreate(
             @PathVariable Long id,
@@ -53,6 +56,7 @@ public class AttributeController {
         return "admin/product/attribute/create";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/admin/product/{productId}/attribute/update/{id}")
     public String getAttributeUpdate(
             @PathVariable Long productId,

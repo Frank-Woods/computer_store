@@ -3,6 +3,7 @@ package ru.fwoods.computerstore.controller.rest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +30,7 @@ public class ProductCategoryRestController {
     @Autowired
     private AttributeService attributeService;
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping(value = "/admin/category/create", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity createCategory(
             @RequestPart(name = "category") @Validated ProductCategory productCategory,
@@ -42,6 +44,7 @@ public class ProductCategoryRestController {
         return ResponseEntity.ok().body(null);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping(value = "/admin/category/update", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity updateCategory(
             @RequestPart(name = "category") @Validated ProductCategory productCategory,
@@ -55,6 +58,7 @@ public class ProductCategoryRestController {
         return ResponseEntity.ok().body(null);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping(value = "/admin/category/delete")
     public ResponseEntity deleteCategory(
             @RequestPart(name = "category") IdWrapper idWrapper
@@ -68,6 +72,7 @@ public class ProductCategoryRestController {
         }
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping(value = "/admin/category/{id}/attribute/create")
     public ResponseEntity createAttribute(
             @PathVariable Long id,
@@ -77,6 +82,7 @@ public class ProductCategoryRestController {
         return ResponseEntity.ok().body(null);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping(value = "/admin/category/attribute/update")
     public ResponseEntity updateAttribute(
             @RequestPart(name = "attribute") Attribute attribute
@@ -85,6 +91,7 @@ public class ProductCategoryRestController {
         return ResponseEntity.ok().body(null);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping(value = "/admin/category/attribute/delete")
     public ResponseEntity deleteAttribute(
             @RequestPart(name = "attribute") IdWrapper idWrapper
@@ -93,11 +100,13 @@ public class ProductCategoryRestController {
         return ResponseEntity.ok().body(null);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("admin/category/parent/product/null")
     public List<ProductCategory> getCategoriesWithoutParentAndProduct() {
         return productCategoryService.getCategoriesWithoutParentAndProduct();
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping(value = "/admin/category/get/search")
     public ResponseEntity getCategorySearch(
             @RequestParam(required = false, defaultValue = "") String searchParam

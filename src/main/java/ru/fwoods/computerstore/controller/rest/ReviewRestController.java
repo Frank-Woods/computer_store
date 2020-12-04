@@ -29,6 +29,7 @@ public class ReviewRestController {
     @Autowired
     private ControllerUtils controllerUtils;
 
+    @PreAuthorize("hasAuthority('USER')")
     @PostMapping(value = "/review/create", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity createReview(
             @AuthenticationPrincipal User user,
@@ -43,6 +44,7 @@ public class ReviewRestController {
         return ResponseEntity.ok().body(null);
     }
 
+    @PreAuthorize("hasAuthority('USER')")
     @PostMapping(value = "/review/update", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity updateReview(
             @AuthenticationPrincipal User user,
@@ -57,6 +59,7 @@ public class ReviewRestController {
         return ResponseEntity.ok().body(null);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping(value = "/admin/review/update", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity adminUpdateReview(
             @AuthenticationPrincipal User user,
@@ -72,6 +75,7 @@ public class ReviewRestController {
         return ResponseEntity.ok().body(null);
     }
 
+    @PreAuthorize("hasAuthority('USER')")
     @PostMapping(value = "/review/delete")
     public ResponseEntity<Map<String, String>> deletePromotion(@RequestPart(name = "review") IdWrapper idWrapper) {
         try {

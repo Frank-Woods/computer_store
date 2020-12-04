@@ -2,6 +2,7 @@ package ru.fwoods.computerstore.controller.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -16,6 +17,7 @@ public class PromotionProductRestController {
     @Autowired
     private PromotionProductService promotionProductService;
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping(value = "/admin/promotion/{id}/product/create")
     public ResponseEntity createPromotionProduct(
             @PathVariable Long id,
@@ -25,6 +27,7 @@ public class PromotionProductRestController {
         return ResponseEntity.ok().body(null);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping(value = "/admin/promotion/product/update")
     public ResponseEntity updatePromotionProduct(
             @RequestPart(name = "product") DiscountProduct discountProduct
@@ -33,6 +36,7 @@ public class PromotionProductRestController {
         return ResponseEntity.ok().body(null);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping(value = "/admin/promotion/product/delete")
     public ResponseEntity updatePromotionProduct(
             @RequestPart(name = "product") IdWrapper idWrapper

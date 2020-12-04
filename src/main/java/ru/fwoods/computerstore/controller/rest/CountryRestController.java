@@ -3,6 +3,7 @@ package ru.fwoods.computerstore.controller.rest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,7 @@ public class CountryRestController {
     @Autowired
     private ControllerUtils controllerUtils;
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping(value = "/admin/country/create", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity createCountry(
             @RequestPart(name = "country", required = false) @Validated Country country,
@@ -37,6 +39,7 @@ public class CountryRestController {
         return ResponseEntity.ok().body(null);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping(value = "/admin/country/update")
     public ResponseEntity updateCountry(
             @RequestPart(name = "country", required = false) @Validated Country country,
@@ -50,6 +53,7 @@ public class CountryRestController {
         return ResponseEntity.ok().body(null);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping(value = "/admin/country/delete")
     public ResponseEntity<Map<String, String>> deleteCountry(@RequestPart(name = "country") IdWrapper idWrapper) {
         try {
@@ -61,6 +65,7 @@ public class CountryRestController {
         }
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping(value = "/admin/country/get/search")
     public ResponseEntity getCountrySearch(
             @RequestParam(required = false, defaultValue = "") String searchParam

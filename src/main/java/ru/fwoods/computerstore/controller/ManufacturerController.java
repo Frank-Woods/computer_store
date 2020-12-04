@@ -32,11 +32,13 @@ public class ManufacturerController {
     @Autowired
     private ImageService imageService;
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/admin/manufacturer/create")
     public String getManufacturersCreate() {
         return "admin/manufacturer/create";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/admin/manufacturer/update/{id}")
     public String getManufacturersUpdate(
             @PathVariable Long id,

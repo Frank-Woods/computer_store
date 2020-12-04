@@ -27,6 +27,7 @@ public class UserRestController {
     @Autowired
     private ControllerUtils controllerUtils;
 
+    @PreAuthorize("hasAuthority('USER')")
     @PostMapping(value = "/user/profile/update", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity updateUser(
             @RequestPart(name = "user") @Validated User user,

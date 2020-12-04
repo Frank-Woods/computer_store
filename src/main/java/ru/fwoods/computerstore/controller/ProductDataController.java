@@ -43,6 +43,7 @@ public class ProductDataController {
     @Autowired
     private ReviewService reviewService;
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/admin/product/create")
     public String getProductsCreate(Map<String, Object> model) {
 
@@ -55,6 +56,7 @@ public class ProductDataController {
         return "admin/product/create";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/admin/product/update/{id}")
     public String getProductsUpdate(
             @PathVariable Long id,

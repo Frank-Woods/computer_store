@@ -25,6 +25,7 @@ public class CityRestController {
     @Autowired
     private ControllerUtils controllerUtils;
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping(value = "/admin/city/create")
     public ResponseEntity createCity(
             @RequestPart(name = "city", required = false) @Validated City city,
@@ -38,6 +39,7 @@ public class CityRestController {
         return ResponseEntity.ok().body(null);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping(value = "/admin/city/update")
     public ResponseEntity updateCity(
             @RequestPart(name = "city", required = false) @Validated City city,
@@ -51,6 +53,7 @@ public class CityRestController {
         return ResponseEntity.ok().body(null);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping(value = "/admin/city/delete")
     public ResponseEntity<Map<String, String>> deleteCity(@RequestPart(name = "city") IdWrapper idWrapper) {
         try {
@@ -62,6 +65,7 @@ public class CityRestController {
         }
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping(value = "/admin/city/get/search")
     public ResponseEntity getCountrySearch(
             @RequestParam(required = false, defaultValue = "") String searchParam

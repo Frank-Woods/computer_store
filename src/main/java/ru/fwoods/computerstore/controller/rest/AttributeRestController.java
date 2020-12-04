@@ -2,6 +2,7 @@ package ru.fwoods.computerstore.controller.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -16,6 +17,7 @@ public class AttributeRestController {
     @Autowired
     private AttributeValueService attributeValueService;
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping(value = "/admin/product/{id}/attribute/create")
     public ResponseEntity createAttribute(
             @PathVariable Long id,
@@ -25,6 +27,7 @@ public class AttributeRestController {
         return ResponseEntity.ok().body(null);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping(value = "/admin/product/attribute/update")
     public ResponseEntity updateAttribute(
             @RequestPart(name = "attribute") Attribute attribute
@@ -33,6 +36,7 @@ public class AttributeRestController {
         return ResponseEntity.ok().body(null);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping(value = "/admin/product/{id}/attribute/delete")
     public ResponseEntity deleteAttribute(
             @PathVariable Long id,
