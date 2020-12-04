@@ -33,7 +33,7 @@
                 </div>
                 <div class="product-action-wrap">
                     <div class="product-action-cart">
-                        <button title="Add to Cart">В корзину</button>
+                        <button title="Add to Cart" onclick="addToLocalStorageCart(${prod.id})">В корзину</button>
                     </div>
                 </div>
             </div>

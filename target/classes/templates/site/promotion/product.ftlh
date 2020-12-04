@@ -6,7 +6,7 @@
     <div class="product-area pb-100 pt-100">
         <div class="container">
             <div class="section-title-8 mb-65">
-                <h2>Товары акции - Название</h2>
+                <h2>Товары акции - ${promotion.name}</h2>
             </div>
             <div class="row">
                 <#list productsPage.getContent() as p>

@@ -6,7 +6,7 @@
                     <div class="header-bottom-flex">
                         <div class="logo-menu-wrap">
                             <div class="logo">
-                                <a href="index.html">
+                                <a href="/">
                                     <img src="/static/assets/images/logo/logo-9.png" alt="logo">
                                 </a>
                             </div>
