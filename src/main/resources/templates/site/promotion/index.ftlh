@@ -5,21 +5,21 @@
 <#assign body>
     <div class="product-area pb-100 pt-100">
         <div class="container">
-            <div class="row">
-                <@promotion.indexCart></@promotion.indexCart>
-                <@promotion.indexCart></@promotion.indexCart>
-                <@promotion.indexCart></@promotion.indexCart>
-                <@promotion.indexCart></@promotion.indexCart>
-                <@promotion.indexCart></@promotion.indexCart>
-                <@promotion.indexCart></@promotion.indexCart>
-                <@promotion.indexCart></@promotion.indexCart>
-                <@promotion.indexCart></@promotion.indexCart>
+            <div class="section-title-8 mb-65">
+                <h2>Акции</h2>
             </div>
+            <div class="row">
+                <#list promotionsPage.getContent() as p>
+                    <@promotion.indexCart
+                        prom = p
+                    ></@promotion.indexCart>
+                </#list>
+            </div>
+            <@pagination.template
+            page=promotionsPage
+            url="/promotions"
+            ></@pagination.template>
         </div>
-<#--        <@pagination.template-->
-<#--            page = ""-->
-<#--            url= ""-->
-<#--        ></@pagination.template>-->
     </div>
 </#assign>
 

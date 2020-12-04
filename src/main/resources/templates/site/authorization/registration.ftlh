@@ -49,7 +49,7 @@
                                             </div>
                                             <div class="custom-input custom-input-strict-style">
                                                 <div class="custom-input__settings">
-                                                    <span class="custom-input__settings__attributes">{"name":"telephone", "label":"Телефон"}</span>
+                                                    <span class="custom-input__settings__attributes">{"name":"phone", "label":"Телефон"}</span>
                                                 </div>
                                             </div>
                                             <div class="custom-select custom-select-strict-style">
