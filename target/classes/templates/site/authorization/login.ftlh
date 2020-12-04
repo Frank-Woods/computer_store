@@ -26,7 +26,7 @@
                                         <form name="login">
                                             <div class="custom-input custom-input-strict-style">
                                                 <div class="custom-input__settings">
-                                                    <span class="custom-input__settings__attributes">{"name":"email", "label":"email"}</span>
+                                                    <span class="custom-input__settings__attributes">{"name":"email", "label":"Почта"}</span>
                                                 </div>
                                             </div>
                                             <div class="custom-input custom-input-strict-style">

@@ -29,7 +29,7 @@
                                         <form name="registration">
                                             <div class="custom-input custom-input-strict-style">
                                                 <div class="custom-input__settings">
-                                                    <span class="custom-input__settings__attributes">{"name":"email", "label":"email"}</span>
+                                                    <span class="custom-input__settings__attributes">{"name":"email", "label":"Почта"}</span>
                                                 </div>
                                             </div>
                                             <div class="custom-input custom-input-strict-style">
@@ -65,7 +65,7 @@
                                                 </div>
                                             </div>
                                             <div class="button-box">
-                                                <button type="submit">Регистрация</button>
+                                                <button type="submit">Зарегистрироваться</button>
                                             </div>
                                         </form>
                                     </div>
