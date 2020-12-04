@@ -57,7 +57,7 @@ public class UserController {
         Pageable pageable = PageRequest.of(page, 15);
         Page<Review> reviews = reviewService.getReviewsByUser(user, pageable);
         model.put("reviewsPage", reviews);
-        return "site/user/profile/review";
+        return "site/user/profile/reviews";
     }
 
     @GetMapping("/profile/reviews/{id}")
