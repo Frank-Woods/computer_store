@@ -94,7 +94,7 @@ public class UserController {
         return "site/user/profile/orders";
     }
 
-    @PostMapping("/admin/add")
+    @PostMapping("/admin/user/add")
     public String addAdmin(
             @RequestPart(name = "user") IdWrapper idWrapper
     ) {
@@ -102,7 +102,7 @@ public class UserController {
         return "redirect:/admin/user/all";
     }
 
-    @PostMapping("/admin/dismiss")
+    @PostMapping("/admin/user/dismiss")
     public String deleteAdmin(
             @RequestPart(name = "user") IdWrapper idWrapper
     ) {
