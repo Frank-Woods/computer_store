@@ -72,7 +72,7 @@ public class ProductData {
     @OneToMany(mappedBy = "productData")
     private List<Review> reviews;
 
-    @OneToMany(mappedBy = "prductData")
+    @OneToMany(mappedBy = "productData")
     private List<SaleProduct> saleProducts;
 
     public Long getId() {
