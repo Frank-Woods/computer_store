@@ -36,11 +36,11 @@ public class UserController {
     @Autowired
     private SaleProductService saleProductService;
 
-    @GetMapping("/profile")
+    @GetMapping("/profile/details")
     public String getUserProfilePage(Map<String, Object> model) {
         List<City> cities = cityService.getAllCities();
         model.put("cities", cities);
-        return "site/user/profile";
+        return "site/user/profile/details";
     }
 
     @GetMapping("/profile/password")
@@ -57,7 +57,7 @@ public class UserController {
         Pageable pageable = PageRequest.of(page, 15);
         Page<Review> reviews = reviewService.getReviewsByUser(user, pageable);
         model.put("reviewsPage", reviews);
-        return "site/user/review";
+        return "site/user/profile/review";
     }
 
     @GetMapping("/profile/reviews/{id}")
@@ -67,10 +67,10 @@ public class UserController {
     ) {
         Review review = reviewService.findById(id);
         model.put("review", review);
-        return "site/user/review";
+        return "site/user/profile/review";
     }
 
-    @GetMapping("/profile/sales")
+    @GetMapping("/profile/orders")
     public String getSales(
             @AuthenticationPrincipal User user,
             Map<String, Object> model,
@@ -79,10 +79,10 @@ public class UserController {
         Pageable pageable = PageRequest.of(page, 15);
         Page<Sale> sales = saleService.getSalesPageByUser(user.getId(), pageable);
         model.put("salesPage", sales);
-        return "site/user/sale";
+        return "site/user/profile/orders";
     }
 
-    @GetMapping("/profile/sales/{id}")
+    @GetMapping("/profile/orders/{id}")
     public String getSale(
             @AuthenticationPrincipal User user,
             Map<String, Object> model,
@@ -90,6 +90,6 @@ public class UserController {
     ) {
         List<SaleProduct> sales = saleProductService.getSaleProductsBySale(id);
         model.put("sales", sales);
-        return "site/sale/index";
+        return "site/user/profile/orders";
     }
 }
