@@ -14,4 +14,6 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
             "on pd.id = r.product_data_id " +
             "group by product_data_id", nativeQuery = true)
     List<Object> getProductsRating();
+
+    Review getByUserIdAndProductDataId(Long user, Long productData);
 }

@@ -36,4 +36,8 @@ public class AttributeCategoryService {
     public List<ru.fwoods.computerstore.model.AttributeCategory> getUseAttributeCategories(Long id) {
         return attributeCategoryRepository.getUseAttributeCategories(id);
     }
+
+    public List<AttributeCategory> getAttributeCategoriesByProductDataId(Long id) {
+        return attributeCategoryRepository.getAttributeCategoriesByProductDataId(id);
+    }
 }

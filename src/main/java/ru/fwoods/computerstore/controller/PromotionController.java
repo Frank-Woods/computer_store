@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ru.fwoods.computerstore.domain.Promotion;
 import ru.fwoods.computerstore.domain.PromotionProduct;
 import ru.fwoods.computerstore.model.DiscountProduct;
+import ru.fwoods.computerstore.model.ProductDataCart;
 import ru.fwoods.computerstore.service.ImageService;
+import ru.fwoods.computerstore.service.ProductDataService;
 import ru.fwoods.computerstore.service.PromotionProductService;
 import ru.fwoods.computerstore.service.PromotionService;
 
@@ -29,6 +31,9 @@ public class PromotionController {
 
     @Autowired
     private PromotionProductService promotionProductService;
+
+    @Autowired
+    private ProductDataService productDataService;
 
     @GetMapping("/admin/promotion/create")
     public String getPromotionPage() {
@@ -85,5 +90,21 @@ public class PromotionController {
         model.put("promotion", promotion);
         model.put("product", discountProduct);
         return "admin/promotion/product/update";
+    }
+
+    @GetMapping("/promotions/{id}/products")
+    public String getPromotionProducts(
+            @RequestParam(required = false, defaultValue = "0") Integer page,
+            @PathVariable Long id,
+            Map<String, Object> model
+    ) {
+        Pageable pageable = PageRequest.of(page, 15);
+        Promotion promotion = promotionService.getPromotionById(id);
+        Page<ProductDataCart> productDataCarts = productDataService.getProductDataCartsByPromotion(pageable, promotion.getId());
+
+        model.put("promotion", promotion);
+        model.put("productsPage", productDataCarts);
+
+        return "site/promotion/products";
     }
 }

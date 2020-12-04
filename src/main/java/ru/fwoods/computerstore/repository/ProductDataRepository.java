@@ -30,4 +30,7 @@ public interface ProductDataRepository extends JpaRepository<ProductData, Long> 
             "from ProductData pd " +
             "where pd.promotionProducts.size = 0 or pd.id in ( select pd.id from ProductData pd join pd.promotionProducts pp join pp.promotion ppp on ppp.dateEnd < ?1 )")
     List<ProductData> findAllWithoutPromotion(Date date);
+
+    @Query("select pd from ProductData pd join pd.promotionProducts ppd join ppd.promotion p on p.id = ?1")
+    Page<ProductData> getAllByPromotion(Long id, Pageable pageable);
 }
