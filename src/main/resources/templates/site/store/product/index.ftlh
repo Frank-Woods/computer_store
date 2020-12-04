@@ -37,6 +37,19 @@
                         <div class="product-ratting-review-wrap">
                             <div class="product-ratting-digit-wrap">
                                 <div class="product-ratting">
+                                    <#if 0 < productData.rating>
+                                        <#list 1..productData.rating?floor as r>
+                                            <span><i class="ion-android-star"></i></span>
+                                        </#list>
+                                    </#if>
+                                    <#if prod.rating?floor != ?round>
+                                        <span><i class="ion-android-star-half"></i></span>
+                                    </#if>
+                                    <#if prod.rating?round < 5>
+                                        <#list prod.rating?round + 1..5 as r>
+                                            <span><i class="ion-android-star-outline"></i></span>
+                                        </#list>
+                                    </#if>
                                     <i class="icon-rating"></i>
                                     <i class="icon-rating"></i>
                                     <i class="icon-rating"></i>
@@ -137,72 +150,155 @@
                                 </div>
                             </div>
                             <#if security.isAuthorized>
-                                <div class="ratting-form-wrapper">
-                                    <span>Добавьте свой отзыв</span>
-                                    <div class="ratting-form">
-                                        <form name="review">
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="star-box-wrap">
-                                                        <div class="single-ratting-star">
-                                                            <i class="icon-rating"></i>
+                                <#if review??>
+                                    <div class="ratting-form-wrapper">
+                                        <span>Измените свой отзыв</span>
+                                        <div class="ratting-form">
+                                            <form name="review">
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="star-box-wrap">
+                                                            <div class="single-ratting-star <#if review.rating == 1>current</#if>">
+                                                                <i class="icon-rating"></i>
+                                                            </div>
+                                                            <div class="single-ratting-star <#if review.rating == 2>current</#if>">
+                                                                <i class="icon-rating"></i>
+                                                                <i class="icon-rating"></i>
+                                                            </div>
+                                                            <div class="single-ratting-star <#if review.rating == 3>current</#if>">
+                                                                <i class="icon-rating"></i>
+                                                                <i class="icon-rating"></i>
+                                                                <i class="icon-rating"></i>
+                                                            </div>
+                                                            <div class="single-ratting-star <#if review.rating == 4>current</#if>">
+                                                                <i class="icon-rating"></i>
+                                                                <i class="icon-rating"></i>
+                                                                <i class="icon-rating"></i>
+                                                                <i class="icon-rating"></i>
+                                                            </div>
+                                                            <div class="single-ratting-star <#if review.rating == 5>current</#if>">
+                                                                <i class="icon-rating"></i>
+                                                                <i class="icon-rating"></i>
+                                                                <i class="icon-rating"></i>
+                                                                <i class="icon-rating"></i>
+                                                                <i class="icon-rating"></i>
+                                                            </div>
                                                         </div>
-                                                        <div class="single-ratting-star">
-                                                           <i class="icon-rating"></i>
-                                                            <i class="icon-rating"></i>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="custom-textarea custom-textarea-strict-style">
+                                                            <div class="custom-textarea__settings">
+                                                                <span class="custom-textarea__settings__attributes">{"name":"advantages", "label":"Плюсы", "defaultValue":"${review.advantages}"}</span>
+                                                                <span class="custom-textarea__settings__validation">{"required":true}</span>
+                                                            </div>
                                                         </div>
-                                                        <div class="single-ratting-star">
-                                                           <i class="icon-rating"></i>
-                                                           <i class="icon-rating"></i>
-                                                            <i class="icon-rating"></i>
+                                                        <div class="custom-textarea custom-textarea-strict-style">
+                                                            <div class="custom-textarea__settings">
+                                                                <span class="custom-textarea__settings__attributes">{"name":"disadvantages", "label":"Минусы", "defaultValue":"${review.disadvantages}"}</span>
+                                                                <span class="custom-textarea__settings__validation">{"required":true}</span>
+                                                            </div>
                                                         </div>
-                                                        <div class="single-ratting-star">
-                                                            <i class="icon-rating"></i>
-                                                            <i class="icon-rating"></i>
-                                                            <i class="icon-rating"></i>
-                                                           <i class="icon-rating"></i>
+                                                        <div class="custom-textarea custom-textarea-strict-style">
+                                                            <div class="custom-textarea__settings">
+                                                                <span class="custom-textarea__settings__attributes">{"name":"comment", "label":"Комментарий", "defaultValue":"${review.comment}"}</span>
+                                                                <span class="custom-textarea__settings__validation">{"required":true}</span>
+                                                            </div>
                                                         </div>
-                                                        <div class="single-ratting-star">
-                                                            <i class="icon-rating"></i>
-                                                            <i class="icon-rating"></i>
-                                                            <i class="icon-rating"></i>
-                                                            <i class="icon-rating"></i>
-                                                            <i class="icon-rating"></i>
+                                                    </div>
+                                                    <div class="custom-input">
+                                                        <div class="custom-input__settings">
+                                                            <span class="custom-input__settings__attributes">{"name":"id", "type":"hidden", "defaultValue":${review.id}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="custom-input">
+                                                        <div class="custom-input__settings">
+                                                            <span class="custom-input__settings__attributes">{"name":"productData", "type":"hidden", "defaultValue":${productData.id}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="custom-input">
+                                                        <div class="custom-input__settings">
+                                                            <span class="custom-input__settings__attributes">{"name":"rating", "type":"hidden", "defaultValue":${review.rating}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="form-submit">
+                                                            <input type="submit" value="Отправить">
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-12">
-                                                    <div class="custom-textarea custom-textarea-strict-style">
-                                                        <div class="custom-textarea__settings">
-                                                            <span class="custom-textarea__settings__attributes">{"name":"advantages", "label":"Плюсы"}</span>
-                                                            <span class="custom-textarea__settings__validation">{"required":true}</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="custom-textarea custom-textarea-strict-style">
-                                                        <div class="custom-textarea__settings">
-                                                            <span class="custom-textarea__settings__attributes">{"name":"disadvantage", "label":"Минусы"}</span>
-                                                            <span class="custom-textarea__settings__validation">{"required":true}</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="custom-textarea custom-textarea-strict-style">
-                                                        <div class="custom-textarea__settings">
-                                                            <span class="custom-textarea__settings__attributes">{"name":"comment", "label":"Комментарий"}</span>
-                                                            <span class="custom-textarea__settings__validation">{"required":true}</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="custom-input__settings">
-                                                    <span class="custom-input__settings__attributes">{"name":"productData", "type":"hidden", "defaultValue":${productData.id}}</span>
-                                                </div>
-                                                <div class="col-lg-12">
-                                                    <div class="form-submit">
-                                                        <input type="submit" value="Отправить">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
+                                            </form>
+                                        </div>
                                     </div>
-                                </div>
+                                <#else>
+                                    <div class="ratting-form-wrapper">
+                                        <span>Добавьте свой отзыв</span>
+                                        <div class="ratting-form">
+                                            <form name="review">
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="star-box-wrap">
+                                                            <div class="single-ratting-star">
+                                                                <i class="icon-rating"></i>
+                                                            </div>
+                                                            <div class="single-ratting-star">
+                                                                <i class="icon-rating"></i>
+                                                                <i class="icon-rating"></i>
+                                                            </div>
+                                                            <div class="single-ratting-star">
+                                                                <i class="icon-rating"></i>
+                                                                <i class="icon-rating"></i>
+                                                                <i class="icon-rating"></i>
+                                                            </div>
+                                                            <div class="single-ratting-star">
+                                                                <i class="icon-rating"></i>
+                                                                <i class="icon-rating"></i>
+                                                                <i class="icon-rating"></i>
+                                                                <i class="icon-rating"></i>
+                                                            </div>
+                                                            <div class="single-ratting-star">
+                                                                <i class="icon-rating"></i>
+                                                                <i class="icon-rating"></i>
+                                                                <i class="icon-rating"></i>
+                                                                <i class="icon-rating"></i>
+                                                                <i class="icon-rating"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="custom-textarea custom-textarea-strict-style">
+                                                            <div class="custom-textarea__settings">
+                                                                <span class="custom-textarea__settings__attributes">{"name":"advantages", "label":"Плюсы"}</span>
+                                                                <span class="custom-textarea__settings__validation">{"required":true}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="custom-textarea custom-textarea-strict-style">
+                                                            <div class="custom-textarea__settings">
+                                                                <span class="custom-textarea__settings__attributes">{"name":"disadvantages", "label":"Минусы"}</span>
+                                                                <span class="custom-textarea__settings__validation">{"required":true}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="custom-textarea custom-textarea-strict-style">
+                                                            <div class="custom-textarea__settings">
+                                                                <span class="custom-textarea__settings__attributes">{"name":"comment", "label":"Комментарий"}</span>
+                                                                <span class="custom-textarea__settings__validation">{"required":true}</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="custom-input">
+                                                        <div class="custom-input__settings">
+                                                            <span class="custom-input__settings__attributes">{"name":"productData", "type":"hidden", "defaultValue":${productData.id}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="form-submit">
+                                                            <input type="submit" value="Отправить">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </#if>
                             </#if>
                         </div>
                     </div>
@@ -213,6 +309,7 @@
 </#assign>
 
 <#assign scripts>
+    <script>const hasReview = ${(review??)?then("true", "false")};</script>
     <script src="/static/js/site/store/product/review/main.js"></script>
     <@form.js></@form.js>
     <script src="/static/js/site/store/product/review/rating.js"></script>

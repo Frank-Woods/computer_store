@@ -1,5 +1,6 @@
 <#import "../../macro/main.ftlh" as main>
 <#import "../../../macro/form.ftlh" as form>
+<#import "../../../macro/security.ftlh" as security>
 
 <#assign links>
     <@form.links></@form.links>
@@ -32,7 +33,7 @@
                                                 <div class="col-lg-6">
                                                     <div class="custom-input custom-input-strict-style">
                                                         <div class="custom-input__settings">
-                                                            <span class="custom-input__settings__attributes">{"name":"firstName", "label":"Имя"}</span>
+                                                            <span class="custom-input__settings__attributes">{"name":"firstName", "label":"Имя", "defaultValue":"${security.user.firstName}"}</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -51,7 +52,7 @@
                                             </div>
                                             <div class="custom-input custom-input-strict-style">
                                                 <div class="custom-input__settings">
-                                                    <span class="custom-input__settings__attributes">{"name":"telephone", "label":"Телефон"}</span>
+                                                    <span class="custom-input__settings__attributes">{"name":"phone", "label":"Телефон"}</span>
                                                 </div>
                                             </div>
                                             <div class="custom-input custom-input-strict-style">

@@ -34,14 +34,14 @@ public class CustomAuthenticationSuccessHandler extends SimpleUrlAuthenticationS
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         try {
-            Gson gson = new Gson();
-            Reader reader = new InputStreamReader(request.getPart("cart").getInputStream());
-            List<CartProduct> cart = gson.fromJson(reader, new TypeToken<List<CartProduct>>() {}.getType());
-            if (cart != null) {
-                cart.forEach(cartProduct -> {
-                    basketService.save((User) authentication.getPrincipal(), cartProduct);
-                });
-            }
+//            Gson gson = new Gson();
+//            Reader reader = new InputStreamReader(request.getPart("cart").getInputStream());
+//            List<CartProduct> cart = gson.fromJson(reader, new TypeToken<List<CartProduct>>() {}.getType());
+//            if (cart != null) {
+//                cart.forEach(cartProduct -> {
+//                    basketService.save((User) authentication.getPrincipal(), cartProduct);
+//                });
+//            }
         } catch (JsonParseException exception) {
             exception.printStackTrace();
         }
