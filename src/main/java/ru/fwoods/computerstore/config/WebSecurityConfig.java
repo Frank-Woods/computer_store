@@ -3,6 +3,7 @@ package ru.fwoods.computerstore.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -10,6 +11,10 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import ru.fwoods.computerstore.config.filter.CustomUsernamePasswordAuthenticationFilter;
+import ru.fwoods.computerstore.config.handler.CustomAuthenticationFailureHandler;
+import ru.fwoods.computerstore.config.handler.CustomAuthenticationSuccessHandler;
 import ru.fwoods.computerstore.service.UserService;
 
 @Configuration
@@ -23,23 +28,47 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private CustomAuthenticationFailureHandler customAuthenticationFailureHandler;
+
+    @Autowired
+    private CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
+
     @Bean
     public PasswordEncoder getPasswordEncoder() {
         return new BCryptPasswordEncoder(8);
+    }
+
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
+
+    @Bean
+    public CustomUsernamePasswordAuthenticationFilter authenticationFilter() throws Exception {
+        CustomUsernamePasswordAuthenticationFilter authenticationFilter = new CustomUsernamePasswordAuthenticationFilter();
+        authenticationFilter.setAuthenticationManager(authenticationManagerBean());
+        authenticationFilter.setAuthenticationFailureHandler(customAuthenticationFailureHandler);
+        authenticationFilter.setAuthenticationSuccessHandler(customAuthenticationSuccessHandler);
+        return authenticationFilter;
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/", "/test", "/user/registration", "/static/**").permitAll()
+                .antMatchers("/", "/user/registration", "/static/**", "/image/**")
+                .permitAll()
                 .and()
+                .addFilterAt(authenticationFilter(), UsernamePasswordAuthenticationFilter.class)
                 .formLogin()
                 .loginPage("/user/login")
+                .loginProcessingUrl("/user/login")
                 .permitAll()
                 .and()
                 .logout()
-                .logoutSuccessUrl("/user/login")
+                .logoutSuccessUrl("/")
                 .permitAll();
     }
 
