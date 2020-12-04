@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
@@ -27,7 +28,7 @@ public class UserRestController {
     @Autowired
     private ControllerUtils controllerUtils;
 
-    @PostMapping(value = "/user/profile/update")
+    @PostMapping(value = "/user/profile/update", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity updateUser(
             @RequestPart(name = "user") @Validated User user,
             BindingResult bindingResult
@@ -46,7 +47,7 @@ public class UserRestController {
         return ResponseEntity.badRequest().body(errors);
     }
 
-    @PostMapping(value = "/user/profile/password/update")
+    @PostMapping(value = "/user/profile/password/update", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity changePassword(
             @RequestPart(name = "user") UserPassword userPassword
     ) {
@@ -60,7 +61,7 @@ public class UserRestController {
         return ResponseEntity.badRequest().body(errors);
     }
 
-    @PostMapping(value = "/admin/add")
+    @PostMapping(value = "/admin/add", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity addAdmin(
             @RequestPart(name = "user") IdWrapper idWrapper,
             BindingResult bindingResult
@@ -73,7 +74,7 @@ public class UserRestController {
         return ResponseEntity.ok().body(null);
     }
 
-    @PostMapping(value = "/admin/dismiss")
+    @PostMapping(value = "/admin/dismiss", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity deleteAdmin(@RequestPart(name = "user") IdWrapper idWrapper) {
         userService.deleteAdmin(idWrapper.getId());
         return ResponseEntity.ok().body(null);

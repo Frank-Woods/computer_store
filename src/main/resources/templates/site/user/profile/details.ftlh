@@ -40,29 +40,29 @@
                                                 <div class="col-lg-6">
                                                     <div class="custom-input custom-input-strict-style">
                                                         <div class="custom-input__settings">
-                                                            <span class="custom-input__settings__attributes">{"name":"lastName", "label":"Фамилия"}</span>
+                                                            <span class="custom-input__settings__attributes">{"name":"lastName", "label":"Фамилия", "defaultValue":"${security.user.lastName}"}</span>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="custom-input custom-input-strict-style">
                                                 <div class="custom-input__settings">
-                                                    <span class="custom-input__settings__attributes">{"name":"patronymic", "label":"Отчество"}</span>
+                                                    <span class="custom-input__settings__attributes">{"name":"patronymic", "label":"Отчество", "defaultValue":"${security.user.patronymic}"}</span>
                                                 </div>
                                             </div>
                                             <div class="custom-input custom-input-strict-style">
                                                 <div class="custom-input__settings">
-                                                    <span class="custom-input__settings__attributes">{"name":"phone", "label":"Телефон"}</span>
+                                                    <span class="custom-input__settings__attributes">{"name":"phone", "label":"Телефон", "defaultValue":"${security.user.phone}"}</span>
                                                 </div>
                                             </div>
                                             <div class="custom-input custom-input-strict-style">
                                                 <div class="custom-input__settings">
-                                                    <span class="custom-input__settings__attributes">{"name":"email", "label":"Почта"}</span>
+                                                    <span class="custom-input__settings__attributes">{"name":"email", "label":"Почта", "defaultValue":"${security.user.email}"}</span>
                                                 </div>
                                             </div>
                                             <div class="custom-select custom-select-strict-style">
                                                 <div class="custom-select__settings">
-                                                    <span class="custom-select__settings__attributes">{"name":"city", "label":"Город", "itemVisibleValue":["name"]}</span>
+                                                    <span class="custom-select__settings__attributes">{"name":"city", "label":"Город", "itemVisibleValue":["name"], "defaultValue":{"id":${security.user.city.id},"name":"${security.user.city.name}"} }</span>
                                                     <span class="custom-select__settings__request">{"ajax":true, "url":"http://localhost:8080/admin/city/get/search"}</span>
                                                     <span class="custom-select__settings__validation">{"required":true}</span>
                                                 </div>

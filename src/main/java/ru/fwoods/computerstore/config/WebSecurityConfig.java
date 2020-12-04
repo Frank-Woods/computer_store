@@ -64,6 +64,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterAt(authenticationFilter(), UsernamePasswordAuthenticationFilter.class)
                 .formLogin()
                 .loginPage("/user/login")
+                .usernameParameter("email")
                 .loginProcessingUrl("/user/login")
                 .permitAll()
             .and()
