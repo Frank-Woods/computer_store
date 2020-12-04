@@ -65,3 +65,19 @@
     top: 5px;
   }
 }
+
+.custom-textarea-strict-style {
+  & .custom-textarea {
+    &__label {
+      border-radius: 0;
+      border: 1px solid #ebebeb;
+
+      &__textarea {
+
+        &:focus {
+          border: none;
+        }
+      }
+    }
+  }
+}

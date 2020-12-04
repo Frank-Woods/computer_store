@@ -1,4 +1,11 @@
 <#import "../../macro/main.ftlh" as main>
+<#import "../../../macro/form.ftlh" as form>
+<#import "../../../macro/security.ftlh" as security>
+
+<#assign links>
+    <@form.links></@form.links>
+</#assign>
+
 
 <#assign body>
     <div class="product-details-area product-details-bg slider-mt-7">
@@ -97,8 +104,8 @@
                         </div>
                         <div class="product-details-meta">
                             <ul>
-                                <li><span>Категория:</span> <span></span></li>
-                                <li><span>Производитель:</span> <span class="pl-4">Производитель</span></li>
+                                <li><span>Категория:</span> <span>${productData.category.name}</span></li>
+                                <li><span>Производитель:</span> <span class="pl-4">${productData.manufacturer.name}</span></li>
                             </ul>
                         </div>
                         <div class="pro-details-action-wrap">
@@ -136,7 +143,7 @@
                                             <#list atts as at>
                                                 <tr>
                                                     <#if at?index == 0>
-                                                        <td rowspan="${atts?size}">Категория</td>
+                                                        <td rowspan="${atts?size}">${ac.name}</td>
                                                         <td class="width1">${at.attribute.name}</td>
                                                         <td>${at.value.value + " " + at.value.unit}</td>
                                                     </#if>
@@ -148,33 +155,9 @@
                                 </table>
                             </div>
                         </div>
-                        <div id="des-details3" class="tab-pane">
-                            <div class="specification-wrap table-responsive">
-                                <table>
-                                    <tbody>
-                                    <tr>
-                                        <td class="width1">Top</td>
-                                        <td>Cotton Digital Print Chain Stitch Embroidery Work</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Bottom</td>
-                                        <td>Cotton Cambric</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="width1">Dupatta</td>
-                                        <td>Digital Printed Cotton Malmal With Chain Stitch</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
                         <div id="des-details4" class="tab-pane">
                             <div class="review-wrapper">
-                                <h2>1 review for Sleeve Button Cowl Neck</h2>
                                 <div class="single-review">
-                                    <div class="review-img">
-                                        <img src="/static/assets/images/product-details/client-1.png" alt="">
-                                    </div>
                                     <div class="review-content">
                                         <div class="review-top-wrap">
                                             <div class="review-name">
@@ -193,23 +176,20 @@
                                 </div>
                             </div>
                             <div class="ratting-form-wrapper">
-                                <span>Add a Review</span>
-                                <p>Your email address will not be published. Required fields are marked <span>*</span></p>
+                                <span>Добавьте свой отзыв</span>
                                 <div class="ratting-form">
-                                    <form action="#">
+                                    <form name="review">
                                         <div class="row">
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="rating-form-style mb-20">
-                                                    <label>Name <span>*</span></label>
-                                                    <input type="text">
+                                            <#if !security.isAuthorized>
+                                                <div class="col-lg-3 col-md-6">
+                                                    <div class="custom-input custom-input-strict-style">
+                                                        <div class="custom-input__settings">
+                                                            <span class="custom-input__settings__attributes">{"name":"email", "label":"Почта"}</span>
+                                                            <span class="custom-input__settings__validation">{"required":true}</span>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="rating-form-style mb-20">
-                                                    <label>Email <span>*</span></label>
-                                                    <input type="email">
-                                                </div>
-                                            </div>
+                                            </#if>
                                             <div class="col-lg-12">
                                                 <div class="star-box-wrap">
                                                     <div class="single-ratting-star">
@@ -240,14 +220,28 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
-                                                <div class="rating-form-style mb-20">
-                                                    <label>Your review <span>*</span></label>
-                                                    <textarea name="Your Review"></textarea>
+                                                <div class="custom-textarea custom-textarea-strict-style">
+                                                    <div class="custom-textarea__settings">
+                                                        <span class="custom-textarea__settings__attributes">{"name":"advantages", "label":"Плюсы"}</span>
+                                                        <span class="custom-textarea__settings__validation">{"required":true}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="custom-textarea custom-textarea-strict-style">
+                                                    <div class="custom-textarea__settings">
+                                                        <span class="custom-textarea__settings__attributes">{"name":"disadvantage", "label":"Минусы"}</span>
+                                                        <span class="custom-textarea__settings__validation">{"required":true}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="custom-textarea custom-textarea-strict-style">
+                                                    <div class="custom-textarea__settings">
+                                                        <span class="custom-textarea__settings__attributes">{"name":"comment", "label":"Комментарий"}</span>
+                                                        <span class="custom-textarea__settings__validation">{"required":true}</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">
                                                 <div class="form-submit">
-                                                    <input type="submit" value="Submit">
+                                                    <input type="submit" value="Отправить">
                                                 </div>
                                             </div>
                                         </div>
@@ -262,7 +256,14 @@
     </div>
 </#assign>
 
+<#assign scripts>
+    <script src="/static/js/site/store/product/review/main.js"></script>
+    <@form.js></@form.js>
+</#assign>
+
 <@main.template
+links = links
 body = body
+scripts = scripts
 >
 </@main.template>
