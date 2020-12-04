@@ -27,7 +27,6 @@ public class MailRestController {
     @Autowired
     private EmailService emailService;
 
-    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/admin/mail/send")
     public ResponseEntity sendMail(@RequestPart("mail") MailMessage mailMessage) {
 
