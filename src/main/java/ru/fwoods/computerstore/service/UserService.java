@@ -55,7 +55,7 @@ public class UserService implements UserDetailsService {
 
         if (user.getPassword() != null && user.getNewPassword() != null) {
             if (passwordEncoder.matches(user.getPassword(), userDomain.getPassword())) {
-                user.setPassword(passwordEncoder.encode(user.getNewPassword()));
+                userDomain.setPassword(passwordEncoder.encode(user.getNewPassword()));
                 userRepository.save(userDomain);
                 securityService.updateAuthenticationToken();
                 return true;
