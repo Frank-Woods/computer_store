@@ -28,6 +28,14 @@ public class Basket {
     @JoinColumn(name = "product_data_id", nullable = false)
     private ProductData productData;
 
+    public Basket() {
+    }
+
+    public Basket(User user, ProductData productData) {
+        this.user = user;
+        this.productData = productData;
+    }
+
     public Long getId() {
         return id;
     }

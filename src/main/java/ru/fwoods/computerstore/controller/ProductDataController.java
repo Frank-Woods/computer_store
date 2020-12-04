@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.fwoods.computerstore.domain.*;
+import ru.fwoods.computerstore.model.ProductDataCart;
 import ru.fwoods.computerstore.service.*;
 
 import java.util.List;
@@ -80,14 +82,43 @@ public class ProductDataController {
         ProductData productData = productDataService.getProductDataById(id);
         List<AttributeCategory> attributeCategories = attributeCategoryService.getAttributeCategoriesByProductDataId(productData.getId());
         Integer discountCost = productDataService.getDiscountCost(id);
+        Double rating = productDataService.getRating(id);
         Review review = null;
         if (user != null) review = reviewService.getReviewByUserAndProductData(user.getId(), productData.getId());
 
         model.put("productData", productData);
         model.put("attributeCategories", attributeCategories);
         model.put("discountCost", discountCost);
+        model.put("rating", rating);
         model.put("review", review);
 
         return "site/store/product/index";
+    }
+
+    @GetMapping("/store/index")
+    public String getShopPage(
+            @RequestParam(required = false, defaultValue = "0") Integer page,
+            @RequestParam(required = false, defaultValue = "1") Integer sort,
+            @RequestParam(required = false, name = "category") Long category,
+            Map<String, Object> model
+    ) {
+        Pageable pageable;
+        if (sort == 1) {
+            pageable = PageRequest.of(page, 2, Sort.by("cost").ascending());
+        } else if (sort == 2) {
+            pageable = PageRequest.of(page, 2, Sort.by("cost").descending());
+        } else {
+            pageable = PageRequest.of(page, 2);
+        }
+        Page<ProductDataCart> products = null;
+        ProductCategory productCategory = null;
+        if (category != null) {
+            products = productDataService.getProductDataCartPage(productDataService.getPageProductsByCategory(category, pageable));
+            productCategory = productCategoryService.getCategoryById(category);
+        }
+
+        model.put("productsPage", products);
+        model.put("category", productCategory);
+        return "site/store/index";
     }
 }

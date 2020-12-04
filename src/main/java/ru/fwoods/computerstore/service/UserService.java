@@ -15,6 +15,7 @@ import ru.fwoods.computerstore.repository.UserRepository;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -87,5 +88,10 @@ public class UserService implements UserDetailsService {
         user.getRoles().clear();
         user.getRoles().add(Role.USER);
         userRepository.save(user);
+    }
+
+    public List<User> getAllOnlyUser() {
+        List<User> users = userRepository.findAll();
+        return users.stream().filter(user -> user.getRoles().size() == 1).collect(Collectors.toList());
     }
 }

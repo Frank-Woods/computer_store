@@ -33,4 +33,6 @@ public interface ProductDataRepository extends JpaRepository<ProductData, Long> 
 
     @Query("select pd from ProductData pd join pd.promotionProducts ppd join ppd.promotion p on p.id = ?1")
     Page<ProductData> getAllByPromotion(Long id, Pageable pageable);
+
+    List<ProductData> getAllByCategoryId(Long id);
 }
