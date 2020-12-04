@@ -34,11 +34,11 @@ public class RegistrationRestController {
     ){
         if (bindingResult.hasErrors()) {
             Map<String, String> errors = controllerUtils.getErrors(bindingResult);
-            return new ModelAndView("redirect:/site/authorization/registration", errors);
+            return new ModelAndView("redirect:/user/registration", errors);
         }
         ru.fwoods.computerstore.domain.User userDomain = registrationService.save(user);
         httpServletRequest.setAttribute(View.RESPONSE_STATUS_ATTRIBUTE, HttpStatus.TEMPORARY_REDIRECT);
         httpServletRequest.setAttribute("user", userDomain);
-        return new ModelAndView("redirect:/site/authorization/login");
+        return new ModelAndView("redirect:/login");
     }
 }
