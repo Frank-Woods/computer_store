@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import ru.fwoods.computerstore.domain.Role;
 import ru.fwoods.computerstore.domain.User;
 import ru.fwoods.computerstore.model.UserPassword;
 import ru.fwoods.computerstore.repository.UserRepository;
@@ -73,5 +74,18 @@ public class UserService implements UserDetailsService {
 
     public User getUserById(Long id) {
         return userRepository.getOne(id);
+    }
+
+    public void addAdmin(Long id) {
+        User user = getUserById(id);
+        user.getRoles().add(Role.ADMIN);
+        userRepository.save(user);
+    }
+
+    public void deleteAdmin(Long id) {
+        User user = getUserById(id);
+        user.getRoles().clear();
+        user.getRoles().add(Role.USER);
+        userRepository.save(user);
     }
 }

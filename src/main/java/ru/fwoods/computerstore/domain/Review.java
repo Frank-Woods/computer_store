@@ -1,7 +1,11 @@
 package ru.fwoods.computerstore.domain;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 @Entity
 @Table(name = "review")
@@ -41,6 +45,15 @@ public class Review {
             nullable = false
     )
     private Integer rating;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @NotNull(message = "error.validation.review.date.empty")
+    @Column(
+            name = "date",
+            length = 150,
+            nullable = false
+    )
+    private Date date;
 
     @ManyToOne(
             fetch = FetchType.EAGER
@@ -116,5 +129,13 @@ public class Review {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }
