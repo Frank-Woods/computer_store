@@ -39,7 +39,7 @@ public class MainController {
         model.put("promotion", promotion);
         model.put("manufacturers", manufacturers);
         model.put("products", productDataCarts);
-        return "index";
+        return "site/index";
     }
 
     @PostMapping("/add/email")

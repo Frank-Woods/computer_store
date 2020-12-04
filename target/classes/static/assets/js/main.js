@@ -494,7 +494,7 @@
         var $this = $(this),
             finalDate = $(this).data('countdown');
         $this.countdown(finalDate, function(event) {
-            $this.html(event.strftime('<span class="cdown day"> <span>%-D </span><p>Days</p></span> <span class="cdown hour"> <span> %-H</span> <p>Hours</p></span> <span class="cdown minutes"><span>%M</span> <p>Minutes</p> </span>'));
+            $this.html(event.strftime('<span class="cdown day"> <span>%-D </span><p>Дней</p></span> <span class="cdown hour"> <span> %-H</span> <p>Часов</p></span> <span class="cdown minutes"><span>%M</span> <p>Минут</p> </span>'));
         });
     });
     
@@ -502,7 +502,7 @@
         var $this = $(this),
             finalDate = $(this).data('countdown');
         $this.countdown(finalDate, function(event) {
-            $this.html(event.strftime('<span class="cdown day"> <span>%-D </span><p>Day</p></span> <span class="cdown hour"> <span> %-H</span> <p>Hour</p></span> <span class="cdown minutes"><span>%M</span> <p>Minute</p> </span> <span class="cdown second"><span>%S</span> <p>Second</p> </span>'));
+            $this.html(event.strftime('<span class="cdown day"> <span>%-D </span><p>Дней</p></span> <span class="cdown hour"> <span> %-H</span> <p>Часов</p></span> <span class="cdown minutes"><span>%M</span> <p>Минут</p> </span> <span class="cdown second"><span>%S</span> <p>Секунд</p> </span>'));
         });
     });
     
