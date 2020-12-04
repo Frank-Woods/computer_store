@@ -127,4 +127,8 @@ public class PromotionService {
     public Promotion getPromotionById(Long id) {
         return promotionRepository.getOne(id);
     }
+
+    public List<Promotion> findAll() {
+        return promotionRepository.findAll();
+    }
 }

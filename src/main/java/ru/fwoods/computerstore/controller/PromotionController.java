@@ -92,6 +92,17 @@ public class PromotionController {
         return "admin/promotion/product/update";
     }
 
+    @GetMapping("/promotions")
+    public String getPromotionsPage(
+            @RequestParam(required = false, defaultValue = "0") Integer page,
+            Map<String, Object> model
+    ) {
+        List<Promotion> promotions = promotionService.findAll();
+
+        model.put("promotions", promotions);
+        return "site/promotion/index";
+    }
+
     @GetMapping("/promotions/{id}/products")
     public String getPromotionProducts(
             @RequestParam(required = false, defaultValue = "0") Integer page,
