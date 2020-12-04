@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -97,9 +98,9 @@ public class PromotionController {
             @RequestParam(required = false, defaultValue = "0") Integer page,
             Map<String, Object> model
     ) {
-        List<Promotion> promotions = promotionService.findAll();
-
-        model.put("promotions", promotions);
+        Pageable pageable = PageRequest.of(page, 15, Sort.by("dateStart").descending());
+        Page<Promotion> promotionsPage = promotionService.getPagePromotion(pageable);
+        model.put("promotionsPage", promotionsPage);
         return "site/promotion/index";
     }
 
