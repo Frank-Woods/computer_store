@@ -105,6 +105,6 @@ public class PromotionController {
         model.put("promotion", promotion);
         model.put("productsPage", productDataCarts);
 
-        return "site/promotion/products";
+        return "store/promotion/products";
     }
 }

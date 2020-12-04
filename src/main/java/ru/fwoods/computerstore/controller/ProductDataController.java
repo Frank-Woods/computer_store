@@ -71,7 +71,7 @@ public class ProductDataController {
         return "admin/product/update";
     }
 
-    @GetMapping("/site/product/{id}")
+    @GetMapping("/store/product/{id}")
     public String getProductPage(
             @AuthenticationPrincipal User user,
             @PathVariable Long id,
@@ -86,6 +86,6 @@ public class ProductDataController {
         model.put("attributeCategories", attributeCategories);
         model.put("review", review);
 
-        return "site/product";
+        return "store/product";
     }
 }
