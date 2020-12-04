@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import ru.fwoods.computerstore.domain.*;
+import ru.fwoods.computerstore.model.ProductDataCart;
 import ru.fwoods.computerstore.repository.ProductDataRepository;
 
 import java.util.*;
@@ -42,6 +43,9 @@ public class ProductDataService {
 
     @Autowired
     private ImageService imageService;
+
+    @Autowired
+    private PromotionProductService promotionProductService;
 
     @org.springframework.beans.factory.annotation.Value("${productData.upload.path}")
     private String productDataUploadPath;
@@ -204,5 +208,47 @@ public class ProductDataService {
 
     public ProductData saveWithAttributes(ProductData productData) {
         return productDataRepository.save(productData);
+    }
+
+    public List<ProductDataCart> getPopularProducts() {
+        List<ProductData> productDataList = productDataRepository.findAll();
+        List<ProductDataCart> productDataCarts = productDataList.stream().map(productData -> {
+            ProductDataCart productDataCart = new ProductDataCart();
+
+            productDataCart.setId(productData.getId());
+            productDataCart.setName(productData.getName());
+            productDataCart.setDescription(productData.getDescription());
+            Image image = imageService.getFirstImageByProductDataId(productData.getId());
+            if (image != null) {
+                productDataCart.setImage(image.getFilename());
+            }
+            productDataCart.setCost(productData.getCost());
+
+            if (productData.getReviews().size() > 0) {
+                Integer ratingAll = productData.getReviews().stream().filter(review -> review.getStatusReview() == StatusReview.CONFIRMED).reduce(0, (integer, review) -> integer + review.getRating(), Integer::sum);
+                productDataCart.setRating(((double)ratingAll / productData.getReviews().size()));
+            } else {
+                productDataCart.setRating(0.0);
+            }
+
+            PromotionProduct promotionProduct = promotionProductService.getPromotionProductByProductData(productData);
+            Integer discountCost = productData.getCost();
+            Integer discount = 0;
+            if (promotionProduct != null) {
+                if (new Date().getTime() < promotionProduct.getPromotion().getDateEnd().getTime()) {
+                    discount = promotionProduct.getDiscount();
+                    discountCost = productData.getCost() * promotionProduct.getDiscount() / 100;
+                    productDataCart.setDiscount(promotionProduct.getDiscount());
+                }
+            }
+            productDataCart.setDiscount(discount);
+            productDataCart.setDiscountCost(discountCost);
+
+            return productDataCart;
+        }).collect(Collectors.toList());
+
+        productDataCarts.sort(Comparator.comparingDouble(ProductDataCart::getRating));
+
+        return productDataCarts.stream().limit(5).collect(Collectors.toList());
     }
 }

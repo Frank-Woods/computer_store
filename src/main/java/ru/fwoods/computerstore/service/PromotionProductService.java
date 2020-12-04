@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import ru.fwoods.computerstore.domain.ProductData;
 import ru.fwoods.computerstore.domain.PromotionProduct;
 import ru.fwoods.computerstore.model.DiscountProduct;
 import ru.fwoods.computerstore.model.IdWrapper;
@@ -77,5 +78,9 @@ public class PromotionProductService {
 
     public void deleteById(Long id) {
         promotionProductRepository.deleteById(id);
+    }
+
+    public PromotionProduct getPromotionProductByProductData(ProductData productData) {
+        return promotionProductRepository.getAllByProductDataId(productData.getId());
     }
 }

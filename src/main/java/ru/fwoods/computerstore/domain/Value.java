@@ -2,6 +2,7 @@ package ru.fwoods.computerstore.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
 
 @Entity
 @Table(name = "value")
@@ -23,6 +24,9 @@ public class Value {
             nullable = false
     )
     private String unit;
+
+    @OneToMany(mappedBy = "value")
+    private List<AttributeValue> attributeValueList;
 
     public Long getId() {
         return id;
@@ -46,5 +50,13 @@ public class Value {
 
     public void setUnit(String unit) {
         this.unit = unit;
+    }
+
+    public List<AttributeValue> getAttributeValueList() {
+        return attributeValueList;
+    }
+
+    public void setAttributeValueList(List<AttributeValue> attributeValueList) {
+        this.attributeValueList = attributeValueList;
     }
 }

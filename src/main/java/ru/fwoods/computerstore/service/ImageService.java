@@ -135,4 +135,8 @@ public class ImageService {
     public Image getImageById(Long id) {
         return imageRepository.getOne(id);
     }
+
+    public Image getFirstImageByProductDataId(Long id) {
+        return imageRepository.getFirstByProductDataId(id);
+    }
 }

@@ -77,10 +77,13 @@ public class AttributeValueService {
     }
 
     public void update(ru.fwoods.computerstore.model.Attribute attribute) {
-        AttributeCategory attributeCategory = attributeCategoryService.save(attribute.getAttributeCategory());
-        Attribute attributeDomain = attributeService.save(attribute, attributeCategory);
-        Value value = valueService.save(attribute);
-        save(attributeDomain, value);
+        AttributeValue attributeValue = attributeValueRepository.getOne(attribute.getId());
+
+        if (attributeValue.getAttribute().getAttributeValueList().size() == 1 && attributeValue.getValue().getAttributeValueList().size() == 1) {
+
+        } else {
+
+        }
     }
 
     public void delete(Long id, Long productId) {

@@ -69,6 +69,9 @@ public class ProductData {
     @OneToMany(mappedBy = "productData")
     private List<Image> images;
 
+    @OneToMany(mappedBy = "productData")
+    private List<Review> reviews;
+
     public Long getId() {
         return id;
     }
@@ -147,5 +150,13 @@ public class ProductData {
 
     public void setImages(List<Image> images) {
         this.images = images;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
     }
 }

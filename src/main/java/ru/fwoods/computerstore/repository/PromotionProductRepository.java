@@ -12,4 +12,6 @@ import java.util.List;
 public interface PromotionProductRepository extends JpaRepository<PromotionProduct, Long> {
 
     Page<PromotionProduct> getAllByPromotionId(Long id, Pageable pageable);
+
+    PromotionProduct getAllByProductDataId(Long id);
 }

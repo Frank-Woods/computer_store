@@ -14,6 +14,7 @@ import ru.fwoods.computerstore.model.DiscountProduct;
 import ru.fwoods.computerstore.repository.PromotionRepository;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -111,5 +112,15 @@ public class PromotionService {
 
     public Promotion findById(Long id) {
         return promotionRepository.getOne(id);
+    }
+
+    public Promotion findActivePromotion() {
+        List<Promotion> promotions = promotionRepository.findAll();
+        for (Promotion promotion : promotions) {
+            if (promotion.getDateEnd().getTime() > new Date().getTime()) {
+                return promotion;
+            }
+        }
+        return null;
     }
 }
