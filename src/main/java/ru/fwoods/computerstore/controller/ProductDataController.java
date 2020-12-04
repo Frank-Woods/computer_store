@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.fwoods.computerstore.domain.*;
+import ru.fwoods.computerstore.model.ProductDataCart;
 import ru.fwoods.computerstore.service.*;
 
 import java.util.List;
@@ -77,7 +78,7 @@ public class ProductDataController {
             @PathVariable Long id,
             Map<String, Object> model
     ) {
-        ProductData productData = productDataService.getProductDataById(id);
+        ProductDataCart productData = productDataService.getProductDataCartById(id);
         List<AttributeCategory> attributeCategories = attributeCategoryService.getAttributeCategoriesByProductDataId(productData.getId());
         Review review = null;
         if (user != null) review = reviewService.getReviewByUserAndProductData(user.getId(), productData.getId());
