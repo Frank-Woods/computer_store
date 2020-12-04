@@ -47,10 +47,19 @@
                                 <td>${user.registrationDate}</td>
                                 <td>${user.roles?last.name()}</td>
                                 <td>
-                                    <form method="post" action="/admin/user/all">
-                                        <input type="hidden" name="id" value="${user.id}">
-                                        <#if user.roles?last.ordinal() == 1><button>Уволить</button><#else><button>Принять</button></#if>
-                                    </form>
+                                    <#if user.roles?last.ordinal() == 1>
+                                        <form method="post" action="/admin/user/dismiss">
+                                            <input type="hidden" name="id" value="${user.id}">
+                                            <input type="hidden" name="_csrf" value="${_csrf.token}">
+                                            <button>Уволить</button>
+                                        </form>
+                                    <#else>
+                                        <form method="post" action="/admin/user/add">
+                                            <input type="hidden" name="id" value="${user.id}">
+                                            <input type="hidden" name="_csrf" value="${_csrf.token}">
+                                            <button>Принять</button>
+                                        </form>
+                                    </#if>
                                 </td>
                             </tr>
                         </#list>
