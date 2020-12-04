@@ -53,20 +53,16 @@ public class UserService implements UserDetailsService {
         userDomain.setEmail(user.getEmail());
         userDomain.setPhone(user.getPhone());
         userDomain.setCity(cityService.getCity(user.getCity()));
-        userRepository.save(userDomain);
-        securityService.updateAuthenticationToken();
-    }
 
-    public boolean changePassword(UserPassword userPassword) {
-        User user = userRepository.getOne(userPassword.getId());
-
-        if (passwordEncoder.matches(userPassword.getPassword(), user.getPassword())) {
-            user.setPassword(passwordEncoder.encode(userPassword.getNewPassword()));
-            userRepository.save(user);
-            securityService.updateAuthenticationToken();
-            return true;
+        if (user.getPassword() != null && user.getNewPassword() != null) {
+            if (passwordEncoder.matches(user.getNewPassword(), userDomain.getPassword())) {
+                user.setPassword(passwordEncoder.encode(user.getNewPassword()));
+            }
         }
-        return false;
+
+        userRepository.save(userDomain);
+
+        securityService.updateAuthenticationToken();
     }
 
     public User getUserById(Long id) {
