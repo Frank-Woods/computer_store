@@ -19,7 +19,6 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/user")
 public class UserController {
 
     @Autowired
@@ -37,19 +36,14 @@ public class UserController {
     @Autowired
     private SaleProductService saleProductService;
 
-    @GetMapping("/profile/details")
+    @GetMapping("/user/profile/details")
     public String getUserProfilePage(Map<String, Object> model) {
         List<City> cities = cityService.getAllCities();
         model.put("cities", cities);
         return "site/user/profile/details";
     }
 
-    @GetMapping("/profile/password")
-    public String getUserProfilePasswordPage() {
-        return "site/user/changePassword";
-    }
-
-    @GetMapping("/profile/reviews")
+    @GetMapping("/user/profile/reviews")
     public String getReviews(
             @AuthenticationPrincipal User user,
             Map<String, Object> model,
@@ -61,7 +55,7 @@ public class UserController {
         return "site/user/profile/reviews";
     }
 
-    @GetMapping("/profile/reviews/{id}")
+    @GetMapping("/user/profile/reviews/{id}")
     public String getReview(
             @PathVariable Long id,
             Map<String, Object> model
@@ -71,7 +65,7 @@ public class UserController {
         return "site/user/profile/review";
     }
 
-    @GetMapping("/profile/orders")
+    @GetMapping("/user/profile/orders")
     public String getSales(
             @AuthenticationPrincipal User user,
             Map<String, Object> model,
@@ -83,7 +77,7 @@ public class UserController {
         return "site/user/profile/orders";
     }
 
-    @GetMapping("/profile/orders/{id}")
+    @GetMapping("/user/profile/orders/{id}")
     public String getSale(
             @AuthenticationPrincipal User user,
             Map<String, Object> model,
