@@ -19,7 +19,10 @@
                                 <div class="myaccount-tab-menu nav">
                                     <a href="/user/profile/orders">Заказы</a>
                                     <a href="/user/profile/details" class="active">Профиль</a>
-                                    <a href="/user/logout">Выйти</a>
+                                    <form action="/logout" method="post">
+                                        <input type="hidden" name="_csrf" value="${_csrf.token}">
+                                        <button>Выйти</button>
+                                    </form>
                                 </div>
                             </div>
                             <!-- My Account Tab Menu End -->
