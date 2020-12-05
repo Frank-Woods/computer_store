@@ -35,7 +35,10 @@
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="/logout" data-toggle="modal" data-target="#logoutModal">
                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Выйти
+                        <form action="/logout" method="post" class="d-inline">
+                            <input type="hidden" name="_csrf" value="${_csrf.token}">
+                            <button class="header-button">Выйти</button>
+                        </form>
                     </a>
                 </div>
             </li>

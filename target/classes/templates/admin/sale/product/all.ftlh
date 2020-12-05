@@ -35,7 +35,7 @@
                         <#list saleProducts.getContent() as sp>
                             <tr>
                                 <td>${sp.id}</td>
-                                <td><a href="/store/product/${sp.productData.id}">${sp.productData.id}</a></td>
+                                <td><a href="/store/product/${sp.productData.id}" target="_blank">${sp.productData.id}</a></td>
                                 <td>${sp.statusSale.text}</td>
                                 <td class="dropdown no-arrow table-action">
                                     <a href="/admin/sale/product/update/${sp.id}" class="custom-button mt-0">Изменить</a>

@@ -10864,3 +10864,7 @@ form.dropdown-item > button {
 form.dropdown-item > button:focus {
   color: white;
 }
+.header-button {
+  background-color: transparent;
+  border: none;
+}

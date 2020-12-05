@@ -33,33 +33,19 @@
                                             <tr>
                                                 <th>#</th>
                                                 <th>Дата</th>
-                                                <th>Статус</th>
-                                                <th>Стоимость</th>
+                                                <th>Адрес</th>
                                                 <th>Действия</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Aug 22, 2018</td>
-                                                <td>Pending</td>
-                                                <td>$3000</td>
-                                                <td><a href="cart.html" class="check-btn sqr-btn ">View</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>July 22, 2018</td>
-                                                <td>Approved</td>
-                                                <td>$200</td>
-                                                <td><a href="cart.html" class="check-btn sqr-btn ">View</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>June 12, 2017</td>
-                                                <td>On Hold</td>
-                                                <td>$990</td>
-                                                <td><a href="cart.html" class="check-btn sqr-btn ">View</a></td>
-                                            </tr>
+                                                <#list salesPage as sale>
+                                                    <tr>
+                                                        <td>${sale.id}</td>
+                                                        <td>${sale.date}</td>
+                                                        <td>${sale.address}</td>
+                                                        <td><a href="/user/profile/orders/${sale.id}/product/all" class="check-btn sqr-btn ">View</a></td>
+                                                    </tr>
+                                                </#list>
                                             </tbody>
                                         </table>
                                     </div>
