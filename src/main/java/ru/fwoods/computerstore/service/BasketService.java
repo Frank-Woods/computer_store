@@ -38,32 +38,36 @@ public class BasketService {
 
         basket.setCount(product.getCount());
 
-        basketRepository.save(basket);
+        if (basket.getId() == null) {
+            basketRepository.save(basket);
 
-        ProductDataCart productDataCart = new ProductDataCart();
+            ProductDataCart productDataCart = new ProductDataCart();
 
-        ProductData productData = productDataService.getProductDataById(product.getId());
+            ProductData productData = productDataService.getProductDataById(product.getId());
 
-        productDataCart.setId(productData.getId());
-        productDataCart.setName(productData.getName());
-        Image image = imageService.getFirstImageByProductDataId(productData.getId());
-        if (image != null) {
-            productDataCart.setImage(image.getFilename());
-        }
-        productDataCart.setCount(product.getCount());
-        productDataCart.setCost(productData.getCost());
-
-        PromotionProduct promotionProduct = promotionProductService.getPromotionProductByProductData(productData);
-        Integer discountPrice = productData.getCost();
-        if (promotionProduct != null) {
-            if (new Date().getTime() < promotionProduct.getPromotion().getDateEnd().getTime()) {
-                discountPrice = productData.getCost() * promotionProduct.getDiscount() / 100;
-                productDataCart.setDiscount(promotionProduct.getDiscount());
+            productDataCart.setId(productData.getId());
+            productDataCart.setName(productData.getName());
+            Image image = imageService.getFirstImageByProductDataId(productData.getId());
+            if (image != null) {
+                productDataCart.setImage(image.getFilename());
             }
-        }
-        productDataCart.setDiscountCost(discountPrice);
+            productDataCart.setCount(product.getCount());
+            productDataCart.setCost(productData.getCost());
 
-        return productDataCart;
+            PromotionProduct promotionProduct = promotionProductService.getPromotionProductByProductData(productData);
+            Integer discountPrice = productData.getCost();
+            if (promotionProduct != null) {
+                if (new Date().getTime() < promotionProduct.getPromotion().getDateEnd().getTime()) {
+                    discountPrice = productData.getCost() * promotionProduct.getDiscount() / 100;
+                    productDataCart.setDiscount(promotionProduct.getDiscount());
+                }
+            }
+            productDataCart.setDiscountCost(discountPrice);
+
+            return productDataCart;
+        } else {
+            return null;
+        }
     }
 
     public List<CartProduct> getAllCartProduct(User user) {
