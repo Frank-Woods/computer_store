@@ -64,15 +64,13 @@ public class SaleService {
         });
     }
 
-    public void saleUpdate(ru.fwoods.computerstore.model.Sale sale) {
-        sale.getSaleProducts().forEach(saleProduct -> {
-            SaleProduct saleProductDomain = saleProductService.getSaleProductById(saleProduct.getId());
-            for (StatusSale statusSale : StatusSale.values()) {
-                if (statusSale.ordinal() == saleProduct.getStatus()) {
-                    saleProductDomain.setStatusSale(statusSale);
-                }
+    public void saleUpdate(ru.fwoods.computerstore.model.SaleProduct saleProduct) {
+        SaleProduct saleProductDomain = saleProductService.getSaleProductById(saleProduct.getId());
+        for (StatusSale statusSale : StatusSale.values()) {
+            if (statusSale.ordinal() == saleProduct.getStatus()) {
+                saleProductDomain.setStatusSale(statusSale);
             }
-            saleProductService.save(saleProductDomain);
-        });
+        }
+        saleProductService.save(saleProductDomain);
     }
 }

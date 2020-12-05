@@ -7,7 +7,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
-import ru.fwoods.computerstore.model.Sale;
+import ru.fwoods.computerstore.model.SaleProduct;
 import ru.fwoods.computerstore.service.SaleService;
 
 @RestController
@@ -19,9 +19,9 @@ public class SaleRestController {
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping(value = "/admin/sale/update", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity updateSale(
-            @RequestPart(name = "sale") Sale sale
+            @RequestPart(name = "sale") SaleProduct saleProduct
     ) {
-        saleService.saleUpdate(sale);
+        saleService.saleUpdate(saleProduct);
         return ResponseEntity.ok().body(null);
     }
 }
