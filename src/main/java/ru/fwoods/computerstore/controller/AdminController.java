@@ -44,6 +44,7 @@ public class AdminController {
     @Autowired
     private ReviewService reviewService;
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping
     public String getAdminPanel() {
         return "admin/index";

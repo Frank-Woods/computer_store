@@ -17,7 +17,7 @@ public interface ProductCategoryRepository extends JpaRepository<ProductCategory
 
     List<ProductCategory> getCategoriesByParentNull();
 
-    List<ProductCategory> getCategoriesByParentNullAndProductsNull();
+    List<ProductCategory> getCategoriesByProductsNull();
 
     List<ProductCategory> getCategoryByParentIdInAndIdNot(Collection<Long> parent_id, Long id);
 
@@ -25,7 +25,7 @@ public interface ProductCategoryRepository extends JpaRepository<ProductCategory
 
     ProductCategory getProductCategoryByName(String name);
 
-    Page<ProductCategory> getProductCategoriesByChildrenNull(Pageable pageable);
+    List<ProductCategory> getProductCategoriesByChildrenNull();
 
     List<ProductCategory> findAllByNameContainsIgnoreCase(String searchParam);
 }
