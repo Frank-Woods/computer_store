@@ -24,6 +24,11 @@ public class SaleController {
     @Autowired
     private BasketService basketService;
 
+    @GetMapping("/cart")
+    public String getCart() {
+        return "site/cart/index";
+    }
+
     @PreAuthorize("hasAuthority('USER')")
     @GetMapping("/cart/payment")
     public String getSale(
