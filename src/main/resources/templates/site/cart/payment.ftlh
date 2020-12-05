@@ -32,7 +32,7 @@
                     </div>
                     <input type="text" name="address">
                     <input type="hidden" name="_csrf" value="${_csrf.token}">
-                    <button class="mt-40 w-100">Оплатить</button>
+                    <button class="mt-40 w-100 btn btn-outline-primary">Оплатить</button>
                 </div>
             </form>
         </div>
