@@ -7,6 +7,17 @@
                 <div class="payment-details mb-40">
                     <h4 class="checkout-title">Оплата</h4>
                     <ul>
+                        <#list cartProducts as cp>
+                            <li>
+                                ${cp.name} x ${cp.count}
+                                <#if 0 < cp.discount>
+                                    <span>${cp.discountCost} ₽</span>
+                                    <span class="old-price">${cp.cost} ₽</span>
+                                <#else>
+                                    <span>${cp.cost} ₽</span>
+                                </#if>
+                            </li>
+                        </#list>
                         <li>Продукт x 1 <span>$155.00</span></li>
                         <li>Продукт x 2 <span>$152.00</span></li>
                         <li>Продукт x 1 <span>$185.00</span></li>
