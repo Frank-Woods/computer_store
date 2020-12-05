@@ -43,7 +43,7 @@
                                                 <#list sales.getContent() as saleProduct>
                                                     <tr>
                                                         <td>${saleProduct.id}</td>
-                                                        <td><a href="/store/product/${saleProduct.productData.id}">${saleProduct.productData.id}</a></td>
+                                                        <td><a href="/store/product/${saleProduct.productData.id}" target="_blank">${saleProduct.productData.id}</a></td>
                                                         <td>${saleProduct.cost}</td>
                                                         <td>${saleProduct.statusSale.text}</td>
                                                     </tr>
