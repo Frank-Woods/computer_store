@@ -102,8 +102,14 @@ public class ProductCategoryRestController {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("admin/category/parent/product/null")
-    public List<ProductCategory> getCategoriesWithoutParentAndProduct() {
-        return productCategoryService.getCategoriesWithoutParentAndProduct();
+    public List<ProductCategory> getCategoriesWithoutProduct() {
+        return productCategoryService.getCategoriesWithoutProduct();
+    }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("admin/category/children/null")
+    public List<ProductCategory> getCategoriesWithoutChildren() {
+        return productCategoryService.getCategoriesWithoutChildren();
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")

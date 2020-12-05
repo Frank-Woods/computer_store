@@ -130,18 +130,18 @@ public class ProductCategoryService {
         return productCategoryRepository.getProductCategoryByName(name);
     }
 
-    public Page<Category> getCategoriesWithoutChildren(Pageable pageable) {
-        Page<ProductCategory> productCategories = productCategoryRepository.getProductCategoriesByChildrenNull(pageable);
-        return productCategories.map(productCategory -> {
-            Category category = new Category();
-            category.setId(productCategory.getId());
-            category.setName(productCategory.getName());
-            return category;
-        });
+    public List<ru.fwoods.computerstore.model.ProductCategory> getCategoriesWithoutChildren() {
+        List<ProductCategory> productCategories = productCategoryRepository.getProductCategoriesByChildrenNull();
+        return productCategories.stream().map(productCategory -> {
+            ru.fwoods.computerstore.model.ProductCategory productCategoryModel = new ru.fwoods.computerstore.model.ProductCategory();
+            productCategoryModel.setId(productCategory.getId());
+            productCategoryModel.setName(productCategory.getName());
+            return productCategoryModel;
+        }).collect(Collectors.toList());
     }
 
-    public List<ru.fwoods.computerstore.model.ProductCategory> getCategoriesWithoutParentAndProduct() {
-        List<ProductCategory> productCategories = productCategoryRepository.getCategoriesByParentNullAndProductsNull();
+    public List<ru.fwoods.computerstore.model.ProductCategory> getCategoriesWithoutProduct() {
+        List<ProductCategory> productCategories = productCategoryRepository.getCategoriesByProductsNull();
 
         return productCategories.stream().map(productCategory -> {
             ru.fwoods.computerstore.model.ProductCategory productCategoryModel = new ru.fwoods.computerstore.model.ProductCategory();
