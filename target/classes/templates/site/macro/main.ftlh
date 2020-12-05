@@ -61,7 +61,7 @@
 
     <@footer.template></@footer.template>
 
-    <script>const isAuthorized = ${security.isAuthorized};</script>
+    <script>const isAuthorized = <#if security.isAuthorized>true<#else>false</#if>;</script>
     <script src="/static/assets/js/vendor/modernizr-3.6.0.min.js"></script>
     <script src="/static/assets/js/vendor/jquery-3.5.1.min.js"></script>
     <script src="/static/assets/js/vendor/jquery-migrate-3.3.0.min.js"></script>

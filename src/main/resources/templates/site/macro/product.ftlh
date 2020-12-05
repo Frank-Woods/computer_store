@@ -33,7 +33,7 @@
                 </div>
                 <div class="product-action-wrap">
                     <div class="product-action-cart">
-                        <button title="Add to Cart" class="product-action-cart-button" onclick="addToLocalStorageCart(${prod.id})">В корзину</button>
+                        <div title="Add to Cart" class="product-action-cart-button" onclick="addToLocalStorageCart(${prod.id})">В корзину</div>
                     </div>
                 </div>
             </div>
@@ -67,7 +67,7 @@
                     <p>${prod.description}</p>
                     <div class="product-list-action">
                         <div class="product-action-cart">
-                            <button title="Add to Cart" class="m-0">В корзину</button>
+                            <div title="Add to Cart" class="m-0">В корзину</div>
                         </div>
                     </div>
                 </div>

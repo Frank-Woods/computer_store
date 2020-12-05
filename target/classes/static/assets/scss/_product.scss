@@ -503,7 +503,7 @@
             @media #{$xs-layout} {
                 margin: 10px 0 12px;
             }
-            > button, > a {
+            > div, > a {
                 border: none;
                 padding: 7px 32px 7px;
                 background-color: #333333;
@@ -511,6 +511,7 @@
                 font-weight: 500;
                 font-size: 12px;
                 position: relative;
+                cursor: pointer;
                 &.padding-dec {
                     padding: 6px 20px 7px; 
                 }
