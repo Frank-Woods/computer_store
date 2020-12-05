@@ -27,8 +27,7 @@ public class BasketRestController {
             @AuthenticationPrincipal User user,
             @RequestPart(name = "product") CartProduct product
     ) {
-        basketService.save(user, product);
-        return ResponseEntity.ok().body(null);
+        return ResponseEntity.ok().body(basketService.save(user, product));
     }
 
     @GetMapping(value = "/basket/get/product/count")
