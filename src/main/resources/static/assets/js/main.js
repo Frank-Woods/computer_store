@@ -550,7 +550,7 @@
             var newVal = parseFloat(oldValue) + 1;
         } else {
             // Don't allow decrementing below zero
-            if (oldValue > 0) {
+            if (oldValue > 1) {
                 var newVal = parseFloat(oldValue) - 1;
             } else {
                 newVal = 1;
@@ -1135,11 +1135,11 @@
             max: 400,
             values: [0, 300],
             slide: function(event, ui) {
-                amountprice.val("$" + ui.values[0] + " - $" + ui.values[1]);
+                amountprice.val("₽" + ui.values[0] + " - ₽" + ui.values[1]);
             }
         });
-        amountprice.val("$" + sliderrange.slider("values", 0) +
-            " - $" + sliderrange.slider("values", 1));
+        amountprice.val("₽" + sliderrange.slider("values", 0) +
+            " - ₽" + sliderrange.slider("values", 1));
     });
     
     

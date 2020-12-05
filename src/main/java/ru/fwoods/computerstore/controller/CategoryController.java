@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 import ru.fwoods.computerstore.domain.ProductCategory;
 import ru.fwoods.computerstore.service.AttributeCategoryService;
 import ru.fwoods.computerstore.service.ProductCategoryService;
@@ -25,7 +27,7 @@ public class CategoryController {
     }
 
     @GetMapping("/site/catalog/{id}")
-    public String getCatalogPage(
+    public ModelAndView getCatalogPage(
             @PathVariable Long id,
             Map<String, Object> model
     ) {
@@ -33,11 +35,12 @@ public class CategoryController {
         List<ProductCategory> productCategories = productCategoryService.getChildCategories(id);
 
         if (productCategories.isEmpty()) {
-            return "redirect:/store/index";
+            model.put("category", productCategory.getId());
+            return new ModelAndView("redirect:/store/index", model);
         }
 
         model.put("category", productCategory);
         model.put("categories", productCategories);
-        return "site/catalog/index";
+        return new ModelAndView("site/catalog/index", model);
     }
 }
