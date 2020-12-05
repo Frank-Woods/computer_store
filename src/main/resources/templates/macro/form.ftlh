@@ -3,9 +3,6 @@
 </#macro>
 
 <#macro js>
-    <script src="/static/vendor/form/js/ToastEvent.js"></script>
-    <script src="/static/vendor/form/js/Timer.js"></script>
-    <script src="/static/vendor/form/js/Toast.js"></script>
     <script src="/static/vendor/form/js/Checkbox.js"></script>
     <script src="/static/vendor/form/js/FormType.js"></script>
     <script src="/static/vendor/form/js/NumberInputControllerType.js"></script>

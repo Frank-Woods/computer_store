@@ -53,6 +53,9 @@
     <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="/static/vendor/jquery-easing/jquery.easing.min.js"></script>
     <script src="/static/js/sb-admin-2.min.js"></script>
+    <script src="/static/vendor/form/js/ToastEvent.js"></script>
+    <script src="/static/vendor/form/js/Timer.js"></script>
+    <script src="/static/vendor/form/js/Toast.js"></script>
 
     ${scripts}
 

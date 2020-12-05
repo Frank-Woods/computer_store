@@ -20,6 +20,7 @@
                             </tbody>
                         </table>
                     </div>
+                    <a href="/cart/payment">Оплатить</a>
                 </div>
             </form>
         </div>

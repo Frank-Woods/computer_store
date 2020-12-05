@@ -40,6 +40,7 @@
         <link rel="stylesheet" href="/static/assets/css/plugins/jquery-ui.css">
         <link rel="stylesheet" href="/static/assets/scss/style.css">
         <link href="/static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="/static/vendor/form/scss/toast.css">
 
         <!-- Use the minified version files listed below for better performance and remove the files listed above
         <link rel="stylesheet" href="/static/assets/css/vendor/vendor.min.css">
@@ -86,6 +87,9 @@
     <script src="/static/js/site/cart/loadProductFromCart.js"></script>
     <script src="/static/js/site/cart/deleteProductInCart.js"></script>
     <script src="/static/js/site/cart/createProductInMiniCart.js"></script>
+    <script src="/static/vendor/form/js/ToastEvent.js"></script>
+    <script src="/static/vendor/form/js/Timer.js"></script>
+    <script src="/static/vendor/form/js/Toast.js"></script>
 
     ${scripts}
 
