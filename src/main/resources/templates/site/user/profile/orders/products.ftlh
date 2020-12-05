@@ -1,6 +1,6 @@
-<#import "../../macro/main.ftlh" as main>
-<#import "../../../macro/security.ftlh" as security>
-<#import "../../../macro/pagination.ftlh" as pagination>
+<#import "../../../macro/main.ftlh" as main>
+<#import "../../../../macro/security.ftlh" as security>
+<#import "../../../../macro/pagination.ftlh" as pagination>
 
 <#assign body>
     <div class="my-account-wrapper bg-gray pt-160 pb-160">
@@ -33,26 +33,26 @@
                                             <thead class="thead-light">
                                             <tr>
                                                 <th>#</th>
-                                                <th>Дата</th>
-                                                <th>Адрес</th>
-                                                <th>Действия</th>
+                                                <th>Продукт</th>
+                                                <th>Стоимость</th>
+                                                <th>Статус</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                                <#if salesPage??>
-                                                    <#list salesPage.getContent() as sale>
-                                                        <tr>
-                                                            <td>${sale.id}</td>
-                                                            <td>${sale.date}</td>
-                                                            <td>${sale.address}</td>
-                                                            <td><a href="/user/profile/orders/${sale.id}/product/all" class="check-btn sqr-btn ">Подробнее</a></td>
-                                                        </tr>
-                                                    </#list>
-                                                <#else>
+                                            <#if salePage??>
+                                                <#list salesPage.getContent() as sale>
                                                     <tr>
-                                                        <td colspan="4">Пусто</td>
+                                                        <td>${sale.id}</td>
+                                                        <td>${sale.date}</td>
+                                                        <td>${sale.address}</td>
+                                                        <td><a href="/user/profile/orders/${sale.id}/product/all" class="check-btn sqr-btn ">Подробнее</a></td>
                                                     </tr>
-                                                </#if>
+                                                </#list>
+                                            <#else>
+                                                <tr>
+                                                    <td colspan="4">Пусто</td>
+                                                </tr>
+                                            </#if>
                                             </tbody>
                                         </table>
                                     </div>

@@ -33,7 +33,7 @@
 
                 <div class="custom-select">
                     <div class="custom-select__settings">
-                        <span class="custom-select__settings__attributes">{"name": "statusReview", "inputValueFormat":{"type":"json", "pattern":["id", "name"]}, "outputValueFormat":{"type":"var", "pattern":["id"]}, "defaultValue": {"id":${saleProduct.statusSale.ordinal()}, "name":"${saleProduct.statusSale.text}"}, "options":[<#list statuses as status>{"id":${status.ordinal()}, "name":"${status.text}"}<#if status?has_next>,</#if></#list>], "itemVisibleValue":["name"]}</span>
+                        <span class="custom-select__settings__attributes">{"name": "status", "inputValueFormat":{"type":"json", "pattern":["id", "name"]}, "outputValueFormat":{"type":"var", "pattern":["id"]}, "defaultValue": {"id":${saleProduct.statusSale.ordinal()}, "name":"${saleProduct.statusSale.text}"}, "options":[<#list statuses as status>{"id":${status.ordinal()}, "name":"${status.text}"}<#if status?has_next>,</#if></#list>], "itemVisibleValue":["name"]}</span>
                         <span class="custom-select__settings__request">{"searchParam":false}</span>
                     </div>
                 </div>

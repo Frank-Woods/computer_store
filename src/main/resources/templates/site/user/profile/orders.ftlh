@@ -1,5 +1,6 @@
 <#import "../../macro/main.ftlh" as main>
 <#import "../../../macro/security.ftlh" as security>
+<#import "../../../macro/pagination.ftlh" as pagination>
 
 <#assign body>
     <div class="my-account-wrapper bg-gray pt-160 pb-160">
@@ -38,17 +39,27 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                                <#list salesPage as sale>
+                                                <#if salesPage??>
+                                                    <#list salesPage.getContent() as sale>
+                                                        <tr>
+                                                            <td>${sale.id}</td>
+                                                            <td>${sale.date}</td>
+                                                            <td>${sale.address}</td>
+                                                            <td><a href="/user/profile/orders/${sale.id}/product/all" class="check-btn sqr-btn ">Подробнее</a></td>
+                                                        </tr>
+                                                    </#list>
+                                                <#else>
                                                     <tr>
-                                                        <td>${sale.id}</td>
-                                                        <td>${sale.date}</td>
-                                                        <td>${sale.address}</td>
-                                                        <td><a href="/user/profile/orders/${sale.id}/product/all" class="check-btn sqr-btn ">View</a></td>
+                                                        <td colspan="4">Пусто</td>
                                                     </tr>
-                                                </#list>
+                                                </#if>
                                             </tbody>
                                         </table>
                                     </div>
+                                    <@pagination.template
+                                    page = salesPage
+                                    url = "/user/profile/orders"
+                                    ></@pagination.template>
                                 </div>
                             </div> <!-- My Account Tab Content End -->
                         </div>
