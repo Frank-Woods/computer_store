@@ -25,14 +25,14 @@ public class SaleController {
     private BasketService basketService;
 
     @PreAuthorize("hasAuthority('USER')")
-    @GetMapping("/store/cart/payment")
+    @GetMapping("/cart/payment")
     public String getSale(
             @AuthenticationPrincipal User user,
             Map<String, Object> model
     ) {
         List<ProductDataCart> cartProducts = basketService.getProductsInBasket(user);
         model.put("cartProducts", cartProducts);
-        return "site/store/payment";
+        return "site/cart/payment";
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
@@ -48,7 +48,7 @@ public class SaleController {
     }
 
     @PreAuthorize("hasAuthority('USER')")
-    @PostMapping("/site/store/payment")
+    @PostMapping("/store/payment")
     public String sale(
             @AuthenticationPrincipal User user,
             @RequestParam(name = "address") String address
