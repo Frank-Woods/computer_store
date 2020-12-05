@@ -30,16 +30,19 @@
                                             <div class="custom-input custom-input-strict-style">
                                                 <div class="custom-input__settings">
                                                     <span class="custom-input__settings__attributes">{"name":"email", "label":"Почта"}</span>
+                                                    <span class="custom-input__settings__validation">{"required":true}</span>
                                                 </div>
                                             </div>
                                             <div class="custom-input custom-input-strict-style">
                                                 <div class="custom-input__settings">
                                                     <span class="custom-input__settings__attributes">{"name":"firstName", "label":"Имя"}</span>
+                                                    <span class="custom-input__settings__validation">{"required":true}</span>
                                                 </div>
                                             </div>
                                             <div class="custom-input custom-input-strict-style">
                                                 <div class="custom-input__settings">
                                                     <span class="custom-input__settings__attributes">{"name":"lastName", "label":"Фамилия"}</span>
+                                                    <span class="custom-input__settings__validation">{"required":true}</span>
                                                 </div>
                                             </div>
                                             <div class="custom-input custom-input-strict-style">
@@ -50,6 +53,7 @@
                                             <div class="custom-input custom-input-strict-style">
                                                 <div class="custom-input__settings">
                                                     <span class="custom-input__settings__attributes">{"name":"phone", "label":"Телефон"}</span>
+                                                    <span class="custom-input__settings__validation">{"required":true}</span>
                                                 </div>
                                             </div>
                                             <div class="custom-select custom-select-strict-style">
@@ -62,6 +66,7 @@
                                             <div class="custom-input custom-input-strict-style">
                                                 <div class="custom-input__settings">
                                                     <span class="custom-input__settings__attributes">{"name":"password", "label":"Пароль", "type":"password"}</span>
+                                                    <span class="custom-input__settings__validation">{"required":true}</span>
                                                 </div>
                                             </div>
                                             <div class="button-box">

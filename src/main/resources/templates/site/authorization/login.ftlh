@@ -27,11 +27,13 @@
                                             <div class="custom-input custom-input-strict-style">
                                                 <div class="custom-input__settings">
                                                     <span class="custom-input__settings__attributes">{"name":"email", "label":"Почта"}</span>
+                                                    <span class="custom-input__settings__validation">{"required":true}</span>
                                                 </div>
                                             </div>
                                             <div class="custom-input custom-input-strict-style">
                                                 <div class="custom-input__settings">
                                                     <span class="custom-input__settings__attributes">{"name":"password", "label":"Пароль", "type":"password"}</span>
+                                                    <span class="custom-input__settings__validation">{"required":true}</span>
                                                 </div>
                                             </div>
                                             <div class="button-box">
