@@ -102,6 +102,8 @@ public class ProductDataController {
             @RequestParam(required = false, defaultValue = "0") Integer page,
             @RequestParam(required = false, defaultValue = "1") Integer sort,
             @RequestParam(required = false, name = "category") Long category,
+            @RequestParam(required = false, name = "manufacturers") List<Long> manufacturers,
+            @RequestParam(required = false, name = "cost") String cost,
             Map<String, Object> model
     ) {
         Pageable pageable;
@@ -115,14 +117,14 @@ public class ProductDataController {
         Page<ProductDataCart> products = null;
         ProductCategory productCategory = null;
         if (category != null) {
-            products = productDataService.getProductDataCartPage(productDataService.getPageProductsByCategory(category, pageable));
+            products = productDataService.getProductDataCartPage(productDataService.getPageProductsByCategory(category, manufacturers, cost, pageable));
             productCategory = productCategoryService.getCategoryById(category);
         }
         Integer maxCost = productDataService.getMaxCostInCategory(category);
-        Set<Manufacturer> manufacturers = manufacturerService.getManufacturerInCategory(category);
+        Set<Manufacturer> manufacturersReturn = manufacturerService.getManufacturerInCategory(category);
 
         model.put("maxCost", maxCost);
-        model.put("manufacturers", manufacturers);
+        model.put("manufacturers", manufacturersReturn);
         model.put("productsPage", products);
         model.put("category", productCategory);
         return "site/store/index";
