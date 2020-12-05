@@ -8,13 +8,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import ru.fwoods.computerstore.domain.Image;
 import ru.fwoods.computerstore.domain.Manufacturer;
+import ru.fwoods.computerstore.domain.ProductData;
 import ru.fwoods.computerstore.repository.CountryRepository;
 import ru.fwoods.computerstore.repository.ManufacturerRepository;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -31,6 +29,9 @@ public class ManufacturerService {
 
     @Autowired
     private ImageService imageService;
+
+    @Autowired
+    private ProductDataService productDataService;
 
     @Value("${manufacturer.upload.path}")
     private String manufacturerUploadPath;
@@ -125,5 +126,15 @@ public class ManufacturerService {
 
             return manufacturerModel;
         }).collect(Collectors.toList());
+    }
+
+    public Set<Manufacturer> getManufacturerInCategory(Long category) {
+        List<ProductData> productDataList = productDataService.getAllByCategoryId(category);
+        Set<Manufacturer> manufacturers = new HashSet<>();
+        productDataList.forEach(productData -> {
+            manufacturers.add(productData.getManufacturer());
+        });
+
+        return manufacturers;
     }
 }

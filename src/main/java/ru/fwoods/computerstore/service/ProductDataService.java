@@ -331,4 +331,14 @@ public class ProductDataService {
         List<ProductData> productDataList = productDataRepository.getAllByCategoryId(category);
         return new PageImpl<>(productDataList, pageable, 0);
     }
+
+    public Integer getMaxCostInCategory(Long category) {
+        List<ProductData> productDataList = productDataRepository.getAllByCategoryId(category);
+        productDataList.sort(Comparator.comparingInt(ProductData::getCost));
+        return productDataList.get(0).getCost();
+    }
+
+    public List<ProductData> getAllByCategoryId(Long category) {
+        return productDataRepository.getAllByCategoryId(category);
+    }
 }
