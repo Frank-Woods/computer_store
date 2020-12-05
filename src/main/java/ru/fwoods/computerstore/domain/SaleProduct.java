@@ -15,7 +15,7 @@ public class SaleProduct {
             length = 10,
             nullable = false
     )
-    private Double cost;
+    private Integer cost;
 
     @Column(
             name = "status",
@@ -45,11 +45,11 @@ public class SaleProduct {
         this.id = id;
     }
 
-    public Double getCost() {
+    public Integer getCost() {
         return cost;
     }
 
-    public void setCost(Double cost) {
+    public void setCost(Integer cost) {
         this.cost = cost;
     }
 

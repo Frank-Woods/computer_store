@@ -94,7 +94,7 @@ public class User implements UserDetails {
     private City city;
 
     @OneToMany(mappedBy = "user")
-    private List<Basket> baskets;
+    private Set<Basket> baskets;
 
     public Long getId() {
         return id;
@@ -206,11 +206,11 @@ public class User implements UserDetails {
         this.city = city;
     }
 
-    public List<Basket> getBaskets() {
+    public Set<Basket> getBaskets() {
         return baskets;
     }
 
-    public void setBaskets(List<Basket> baskets) {
+    public void setBaskets(Set<Basket> baskets) {
         this.baskets = baskets;
     }
 }
