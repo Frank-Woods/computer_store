@@ -68,12 +68,12 @@ public class SaleController {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/admin/sale/product/update/{id}")
-    public String getUpdateSalePage(
+    public String getUpdateSaleProductPage(
             @PathVariable Long id,
             Map<String, Object> model
     ) {
-        Sale sale = saleService.getSaleById(id);
-        model.put("sale", sale);
+        SaleProduct saleProduct = saleProductService.getSaleProductById(id);
+        model.put("saleProduct", saleProduct);
         model.put("statuses", StatusSale.values());
         return "admin/sale/product/update";
     }
