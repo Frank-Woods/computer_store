@@ -53,10 +53,6 @@
 </#assign>
 
 <#assign scripts>
-    <script src="/static/vendor/form/js/ToastEvent.js"></script>
-    <script src="/static/vendor/form/js/Timer.js"></script>
-    <script src="/static/vendor/form/js/Toast.js"></script>
-    <script src="/static/js/site/cart/addProductToCart.js"></script>
 </#assign>
 
 <@main.template
