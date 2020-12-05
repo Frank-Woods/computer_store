@@ -59,8 +59,17 @@
             <div class="col-lg-3">
                 <div class="shop-sidebar-style">
                     <div class="sidebar-widget">
+                        <h4 class="pro-sidebar-title">Сортировка</h4>
+                        <div class="sidebar-widget mt-10">
+                            <select class="nice-select nice-select-style-3 nice-select-shop" name="sort">
+                                <option value="0">По возрастанию цены</option>
+                                <option value="1">По убыванию цены</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="sidebar-widget mt-80">
                         <h4 class="pro-sidebar-title">Фильтр по цене</h4>
-                        <div class="price-filter mt-55 mb-65">
+                        <div class="price-filter mt-30 mb-30">
                             <div id="slider-range"></div>
                             <div class="price-slider-amount">
                                 <div class="label-input">
@@ -69,45 +78,25 @@
                             </div>
                         </div>
                     </div>
-                    <div class="sidebar-widget">
-                        <h4 class="pro-sidebar-title">Фильтр по производителю</h4>
-                        <div class="sidebar-widget mt-50">
-                            <ul>
-                                <li>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="manufacturer-1">
-                                        <label class="custom-control-label" for="manufacturer-1">
-                                            Производитель 1
-                                        </label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="custom-control custom-checkbox">
-                                        <label class="custom-control-label">
-                                            <input type="checkbox" class="custom-control-input">
-                                            <span>Производитель 1</span>
-                                        </label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="custom-control custom-checkbox">
-                                        <label class="custom-control-label">
-                                            <input type="checkbox" class="custom-control-input">
-                                            <span>Производитель 1</span>
-                                        </label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="custom-control custom-checkbox">
-                                        <label class="custom-control-label">
-                                            <input type="checkbox" class="custom-control-input">
-                                            <span>Производитель 1</span>
-                                        </label>
-                                    </div>
-                                </li>
-                            </ul>
+                    <#if manufacturers??>
+                        <div class="sidebar-widget">
+                            <h4 class="pro-sidebar-title">Фильтр по производителю</h4>
+                            <div class="sidebar-widget mt-10">
+                                <ul>
+                                    <#list manufacturers as m>
+                                        <li>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="manufacturer-1">
+                                                <label class="custom-control-label" for="manufacturer-1">
+                                                    ${m.name}
+                                                </label>
+                                            </div>
+                                        </li>
+                                    </#list>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
+                    </#if>
                 </div>
             </div>
         </div>
@@ -122,7 +111,7 @@
             sliderrange.slider({
                 range: true,
                 min: 0,
-                max: 1000,
+                max: ${maxCost},
                 values: [0, 300],
                 slide: function(event, ui) {
                     amountprice.val("₽" + ui.values[0] + " - ₽" + ui.values[1]);
