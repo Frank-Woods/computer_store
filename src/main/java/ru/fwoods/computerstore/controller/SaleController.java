@@ -7,10 +7,12 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ru.fwoods.computerstore.domain.Sale;
+import ru.fwoods.computerstore.domain.SaleProduct;
 import ru.fwoods.computerstore.domain.StatusSale;
 import ru.fwoods.computerstore.domain.User;
 import ru.fwoods.computerstore.model.ProductDataCart;
 import ru.fwoods.computerstore.service.BasketService;
+import ru.fwoods.computerstore.service.SaleProductService;
 import ru.fwoods.computerstore.service.SaleService;
 
 import java.util.List;
@@ -23,6 +25,9 @@ public class SaleController {
 
     @Autowired
     private BasketService basketService;
+
+    @Autowired
+    private SaleProductService saleProductService;
 
     @GetMapping("/cart")
     public String getCart() {
@@ -41,7 +46,19 @@ public class SaleController {
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
-    @GetMapping("/admin/sale/update/{id}")
+    @GetMapping("/admin/sale/{id}/product/all")
+    public String getSaleProductPage(
+            @PathVariable Long id,
+            Map<String, Object> model
+    ) {
+        List<SaleProduct> saleProducts = saleProductService.getSaleProductsBySale(id);
+        model.put("saleProducts", saleProducts);
+        model.put("statuses", StatusSale.values());
+        return "admin/sale/product/all";
+    }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/admin/sale/product/update/{id}")
     public String getUpdateSalePage(
             @PathVariable Long id,
             Map<String, Object> model
@@ -49,7 +66,7 @@ public class SaleController {
         Sale sale = saleService.getSaleById(id);
         model.put("sale", sale);
         model.put("statuses", StatusSale.values());
-        return "admin/sale/update";
+        return "admin/sale/product/update";
     }
 
     @PreAuthorize("hasAuthority('USER')")
