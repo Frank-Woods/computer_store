@@ -1,27 +1,23 @@
 function loadCartFromLocalStorageToMiniCart() {
     const cart = JSON.parse(localStorage.getItem('cart'));
 
-    if (cart.length) {
-        loadProductFromDataBaseByProducts(cart)
-            .then(
-                data => {
-                    data.forEach(product => createProductMiniCart(product));
-                }
-            );
-    }
+    loadProductFromDataBaseByProducts(cart)
+        .then(
+            data => {
+                data.forEach(product => createProductMiniCart(product));
+            }
+        );
 }
 
 function loadCartFromLocalStorageToCart() {
     const cart = JSON.parse(localStorage.getItem('cart'));
 
-    if (cart.length) {
-        loadProductFromDataBaseByProducts(cart)
-            .then(
-                data => {
-                    data.forEach(product => createProductInCart(product));
-                }
-            );
-    }
+    loadProductFromDataBaseByProducts(cart)
+        .then(
+            data => {
+                data.forEach(product => createProductInCart(product));
+            }
+        );
 }
 
 function loadProductFromDataBaseByProducts(products) {
