@@ -6,6 +6,7 @@
     links = ""
     body = ""
     scripts = ""
+    mc = true
 >
     <!doctype html>
     <html class="no-js" lang="en">
@@ -50,7 +51,9 @@
 
     <body>
 
-    <@header.template></@header.template>
+    <@header.template
+        mc = mc
+    ></@header.template>
     <@miniCart.template></@miniCart.template>
 
     ${body}
@@ -75,9 +78,12 @@
     <script src="/static/assets/js/plugins/magnific-popup.js"></script>
     <script src="/static/assets/js/plugins/easyzoom.js"></script>
     <script src="/static/assets/js/plugins/scrollup.js"></script>
-    <script src="/static/assets/js/plugins/ajax-mail.js"></script>
     <script src="/static/assets/js/main.js"></script>
     <script src="/static/js/site/cart/main.js"></script>
+    <script src="/static/js/site/cart/addProductToCart.js"></script>
+    <script src="/static/js/site/cart/loadProductFromCart.js"></script>
+    <script src="/static/js/site/cart/deleteProductInCart.js"></script>
+    <script src="/static/js/site/cart/createProductInMiniCart.js"></script>
 
     ${scripts}
 

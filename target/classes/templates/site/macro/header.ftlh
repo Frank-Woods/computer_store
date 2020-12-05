@@ -1,4 +1,4 @@
-<#macro template>
+<#macro template mc>
     <header class="header-area section-padding-1 transparent-bar">
         <div class="header-large-device">
             <div class="header-bottom sticky-bar">
@@ -24,9 +24,11 @@
                             <div class="same-style">
                                 <a href="/user/profile/details"><i class="icofont-user-alt-3"></i></a>
                             </div>
-                            <div class="same-style header-cart">
-                                <a class="cart-active" href="#"><i class="icofont-shopping-cart"></i></a>
-                            </div>
+                            <#if mc>
+                                <div class="same-style header-cart">
+                                    <a class="cart-active" href="#"><i class="icofont-shopping-cart"></i></a>
+                                </div>
+                            </#if>
                         </div>
                     </div>
                 </div>

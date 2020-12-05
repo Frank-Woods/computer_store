@@ -285,12 +285,13 @@
         }
         .pro-details-action {
             position: relative;
-            > a {
+            > div {
                 display: inline-block;
                 font-size: 17px;
                 line-height: 1;
                 padding: 16px 18px 17px;
                 color: $theme-color-black;
+                cursor: pointer;
                 border: 1px solid #EDEDED;
                 margin-right: 15px;
                 position: relative;

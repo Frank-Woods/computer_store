@@ -1,13 +1,42 @@
-function loadCartFromLocalStorage() {
+function loadCartFromLocalStorageToMiniCart() {
     const cart = JSON.parse(localStorage.getItem('cart'));
 
-    const request = new XMLHttpRequest();
-    request.open('get', '/', true);
-
-    request.setRequestHeader("products", cart.map(item => item.id));
-
-    request.onload = () => {
-        console.log(request.response);
+    if (cart.length) {
+        loadProductFromDataBaseByProducts(cart)
+            .then(
+                data => {
+                    data.forEach(product => createProductMiniCart(product));
+                }
+            );
     }
-    request.send();
 }
+
+function loadCartFromLocalStorageToCart() {
+    const cart = JSON.parse(localStorage.getItem('cart'));
+
+    if (cart.length) {
+        loadProductFromDataBaseByProducts(cart)
+            .then(
+                data => {
+                    data.forEach(product => createProductInCart(product));
+                }
+            );
+    }
+}
+
+function loadProductFromDataBaseByProducts(products) {
+    return new Promise((resolve, reject) => {
+        const url = new URL(window.location.origin + '/basket/get/product');
+        url.searchParams.set('products', JSON.stringify(products));
+
+        const request = new XMLHttpRequest();
+        request.open('get', url.href, true);
+
+        request.onload = () => {
+            resolve(JSON.parse(request.response));
+        }
+        request.send();
+    });
+}
+
+loadCartFromLocalStorageToMiniCart();

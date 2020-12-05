@@ -4233,6 +4233,7 @@ textarea:focus {
   display: flex;
   flex-grow: 100;
   justify-content: flex-end;
+  cursor: pointer;
 }
 .sidebar-cart-active .sidebar-cart-all .cart-content ul li .cart-delete a {
   display: block;
@@ -20027,31 +20028,32 @@ textarea:focus {
 .product-details-content .pro-details-action-wrap .pro-details-action {
   position: relative;
 }
-.product-details-content .pro-details-action-wrap .pro-details-action > a {
+.product-details-content .pro-details-action-wrap .pro-details-action > div {
   display: inline-block;
   font-size: 17px;
   line-height: 1;
   padding: 16px 18px 17px;
   color: #333333;
+  cursor: pointer;
   border: 1px solid #EDEDED;
   margin-right: 15px;
   position: relative;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
-  .product-details-content .pro-details-action-wrap .pro-details-action > a {
+  .product-details-content .pro-details-action-wrap .pro-details-action > div {
     padding: 16px 15px 17px;
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
-  .product-details-content .pro-details-action-wrap .pro-details-action > a {
+  .product-details-content .pro-details-action-wrap .pro-details-action > div {
     padding: 16px 10px 17px;
     margin-right: 10px;
   }
 }
-.product-details-content .pro-details-action-wrap .pro-details-action > a:last-child {
+.product-details-content .pro-details-action-wrap .pro-details-action > div:last-child {
   margin-right: 0px;
 }
-.product-details-content .pro-details-action-wrap .pro-details-action > a:hover {
+.product-details-content .pro-details-action-wrap .pro-details-action > div:hover {
   background-color: #0A1039;
   color: #ffffff;
 }

@@ -65,12 +65,6 @@
                                 <span>${productData.cost} ₽</span>
                             </#if>
                         </div>
-                        <div class="pro-details-quality">
-                            <span>Количество:</span>
-                            <div class="cart-plus-minus">
-                                <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1">
-                            </div>
-                        </div>
                         <div class="product-details-meta">
                             <ul>
                                 <li><span>Категория:</span> <span>${productData.category.name}</span></li>
@@ -79,7 +73,7 @@
                         </div>
                         <div class="pro-details-action-wrap">
                             <div class="pro-details-action">
-                                <a title="Add to Cart" href="#"><i class="icon-basket"></i></a>
+                                <div title="Add to Cart" onclick="addToLocalStorageCart(${productData.id})"><i class="icon-basket"></i></div>
                             </div>
                         </div>
                     </div>
