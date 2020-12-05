@@ -1,6 +1,9 @@
 package ru.fwoods.computerstore.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -48,10 +51,12 @@ public class SaleController {
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/admin/sale/{id}/product/all")
     public String getSaleProductPage(
+            @RequestParam(required = false, defaultValue = "0") Integer page,
             @PathVariable Long id,
             Map<String, Object> model
     ) {
-        List<SaleProduct> saleProducts = saleProductService.getSaleProductsBySale(id);
+        Pageable pageable = PageRequest.of(page, 15);
+        Page<SaleProduct> saleProducts = saleProductService.getSaleProductsBySale(id, pageable);
         model.put("saleProducts", saleProducts);
         model.put("statuses", StatusSale.values());
         return "admin/sale/product/all";

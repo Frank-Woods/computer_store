@@ -1,6 +1,8 @@
 package ru.fwoods.computerstore.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ru.fwoods.computerstore.domain.SaleProduct;
 import ru.fwoods.computerstore.repository.SaleProductRepository;
@@ -13,8 +15,8 @@ public class SaleProductService {
     @Autowired
     private SaleProductRepository saleProductRepository;
 
-    public List<SaleProduct> getSaleProductsBySale(Long id) {
-        return saleProductRepository.getAllBySaleId(id);
+    public Page<SaleProduct> getSaleProductsBySale(Long id, Pageable pageable) {
+        return saleProductRepository.getAllBySaleId(id, pageable);
     }
 
     public SaleProduct save(SaleProduct saleProduct) {
