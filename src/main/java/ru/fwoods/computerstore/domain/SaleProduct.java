@@ -1,6 +1,7 @@
 package ru.fwoods.computerstore.domain;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "sale_product")
@@ -14,7 +15,15 @@ public class SaleProduct {
             length = 10,
             nullable = false
     )
-    private Double cost;
+    private Integer cost;
+
+    @Column(
+            name = "status",
+            length = 10,
+            nullable = false
+    )
+    @Enumerated(EnumType.ORDINAL)
+    private StatusSale statusSale;
 
     @ManyToOne(
             fetch = FetchType.EAGER
@@ -36,12 +45,20 @@ public class SaleProduct {
         this.id = id;
     }
 
-    public Double getCost() {
+    public Integer getCost() {
         return cost;
     }
 
-    public void setCost(Double cost) {
+    public void setCost(Integer cost) {
         this.cost = cost;
+    }
+
+    public StatusSale getStatusSale() {
+        return statusSale;
+    }
+
+    public void setStatusSale(StatusSale statusSale) {
+        this.statusSale = statusSale;
     }
 
     public Sale getSale() {

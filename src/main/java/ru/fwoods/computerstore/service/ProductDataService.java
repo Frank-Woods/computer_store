@@ -358,8 +358,15 @@ public class ProductDataService {
         return new PageImpl<>(productDataList, pageable, 0);
     }
 
-    public Integer getMaxCostInCategory(Long category) {
+    public Integer getMaxCostInCategory(Long category, List<Long> manufacturers) {
         List<ProductData> productDataList = productDataRepository.getAllByCategoryId(category);
+
+        if (manufacturers != null) {
+            productDataList = productDataList.stream().filter(productData ->
+                    manufacturers.contains(productData.getManufacturer().getId())
+            ).collect(Collectors.toList());
+        }
+
         if (productDataList != null) {
             productDataList.sort((o1, o2) -> o2.getCost() - o1.getCost());
             return productDataList.get(0).getCost();

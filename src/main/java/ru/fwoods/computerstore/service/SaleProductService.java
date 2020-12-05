@@ -16,4 +16,12 @@ public class SaleProductService {
     public List<SaleProduct> getSaleProductsBySale(Long id) {
         return saleProductRepository.getAllBySaleId(id);
     }
+
+    public SaleProduct save(SaleProduct saleProduct) {
+        return saleProductRepository.save(saleProduct);
+    }
+
+    public SaleProduct getSaleProductById(Long id) {
+        return saleProductRepository.getOne(id);
+    }
 }

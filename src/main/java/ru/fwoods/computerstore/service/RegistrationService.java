@@ -37,7 +37,7 @@ public class RegistrationService {
         userDomain.setCity(cityService.getCity(user.getCity()));
 
         userDomain.setPassword(passwordEncoder.encode(user.getPassword()));
-        userDomain.setRoles(Collections.singleton(Role.USER));
+        userDomain.setRoles(Collections.singletonList(Role.USER));
 
         emailService.getAll().forEach(email -> {
             if (email.getEmail().equals(user.getEmail())) {

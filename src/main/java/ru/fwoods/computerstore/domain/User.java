@@ -85,7 +85,7 @@ public class User implements UserDetails {
     )
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @Enumerated(EnumType.ORDINAL)
-    private Set<Role> roles;
+    private List<Role> roles;
 
     @ManyToOne(
             fetch = FetchType.EAGER
@@ -94,7 +94,7 @@ public class User implements UserDetails {
     private City city;
 
     @OneToMany(mappedBy = "user")
-    private List<Basket> baskets;
+    private Set<Basket> baskets;
 
     public Long getId() {
         return id;
@@ -190,11 +190,11 @@ public class User implements UserDetails {
         this.registrationDate = registrationDate;
     }
 
-    public Set<Role> getRoles() {
+    public List<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
+    public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
 
@@ -206,11 +206,11 @@ public class User implements UserDetails {
         this.city = city;
     }
 
-    public List<Basket> getBaskets() {
+    public Set<Basket> getBaskets() {
         return baskets;
     }
 
-    public void setBaskets(List<Basket> baskets) {
+    public void setBaskets(Set<Basket> baskets) {
         this.baskets = baskets;
     }
 }
