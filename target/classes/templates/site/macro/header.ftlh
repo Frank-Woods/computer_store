@@ -14,7 +14,7 @@
                                 <nav>
                                     <ul>
                                         <li><a href="/">Главная</a></li>
-                                        <li><a href="#">Магазин</a></li>
+                                        <li><a href="/site/catalog">Магазин</a></li>
                                         <li><a href="/promotions">Акции</a></li>
                                     </ul>
                                 </nav>

@@ -51,13 +51,13 @@
                                         <form method="post" action="/admin/user/dismiss">
                                             <input type="hidden" name="id" value="${user.id}">
                                             <input type="hidden" name="_csrf" value="${_csrf.token}">
-                                            <button>Уволить</button>
+                                            <button class="custom-button mt-0">Уволить</button>
                                         </form>
                                     <#else>
                                         <form method="post" action="/admin/user/add">
                                             <input type="hidden" name="id" value="${user.id}">
                                             <input type="hidden" name="_csrf" value="${_csrf.token}">
-                                            <button>Принять</button>
+                                            <button class="custom-button mt-0">Принять</button>
                                         </form>
                                     </#if>
                                 </td>
