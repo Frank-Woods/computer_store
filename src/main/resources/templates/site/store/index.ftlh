@@ -1,6 +1,6 @@
 <#import "../macro/main.ftlh" as main>
-<#import "../macro/slider.ftlh" as slider>
 <#import "../macro/product.ftlh" as product>
+<#import "../macro/pagination.ftlh" as pagination>
 
 <#assign links>
 
@@ -15,7 +15,7 @@
             </div>
         </div>
     </div>
-    <div class="shop-area pt-160 pb-160 container">
+    <form class="shop-area pt-160 pb-160 container" name="store" method="get" action="/store/index">
         <div class="row flex-row-reverse">
             <div class="col-lg-9">
                 <div class="tab-content">
@@ -45,12 +45,10 @@
                                     ></@product.detailCart>
                                 </#list>
                             </div>
-                            <div class="pro-pagination-style text-center mt-50">
-                                <ul>
-                                    <li><a class="active" href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#"><i class="icofont-long-arrow-right"></i></a></li>
-                                </ul>
+                            <div class="mt-50">
+                                <@pagination.template
+                                    page = productsPage
+                                ></@pagination.template>
                             </div>
                         </div>
                     </div>
@@ -73,7 +71,7 @@
                             <div id="slider-range"></div>
                             <div class="price-slider-amount">
                                 <div class="label-input">
-                                    <span>Цена: </span><input type="text" id="amount" name="price" placeholder="Введите стоимость" readonly/>
+                                    <span>Цена: </span><input type="text" id="amount" name="cost" placeholder="Введите стоимость" readonly/>
                                 </div>
                             </div>
                         </div>
@@ -100,7 +98,9 @@
                 </div>
             </div>
         </div>
-    </div>
+        <input type="hidden" name="page" value="${productsPage.number}">
+        <input type="hidden" name="category" value="${category.id}">
+    </form>
 </#assign>
 
 <#assign scripts>
@@ -111,7 +111,7 @@
             sliderrange.slider({
                 range: true,
                 min: 0,
-                max: ${maxCost},
+                max: ${maxCost?c},
                 values: [0, 300],
                 slide: function(event, ui) {
                     amountprice.val("₽" + ui.values[0] + " - ₽" + ui.values[1]);
@@ -121,6 +121,7 @@
                 " - ₽" + sliderrange.slider("values", 1));
         });
     </script>
+    <script src="/static/js/site/store/index.js"></script>
     <script src="/static/js/site/cart/addProductToCart.js"></script>
 </#assign>
 
