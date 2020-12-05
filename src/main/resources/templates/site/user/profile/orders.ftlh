@@ -1,4 +1,5 @@
 <#import "../../macro/main.ftlh" as main>
+<#import "../../../macro/security.ftlh" as security>
 
 <#assign body>
     <div class="my-account-wrapper bg-gray pt-160 pb-160">
@@ -14,6 +15,7 @@
                                     <a href="/user/profile/orders" class="active">Заказы</a>
                                     <a href="/user/profile/details">Профиль</a>
                                     <a href="/user/profile/reviews">Отзывы</a>
+                                    <#if security.isAdmin><a href="/admin">Админка</a></#if>
                                     <form action="/logout" method="post">
                                         <input type="hidden" name="_csrf" value="${_csrf.token}">
                                         <button>Выйти</button>

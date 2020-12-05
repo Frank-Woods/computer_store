@@ -92,8 +92,8 @@
                                     <#list manufacturers as m>
                                         <li>
                                             <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="manufacturer-1">
-                                                <label class="custom-control-label" for="manufacturer-1">
+                                                <input type="checkbox" class="custom-control-input" value="${m.id}" id="manufacturer-${m.id}" name="manufacturers">
+                                                <label class="custom-control-label" for="manufacturer-${m.id}">
                                                     ${m.name}
                                                 </label>
                                             </div>
@@ -103,6 +103,7 @@
                             </div>
                         </div>
                     </#if>
+                    <button>Показать</button>
                 </div>
             </div>
         </div>
@@ -120,7 +121,7 @@
                 range: true,
                 min: 0,
                 max: ${maxCost?c},
-                values: [0, 300],
+                values: [0, ${maxCost?c}],
                 slide: function(event, ui) {
                     amountprice.val("₽" + ui.values[0] + " - ₽" + ui.values[1]);
                 }

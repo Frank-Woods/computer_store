@@ -20,6 +20,7 @@
                                     <a href="/user/profile/orders">Заказы</a>
                                     <a href="/user/profile/details" class="active">Профиль</a>
                                     <a href="/user/profile/reviews">Отзывы</a>
+                                    <#if security.isAdmin><a href="/admin">Админка</a></#if>
                                     <form action="/logout" method="post">
                                         <input type="hidden" name="_csrf" value="${_csrf.token}">
                                         <button>Выйти</button>

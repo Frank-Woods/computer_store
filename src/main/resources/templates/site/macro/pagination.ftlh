@@ -1,10 +1,10 @@
 <#macro template page>
     <div class="row">
         <div class="col-sm-12 col-md-5">
-            <#assign startIndex = (page.totalElements == 0)?then(0, page.number * page.size + 1)>
-            <#assign delta = (1 <= page.totalElements / page.size / (page.number + 1))?then(page.size, page.totalElements % page.size)>
-            <#assign lastIndex = (page.totalElements == 0)?then(0, startIndex + delta - 1)>
-            <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">Показано от ${startIndex} до ${lastIndex} из ${page.totalElements}</div>
+            <#assign startIndex = (page.content?size == 0)?then(0, page.number * page.size + 1)>
+            <#assign delta = (1 <= page.content?size / page.size / (page.number + 1))?then(page.size, page.content?size % page.size)>
+            <#assign lastIndex = (page.content?size == 0)?then(0, startIndex + delta - 1)>
+            <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">Показано от ${startIndex} до ${lastIndex} из ${page.content?size}</div>
         </div>
         <div class="col-sm-12 col-md-7">
             <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
@@ -12,9 +12,9 @@
                     <li class="paginate_button page-item previous <#if page.pageable.getPageNumber() == 0>disabled</#if>">
                         <button class="page-link" <#if page.pageable.getPageNumber() == 0>disabled<#else>onclick="createPageInput(${page.pageable.getPageNumber() - 1})"</#if>>Предыдущая</button>
                     </li>
-                    <#assign lastPage = page.totalPages - 1>
+                    <#assign lastPage = (page.content?size / page.size)?ceiling - 1>
                     <#assign visiblePages = 7>
-                    <#assign currentPage = page.pageable.getPageNumber()>
+                    <#assign currentPage = page.number>
                     <#assign deltaLast = lastPage - currentPage>
                     <#if lastPage <= visiblePages>
                         <#list 0..lastPage as index>

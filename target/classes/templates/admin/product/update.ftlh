@@ -14,27 +14,27 @@
             <form name="update">
                 <div class="custom-input">
                     <div class="custom-input__settings">
-                        <span class="custom-input__settings__attributes">{"name":"name", "label":"Название", "defaultValue":${productData.name}}</span>
+                        <span class="custom-input__settings__attributes">{"name":"name", "label":"Название", "defaultValue":"${productData.name}"}</span>
                         <span class="custom-input__settings__validation">{"required": true}</span>
                     </div>
                 </div>
                 <div class="custom-textarea">
                     <div class="custom-textarea__settings">
-                        <span class="custom-textarea__settings__attributes">{"name":"description", "label":"Описание", "defaultValue":${productData.description}}</span>
+                        <span class="custom-textarea__settings__attributes">{"name":"description", "label":"Описание", "defaultValue":"${productData.description}"}</span>
                         <span class="custom-textarea__settings__validation">{"required":true}</span>
                     </div>
                 </div>
                 <div class="custom-select">
                     <div class="custom-select__settings">
                         <span class="custom-select__settings__attributes">{"name":"category", "label":"Категория", "itemVisibleValue":["name"], "defaultValue":{"id":${productData.category.id}, "name":"${productData.category.name}"}}</span>
-                        <span class="custom-select__settings__request">{"ajax":true, "url":"http://localhost:8080/admin/country/get/search"}</span>
+                        <span class="custom-select__settings__request">{"ajax":true, "url":"http://localhost:8080/admin/category/children/null"}</span>
                         <span class="custom-select__settings__validation">{"required":true}</span>
                     </div>
                 </div>
                 <div class="custom-select">
                     <div class="custom-select__settings">
                         <span class="custom-select__settings__attributes">{"name":"manufacturer", "label":"Производитель", "itemVisibleValue":["name"], "defaultValue":{"id":${productData.manufacturer.id}, "name":"${productData.manufacturer.name}"}}</span>
-                        <span class="custom-select__settings__request">{"ajax":true, "url":"http://localhost:8080/admin/country/get/search"}</span>
+                        <span class="custom-select__settings__request">{"ajax":true, "url":"http://localhost:8080/admin/manufacturer/get/search"}</span>
                         <span class="custom-select__settings__validation">{"required":true}</span>
                     </div>
                 </div>
