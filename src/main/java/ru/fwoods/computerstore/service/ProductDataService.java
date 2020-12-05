@@ -11,6 +11,8 @@ import ru.fwoods.computerstore.model.ProductDataCart;
 import ru.fwoods.computerstore.repository.ProductDataRepository;
 
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @Service
@@ -327,8 +329,24 @@ public class ProductDataService {
         }
     }
 
-    public Page<ProductData> getPageProductsByCategory(Long category, Pageable pageable) {
+    public Page<ProductData> getPageProductsByCategory(Long category, List<Long> manufacturers, String cost, Pageable pageable) {
         List<ProductData> productDataList = productDataRepository.getAllByCategoryId(category);
+
+        List<String> costs = new ArrayList<>();
+
+        Pattern pattern = Pattern.compile("(?<=Р)\\d*");
+        Matcher matcher = pattern.matcher(cost);
+        while (matcher.find()) {
+            costs.add(cost.substring(matcher.start(), matcher.end()));
+        }
+
+        Integer min = Integer.parseInt(costs.get(0));
+        Integer max = Integer.parseInt(costs.get(1));
+
+        productDataList = productDataList.stream().filter(productData ->
+                manufacturers.contains(productData.getManufacturer().getId()) && productData.getCost() >= min && productData.getCost() <= max
+        ).collect(Collectors.toList());
+
         return new PageImpl<>(productDataList, pageable, 0);
     }
 
