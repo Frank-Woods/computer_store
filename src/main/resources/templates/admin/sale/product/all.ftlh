@@ -9,7 +9,7 @@
 <#assign body>
     <div class="card shadow container p-0">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Все продажи</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Продукты продажи #${sale.id}</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -35,7 +35,7 @@
                         <#list saleProducts.getContent() as sp>
                             <tr>
                                 <td>${sp.id}</td>
-                                <td><a href="/store/product/${sp.productData.id}">${sp.productData.id}</a></td>
+                                <td><a href="/store/product/${sp.productData.id}" target="_blank">${sp.productData.id}</a></td>
                                 <td>${sp.statusSale.text}</td>
                                 <td class="dropdown no-arrow table-action">
                                     <a href="/admin/sale/product/update/${sp.id}" class="custom-button mt-0">Изменить</a>

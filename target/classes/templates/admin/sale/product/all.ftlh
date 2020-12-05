@@ -9,7 +9,7 @@
 <#assign body>
     <div class="card shadow container p-0">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Все продажи</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Продукты продажи #${sale.id}</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
