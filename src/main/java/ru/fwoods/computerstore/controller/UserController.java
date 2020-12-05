@@ -84,11 +84,13 @@ public class UserController {
     @PreAuthorize("hasAuthority('USER')")
     @GetMapping("/user/profile/orders/{id}")
     public String getSale(
+            @RequestParam(required = false, defaultValue = "0") Integer page,
             @AuthenticationPrincipal User user,
             Map<String, Object> model,
             @PathVariable Long id
     ) {
-        List<SaleProduct> sales = saleProductService.getSaleProductsBySale(id);
+        Pageable pageable = PageRequest.of(page, 15);
+        Page<SaleProduct> sales = saleProductService.getSaleProductsBySale(id, pageable);
         model.put("sales", sales);
         return "site/user/profile/orders";
     }
