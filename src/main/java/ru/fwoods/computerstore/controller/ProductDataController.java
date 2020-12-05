@@ -118,7 +118,11 @@ public class ProductDataController {
             products = productDataService.getProductDataCartPage(productDataService.getPageProductsByCategory(category, pageable));
             productCategory = productCategoryService.getCategoryById(category);
         }
+        Integer maxCost = productDataService.getMaxCostInCategory(category);
+        Set<Manufacturer> manufacturers = manufacturerService.getManufacturerInCategory(category);
 
+        model.put("maxCost", maxCost);
+        model.put("manufacturers", manufacturers);
         model.put("productsPage", products);
         model.put("category", productCategory);
         return "site/store/index";
