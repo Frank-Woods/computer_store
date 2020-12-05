@@ -122,7 +122,7 @@ public class ProductDataController {
         Integer maxCost = 0;
         Set<Manufacturer> manufacturersReturn = new HashSet<>();
 
-        if (products != null) {
+        if (products.getContent().size() != 0) {
             maxCost = productDataService.getMaxCostInCategory(category, manufacturers);
             manufacturersReturn = manufacturerService.getManufacturerInCategory(category);
         }

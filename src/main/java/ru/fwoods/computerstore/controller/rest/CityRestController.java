@@ -65,7 +65,6 @@ public class CityRestController {
         }
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping(value = "/admin/city/get/search")
     public ResponseEntity getCountrySearch(
             @RequestParam(required = false, defaultValue = "") String searchParam
