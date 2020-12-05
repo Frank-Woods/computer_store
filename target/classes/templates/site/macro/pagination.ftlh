@@ -1,7 +1,10 @@
 <#macro template page>
     <div class="row">
         <div class="col-sm-12 col-md-5">
-            <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">Показано от ${page.number * page.size + 1} до ${page.number * page.numberOfElements + page.numberOfElements} из ${page.totalElements}</div>
+            <#assign startIndex = (page.totalElements == 0)?then(0, page.number * page.size + 1)>
+            <#assign delta = (1 <= page.totalElements / page.size / (page.number + 1))?then(page.size, page.totalElements % page.size)>
+            <#assign lastIndex = (page.totalElements == 0)?then(0, startIndex + delta - 1)>
+            <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">Показано от ${startIndex} до ${lastIndex} из ${page.totalElements}</div>
         </div>
         <div class="col-sm-12 col-md-7">
             <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">

@@ -31,18 +31,26 @@
                         <div class="tab-content pt-30">
                             <div id="shop-1" class="tab-pane active">
                                 <div class="row">
+                                    <#assign startIndex = productsPage.number * productsPage.size>
+                                    <#assign lastIndex = startIndex + productsPage.size>
                                     <#list productsPage.getContent() as p>
-                                        <@product.indexCart
+                                        <#if startIndex <= p?index && p?index < lastIndex>
+                                            <@product.indexCart
                                             prod = p
-                                        ></@product.indexCart>
+                                            ></@product.indexCart>
+                                        </#if>
                                     </#list>
                                 </div>
                             </div>
                             <div id="shop-2" class="tab-pane ">
+                                <#assign startIndex = productsPage.number * productsPage.size>
+                                <#assign lastIndex = startIndex + productsPage.size>
                                 <#list productsPage.getContent() as p>
-                                    <@product.detailCart
+                                    <#if startIndex <= p?index && p?index < lastIndex>
+                                        <@product.detailCart
                                         prod = p
-                                    ></@product.detailCart>
+                                        ></@product.detailCart>
+                                    </#if>
                                 </#list>
                             </div>
                             <div class="mt-50">
