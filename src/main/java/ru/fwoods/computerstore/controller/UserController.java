@@ -85,12 +85,14 @@ public class UserController {
     @GetMapping("/user/profile/orders/{id}/product/all")
     public String getSale(
             @RequestParam(required = false, defaultValue = "0") Integer page,
-            @AuthenticationPrincipal User user,
             Map<String, Object> model,
             @PathVariable Long id
     ) {
         Pageable pageable = PageRequest.of(page, 15);
         Page<SaleProduct> sales = saleProductService.getSaleProductsBySale(id, pageable);
+        Sale sale = sales.getContent().get(0).getSale();
+
+        model.put("sale", sale);
         model.put("sales", sales);
         return "site/user/profile/orders/products";
     }
