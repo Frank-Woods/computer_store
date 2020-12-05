@@ -20,7 +20,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <a href="/cart/payment">Оплатить</a>
+                    <a href="/cart/payment" class="btn btn-outline-primary">Оплатить</a>
                 </div>
             </form>
         </div>
