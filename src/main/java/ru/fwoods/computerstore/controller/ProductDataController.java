@@ -114,17 +114,16 @@ public class ProductDataController {
         } else {
             pageable = PageRequest.of(page, 2);
         }
-        Page<ProductDataCart> products = null;
-        ProductCategory productCategory = null;
-        if (category != null) {
-            products = productDataService.getProductDataCartPage(productDataService.getPageProductsByCategory(category, manufacturers, cost, pageable));
-            productCategory = productCategoryService.getCategoryById(category);
-        }
-        Integer maxCost = productDataService.getMaxCostInCategory(category);
+
+        Page<ProductDataCart> products = productDataService.getProductDataCartPage(productDataService.getPageProductsByCategory(category, manufacturers, cost, pageable));
+        ProductCategory productCategory = productCategoryService.getCategoryById(category);
+
+        Integer maxCost = productDataService.getMaxCostInCategory(category, manufacturers);
         Set<Manufacturer> manufacturersReturn = manufacturerService.getManufacturerInCategory(category);
 
         model.put("maxCost", maxCost);
         model.put("manufacturers", manufacturersReturn);
+        model.put("selectedManufacturesrs", manufacturers);
         model.put("productsPage", products);
         model.put("category", productCategory);
         return "site/store/index";
