@@ -56,6 +56,7 @@ public class SaleService {
                 saleProduct.setSale(saleSaved);
                 saleProduct.setProductData(basket.getProductData());
                 saleProduct.setCost(basket.getProductData().getCost());
+                saleProduct.setStatusSale(StatusSale.PROCESSING);
                 saleProductService.save(saleProduct);
             }
 
