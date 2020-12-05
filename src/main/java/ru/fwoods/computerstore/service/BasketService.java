@@ -29,7 +29,7 @@ public class BasketService {
     @Autowired
     private UserService userService;
 
-    public Basket save(User user, CartProduct product) {
+    public CartProduct save(User user, CartProduct product) {
         List<Basket> baskets = basketRepository.getAllByUserId(user.getId());
 
         Basket basket = baskets.stream()
@@ -38,7 +38,9 @@ public class BasketService {
 
         basket.setCount(product.getCount());
 
-        return basketRepository.save(basket);
+        basketRepository.save(basket);
+
+        return product;
     }
 
     public List<CartProduct> getAllCartProduct(User user) {
