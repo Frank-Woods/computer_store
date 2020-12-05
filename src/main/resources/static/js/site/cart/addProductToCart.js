@@ -20,7 +20,7 @@ function addToLocalStorageCart(id, newCount = null) {
         if (newItem) {
             cart.push({
                 id: id,
-                count: count && count.value > 0 ? count.value : 1
+                count: 1
             });
             changeProduct(id);
 
@@ -45,13 +45,8 @@ function addToDatabaseCart(id, newCount = null) {
         document.getElementsByTagName('meta').namedItem('_csrf').content
     );
     request.onload = () => {
-        new Toast(ToastEvent.SUCCESS, 'Корзина', 'Продукт добавлен в корзину');
-        loadProductFromDataBaseByProducts([cart[cart.length - 1]])
-            .then(
-                data => {
-                    createProductMiniCart(data[0]);
-                }
-            )
+        //new Toast(ToastEvent.SUCCESS, 'Корзина', 'Продукт добавлен в корзину');
+        createProductMiniCart(JSON.parse(request.response));
         changeProduct(id);
     };
     const formData = new FormData();
