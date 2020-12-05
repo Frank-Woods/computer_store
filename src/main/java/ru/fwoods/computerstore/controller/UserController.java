@@ -82,7 +82,7 @@ public class UserController {
     }
 
     @PreAuthorize("hasAuthority('USER')")
-    @GetMapping("/user/profile/orders/{id}")
+    @GetMapping("/user/profile/orders/{id}/all")
     public String getSale(
             @RequestParam(required = false, defaultValue = "0") Integer page,
             @AuthenticationPrincipal User user,
@@ -92,7 +92,7 @@ public class UserController {
         Pageable pageable = PageRequest.of(page, 15);
         Page<SaleProduct> sales = saleProductService.getSaleProductsBySale(id, pageable);
         model.put("sales", sales);
-        return "site/user/profile/orders";
+        return "site/user/profile/orders/all";
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
