@@ -58,7 +58,7 @@
                             </div>
                         </div>
                         <div class="pro-details-price">
-                            <#if discountCost??>
+                            <#if discountCost != productData.cost>
                                 <span>${discountCost} ₽</span>
                                 <span class="old-price">${productData.cost} ₽</span>
                             <#else>

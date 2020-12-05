@@ -107,7 +107,7 @@
                             </div>
                         </div>
                     </#if>
-                    <button>Показать</button>
+                    <button class="mt-20 btn btn-primary">Показать</button>
                 </div>
             </div>
         </div>
