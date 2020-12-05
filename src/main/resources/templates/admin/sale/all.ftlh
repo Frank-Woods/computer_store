@@ -41,7 +41,7 @@
                                 <td>${sale.date}</td>
                                 <td>${sale.address}</td>
                                 <td class="dropdown no-arrow table-action">
-                                    <a href="/admin/sale" class="custom-button mt-0">Подробнее</a>
+                                    <a href="/admin/sale/${sale.id}/product/all" class="custom-button mt-0">Подробнее</a>
                                 </td>
                             </tr>
                         </#list>

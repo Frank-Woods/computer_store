@@ -17,31 +17,28 @@
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>Пользователь</th>
-                        <th>Дата</th>
-                        <th>Адрес</th>
+                        <th>Продукт</th>
+                        <th>Статус</th>
                         <th>Действия</th>
                     </tr>
                     </thead>
                     <tfoot>
                     <tr>
                         <th>#</th>
-                        <th>Пользователь</th>
-                        <th>Дата</th>
-                        <th>Адрес</th>
+                        <th>Продукт</th>
+                        <th>Статус</th>
                         <th>Действия</th>
                     </tr>
                     </tfoot>
                     <tbody>
-                    <#if 0 < salesPage.numberOfElements>
-                        <#list salesPage.getContent() as sale>
+                    <#if 0 < saleProducts.numberOfElements>
+                        <#list saleProducts.getContent() as sp>
                             <tr>
-                                <td>${sale.id}</td>
-                                <td>${sale.user.email}</td>
-                                <td>${sale.date}</td>
-                                <td>${sale.address}</td>
+                                <td>${sp.id}</td>
+                                <td><a href="/store/product/${sp.productData.id}">${sp.productData.id}</a></td>
+                                <td>${sp.status.text}</td>
                                 <td class="dropdown no-arrow table-action">
-                                    <a href="/admin/sale/${sale.id}/product/all" class="custom-button mt-0">Подробнее</a>
+                                    <a href="/admin/sale/product/update/${sp.id}" class="custom-button mt-0">Изменить</a>
                                 </td>
                             </tr>
                         </#list>
