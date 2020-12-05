@@ -334,8 +334,12 @@ public class ProductDataService {
 
     public Integer getMaxCostInCategory(Long category) {
         List<ProductData> productDataList = productDataRepository.getAllByCategoryId(category);
-        productDataList.sort(Comparator.comparingInt(ProductData::getCost));
-        return productDataList.get(0).getCost();
+        if (productDataList != null) {
+            productDataList.sort((o1, o2) -> o2.getCost() - o1.getCost());
+            return productDataList.get(0).getCost();
+        } else {
+            return 0;
+        }
     }
 
     public List<ProductData> getAllByCategoryId(Long category) {
