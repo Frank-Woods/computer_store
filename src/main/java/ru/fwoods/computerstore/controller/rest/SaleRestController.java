@@ -7,7 +7,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
-import ru.fwoods.computerstore.model.Sale;
 import ru.fwoods.computerstore.model.SaleProduct;
 import ru.fwoods.computerstore.service.SaleService;
 
