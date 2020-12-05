@@ -1,41 +1,43 @@
 function addToLocalStorageCart(id, newCount = null) {
-    const cart = JSON.parse(localStorage.getItem('cart'));
-    const count = document.getElementsByClassName('product-count')[0];
-    let newItem = true;
-    for (let cartItem of cart) {
-        if (cartItem.id === id) {
-            let countValue = 1;
-            if (newCount) {
-                countValue = newCount;
-            } else {
-                if (count && count.value > 0) countValue = count.value;
-                else if (cartItem.count) countValue = cartItem.count;
-            }
-            newItem = false;
-            cartItem.count = countValue
-            break;
-        }
-    }
-    if (newItem) {
-        cart.push({
-            id: id,
-            count: count && count.value > 0 ? count.value : 1
-        });
-        changeProduct(id);
-
-        loadProductFromDataBaseByProducts([cart[cart.length - 1]])
-            .then(
-                data => {
-                    createProductMiniCart(data[0]);
+    if (isAuthorized) {
+        addToDatabaseCart(id, newCount);
+    } else {
+        const cart = JSON.parse(localStorage.getItem('cart'));
+        let newItem = true;
+        for (let cartItem of cart) {
+            if (cartItem.id === id) {
+                let countValue = 1;
+                if (newCount) {
+                    countValue = newCount;
+                } else if (cartItem.count) {
+                    countValue = cartItem.count;
                 }
-            )
+                newItem = false;
+                cartItem.count = countValue
+                break;
+            }
+        }
+        if (newItem) {
+            cart.push({
+                id: id,
+                count: count && count.value > 0 ? count.value : 1
+            });
+            changeProduct(id);
 
-        new Toast(ToastEvent.SUCCESS, 'Корзина', 'Продукт добавлен в корзину');
+            loadProductFromDataBaseByProducts([cart[cart.length - 1]])
+                .then(
+                    data => {
+                        createProductMiniCart(data[0]);
+                    }
+                )
+
+            new Toast(ToastEvent.SUCCESS, 'Корзина', 'Продукт добавлен в корзину');
+        }
+        localStorage.setItem('cart', JSON.stringify(cart));
     }
-    localStorage.setItem('cart', JSON.stringify(cart));
 }
 
-function addToDatabaseCart(id) {
+function addToDatabaseCart(id, newCount = null) {
     const request = new XMLHttpRequest();
     request.open('post', '/basket/add/product', true);
     request.setRequestHeader(
@@ -44,11 +46,19 @@ function addToDatabaseCart(id) {
     );
     request.onload = () => {
         new Toast(ToastEvent.SUCCESS, 'Корзина', 'Продукт добавлен в корзину');
+        loadProductFromDataBaseByProducts([cart[cart.length - 1]])
+            .then(
+                data => {
+                    createProductMiniCart(data[0]);
+                }
+            )
         changeProduct(id);
     };
     const formData = new FormData();
     let countValue = 1;
-    //if (count && count.value > 0) countValue = count.value;
+    if (newCount) {
+        countValue = newCount;
+    }
     formData.append('product', new Blob([JSON.stringify({id: id, count: countValue})], {type: 'application/json'}));
     request.send(formData);
 }

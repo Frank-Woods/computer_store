@@ -1,6 +1,7 @@
 <#import "header.ftlh" as header>
 <#import "miniCart.ftlh" as miniCart>
 <#import "footer.ftlh" as footer>
+<#import "../../macro/security.ftlh" as security>
 
 <#macro template
     links = ""
@@ -60,6 +61,7 @@
 
     <@footer.template></@footer.template>
 
+    <script>const isAuthorized = ${security.isAuthorized};</script>
     <script src="/static/assets/js/vendor/modernizr-3.6.0.min.js"></script>
     <script src="/static/assets/js/vendor/jquery-3.5.1.min.js"></script>
     <script src="/static/assets/js/vendor/jquery-migrate-3.3.0.min.js"></script>
