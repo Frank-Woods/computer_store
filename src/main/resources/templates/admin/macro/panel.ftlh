@@ -131,6 +131,11 @@
                 <span>Рассылка</span></a>
         </li>
 
+        <li class="nav-item">
+            <a class="nav-link" href="/admin/user/all">
+                <span>Пользователи</span></a>
+        </li>
+
 
         <hr class="sidebar-divider d-none d-md-block">
 
