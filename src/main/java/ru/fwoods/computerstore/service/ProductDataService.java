@@ -341,7 +341,7 @@ public class ProductDataService {
         if (cost != null) {
             List<String> costs = new ArrayList<>();
 
-            Pattern pattern = Pattern.compile("(?<=Р)\\d*");
+            Pattern pattern = Pattern.compile("(?<=₽)\\d*");
             Matcher matcher = pattern.matcher(cost);
             while (matcher.find()) {
                 costs.add(cost.substring(matcher.start(), matcher.end()));
