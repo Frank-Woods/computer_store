@@ -1,6 +1,6 @@
-<#import "../macro/main.ftlh" as main>
-<#import "../../macro/pagination.ftlh" as pagination>
-<#import "../../macro/form.ftlh" as form>
+<#import "../../macro/main.ftlh" as main>
+<#import "../../../macro/pagination.ftlh" as pagination>
+<#import "../../../macro/form.ftlh" as form>
 
 <#assign links>
     <@form.links></@form.links>
@@ -36,7 +36,7 @@
                             <tr>
                                 <td>${sp.id}</td>
                                 <td><a href="/store/product/${sp.productData.id}">${sp.productData.id}</a></td>
-                                <td>${sp.status.text}</td>
+                                <td>${sp.statusSale.text}</td>
                                 <td class="dropdown no-arrow table-action">
                                     <a href="/admin/sale/product/update/${sp.id}" class="custom-button mt-0">Изменить</a>
                                 </td>
@@ -51,8 +51,8 @@
                 </table>
             </div>
             <@pagination.template
-            url = "/admin/sale/all"
-            page = salesPage
+            url = "/admin/sale/${sale.id}/product/all"
+            page = saleProducts
             ></@pagination.template>
         </div>
     </div>
