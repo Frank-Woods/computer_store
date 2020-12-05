@@ -57,7 +57,11 @@ public class SaleController {
     ) {
         Pageable pageable = PageRequest.of(page, 15);
         Page<SaleProduct> saleProducts = saleProductService.getSaleProductsBySale(id, pageable);
+
+        Sale sale = saleService.getSaleById(id);
+
         model.put("saleProducts", saleProducts);
+        model.put("sale", sale);
         model.put("statuses", StatusSale.values());
         return "admin/sale/product/all";
     }
