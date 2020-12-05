@@ -88,20 +88,31 @@ function createProductInCart(product) {
         tr.append(cartProduct, productPrice, cartQuality, totalPrice, productRemove);
         cartWrapper.append(tr);
 
-        var CartPlusMinus = $('.cart-plus-minus');
-        CartPlusMinus.prepend('<div class="dec qtybutton">-</div>');
-        CartPlusMinus.append('<div class="inc qtybutton">+</div>');
-        $(".qtybutton").on("click", function() {
+        var CartPlusMinus = $(divPlusMinus);
+
+        const dec = document.createElement('div');
+        dec.classList.add('dec', 'qtybutton');
+        dec.textContent = '-';
+
+        const inc = document.createElement('div');
+        inc.classList.add('inc', 'qtybutton');
+        inc.textContent = '+';
+
+        CartPlusMinus.prepend(dec);
+        CartPlusMinus.append(inc);
+        $([dec, inc]).on("click", function() {
             var $button = $(this);
             var oldValue = $button.parent().find("input").val();
             if ($button.text() === "+") {
                 var newVal = parseFloat(oldValue) + 1;
                 addToLocalStorageCart(product.id, newVal);
+                totalPriceSpan.textContent = costValue * newVal + '₽';
             } else {
                 // Don't allow decrementing below zero
                 if (oldValue > 1) {
                     var newVal = parseFloat(oldValue) - 1;
                     addToLocalStorageCart(product.id, newVal);
+                    totalPriceSpan.textContent = costValue * newVal + '₽';
                 } else {
                     newVal = 1;
                 }

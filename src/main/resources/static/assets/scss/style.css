@@ -12638,7 +12638,7 @@ textarea:focus {
     margin: 10px 0 12px;
   }
 }
-.product-wrap .product-action-wrap > .product-action-cart > button, .product-wrap .product-action-wrap > .product-action-cart > a {
+.product-wrap .product-action-wrap > .product-action-cart > div, .product-wrap .product-action-wrap > .product-action-cart > a {
   border: none;
   padding: 7px 32px 7px;
   background-color: #333333;
@@ -12646,26 +12646,27 @@ textarea:focus {
   font-weight: 500;
   font-size: 12px;
   position: relative;
+  cursor: pointer;
 }
-.product-wrap .product-action-wrap > .product-action-cart > button.padding-dec, .product-wrap .product-action-wrap > .product-action-cart > a.padding-dec {
+.product-wrap .product-action-wrap > .product-action-cart > div.padding-dec, .product-wrap .product-action-wrap > .product-action-cart > a.padding-dec {
   padding: 6px 20px 7px;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
-  .product-wrap .product-action-wrap > .product-action-cart > button, .product-wrap .product-action-wrap > .product-action-cart > a {
+  .product-wrap .product-action-wrap > .product-action-cart > div, .product-wrap .product-action-wrap > .product-action-cart > a {
     padding: 6px 22px;
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
-  .product-wrap .product-action-wrap > .product-action-cart > button, .product-wrap .product-action-wrap > .product-action-cart > a {
+  .product-wrap .product-action-wrap > .product-action-cart > div, .product-wrap .product-action-wrap > .product-action-cart > a {
     padding: 8px 22px;
   }
 }
 @media only screen and (max-width: 767px) {
-  .product-wrap .product-action-wrap > .product-action-cart > button, .product-wrap .product-action-wrap > .product-action-cart > a {
+  .product-wrap .product-action-wrap > .product-action-cart > div, .product-wrap .product-action-wrap > .product-action-cart > a {
     padding: 6px 22px;
   }
 }
-.product-wrap .product-action-wrap > .product-action-cart > button:hover, .product-wrap .product-action-wrap > .product-action-cart > a:hover {
+.product-wrap .product-action-wrap > .product-action-cart > div:hover, .product-wrap .product-action-wrap > .product-action-cart > a:hover {
   background-color: #0A1039;
 }
 .product-wrap .product-action-wrap > button {
