@@ -40,11 +40,11 @@ public class PromotionService {
     private String promotionUploadPath;
 
     public void deletePromotion(Long id) {
-        Promotion manufacturerDomain = promotionRepository.getOne(id);
-        List<Image> promotionImages = imageService.getImagesByManufacturerId(manufacturerDomain.getId());
+        Promotion promotion = promotionRepository.getOne(id);
+        List<Image> promotionImages = imageService.getImagesByPromotionId(promotion.getId());
 
-        promotionImages.forEach(manufacturerImage -> {
-            imageService.deleteManufacturerImage(manufacturerImage.getId());
+        promotionImages.forEach(promotionImage -> {
+            imageService.deletePromotionImage(promotionImage.getId());
         });
 
         promotionRepository.deleteById(id);
