@@ -1,6 +1,6 @@
-<#import "../macro/main.ftlh" as main>
-<#import "../../macro/pagination.ftlh" as pagination>
-<#import "../../macro/form.ftlh" as form>
+<#import "../../macro/main.ftlh" as main>
+<#import "../../../macro/pagination.ftlh" as pagination>
+<#import "../../../macro/form.ftlh" as form>
 
 <#assign links>
     <@form.links></@form.links>
@@ -9,7 +9,7 @@
 <#assign body>
     <div class="card shadow container p-0">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Все продажи</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Продукты продажи #${sale.id}</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -36,7 +36,7 @@
                             <tr>
                                 <td>${sp.id}</td>
                                 <td><a href="/store/product/${sp.productData.id}">${sp.productData.id}</a></td>
-                                <td>${sp.status.text}</td>
+                                <td>${sp.statusSale.text}</td>
                                 <td class="dropdown no-arrow table-action">
                                     <a href="/admin/sale/product/update/${sp.id}" class="custom-button mt-0">Изменить</a>
                                 </td>
@@ -51,8 +51,8 @@
                 </table>
             </div>
             <@pagination.template
-            url = "/admin/sale/all"
-            page = salesPage
+            url = "/admin/sale/${sale.id}/product/all"
+            page = saleProducts
             ></@pagination.template>
         </div>
     </div>
