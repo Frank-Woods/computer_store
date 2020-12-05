@@ -15,6 +15,7 @@ import ru.fwoods.computerstore.domain.*;
 import ru.fwoods.computerstore.model.ProductDataCart;
 import ru.fwoods.computerstore.service.*;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -118,12 +119,17 @@ public class ProductDataController {
         Page<ProductDataCart> products = productDataService.getProductDataCartPage(productDataService.getPageProductsByCategory(category, manufacturers, cost, pageable));
         ProductCategory productCategory = productCategoryService.getCategoryById(category);
 
-        Integer maxCost = productDataService.getMaxCostInCategory(category, manufacturers);
-        Set<Manufacturer> manufacturersReturn = manufacturerService.getManufacturerInCategory(category);
+        Integer maxCost = 0;
+        Set<Manufacturer> manufacturersReturn = new HashSet<>();
+
+        if (products != null) {
+            maxCost = productDataService.getMaxCostInCategory(category, manufacturers);
+            manufacturersReturn = manufacturerService.getManufacturerInCategory(category);
+        }
 
         model.put("maxCost", maxCost);
         model.put("manufacturers", manufacturersReturn);
-        model.put("selectedManufacturesrs", manufacturers);
+        model.put("selectedManufacturers", manufacturers);
         model.put("productsPage", products);
         model.put("category", productCategory);
         return "site/store/index";

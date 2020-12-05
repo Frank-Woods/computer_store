@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ru.fwoods.computerstore.domain.Sale;
+import ru.fwoods.computerstore.domain.User;
 import ru.fwoods.computerstore.repository.SaleRepository;
 
 @Service
@@ -22,5 +23,9 @@ public class SaleService {
 
     public Page<Sale> getSalesPageByUser(Long id, Pageable pageable) {
         return saleRepository.getAllByUserId(id, pageable);
+    }
+
+    public void sale(User user, String address) {
+
     }
 }

@@ -85,7 +85,7 @@ public class User implements UserDetails {
     )
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @Enumerated(EnumType.ORDINAL)
-    private Set<Role> roles;
+    private List<Role> roles;
 
     @ManyToOne(
             fetch = FetchType.EAGER
@@ -190,11 +190,11 @@ public class User implements UserDetails {
         this.registrationDate = registrationDate;
     }
 
-    public Set<Role> getRoles() {
+    public List<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
+    public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
 

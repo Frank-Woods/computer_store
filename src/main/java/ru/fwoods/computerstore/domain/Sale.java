@@ -22,6 +22,12 @@ public class Sale {
     )
     private LocalDateTime date;
 
+    @Column(
+            name = "address",
+            nullable = false
+    )
+    private String address;
+
     @ManyToOne(
             fetch = FetchType.EAGER
     )
@@ -42,6 +48,14 @@ public class Sale {
 
     public void setDate(LocalDateTime date) {
         this.date = date;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public User getUser() {
