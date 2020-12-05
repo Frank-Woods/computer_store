@@ -49,6 +49,7 @@ public class AdminController {
         return "admin/index";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/country/all")
     public String getCountriesPage(
             @RequestParam(required = false, defaultValue = "0") Integer page,
@@ -60,6 +61,7 @@ public class AdminController {
         return "admin/country/all";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/city/all")
     public String getCitiesPage(
             @RequestParam(required = false, defaultValue = "0") Integer page,
@@ -71,6 +73,7 @@ public class AdminController {
         return "admin/city/all";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/manufacturer/all")
     public String getManufacturersPage(
             @RequestParam(required = false, defaultValue = "0") Integer page,
@@ -82,6 +85,7 @@ public class AdminController {
         return "admin/manufacturer/all";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/category/all")
     public String getCategoriesPage(
             @RequestParam(required = false, defaultValue = "0") Integer page,
@@ -93,6 +97,7 @@ public class AdminController {
         return "admin/category/all";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/sale/all")
     public String getSalesPage(
             @RequestParam(required = false, defaultValue = "0") Integer page,
@@ -104,6 +109,7 @@ public class AdminController {
         return "admin/sale/all";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/product/all")
     public String getProductsPage(
             @RequestParam(required = false, defaultValue = "0") Integer page,
@@ -115,6 +121,7 @@ public class AdminController {
         return "admin/product/all";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/promotion/all")
     public String getPromotionsPage(
             @RequestParam(required = false, defaultValue = "0") Integer page,
@@ -126,6 +133,7 @@ public class AdminController {
         return "admin/promotion/all";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/user/all")
     public String getUsers(
             @RequestParam(required = false, defaultValue = "0") Integer page,
@@ -137,6 +145,7 @@ public class AdminController {
         return "admin/user/all";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/review/all")
     public String getReviewsPage(
             @RequestParam(required = false, defaultValue = "0") Integer page,

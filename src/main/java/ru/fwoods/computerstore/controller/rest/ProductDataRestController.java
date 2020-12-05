@@ -24,6 +24,7 @@ public class ProductDataRestController {
     @Autowired
     private ControllerUtils controllerUtils;
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping(value = "/admin/product/get/search")
     public ResponseEntity getProductDataSearch(
             @RequestParam(required = false, defaultValue = "") String searchParam
@@ -32,6 +33,7 @@ public class ProductDataRestController {
         return ResponseEntity.ok().body(productDataList);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping(value = "/admin/product/create", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity createProduct(
             @RequestPart(name = "product", required = false) @Validated ru.fwoods.computerstore.model.ProductData productData,
@@ -46,6 +48,7 @@ public class ProductDataRestController {
         return ResponseEntity.ok().body(null);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping(value = "/admin/product/update", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity updateProduct(
             @RequestPart(name = "product", required = false) @Validated ru.fwoods.computerstore.model.ProductData productData,

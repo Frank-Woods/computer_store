@@ -36,6 +36,7 @@ public class UserController {
     @Autowired
     private SaleProductService saleProductService;
 
+    @PreAuthorize("hasAuthority('USER')")
     @GetMapping("/user/profile/details")
     public String getUserProfilePage(Map<String, Object> model) {
         List<City> cities = cityService.getAllCities();
@@ -43,6 +44,7 @@ public class UserController {
         return "site/user/profile/details";
     }
 
+    @PreAuthorize("hasAuthority('USER')")
     @GetMapping("/user/profile/reviews")
     public String getReviews(
             @AuthenticationPrincipal User user,
@@ -55,6 +57,7 @@ public class UserController {
         return "site/user/profile/reviews";
     }
 
+    @PreAuthorize("hasAuthority('USER')")
     @GetMapping("/user/profile/reviews/{id}")
     public String getReview(
             @PathVariable Long id,
@@ -65,6 +68,7 @@ public class UserController {
         return "site/user/profile/review";
     }
 
+    @PreAuthorize("hasAuthority('USER')")
     @GetMapping("/user/profile/orders")
     public String getSales(
             @AuthenticationPrincipal User user,
@@ -77,6 +81,7 @@ public class UserController {
         return "site/user/profile/orders";
     }
 
+    @PreAuthorize("hasAuthority('USER')")
     @GetMapping("/user/profile/orders/{id}")
     public String getSale(
             @AuthenticationPrincipal User user,
@@ -88,6 +93,7 @@ public class UserController {
         return "site/user/profile/orders";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/admin/user/add")
     public String addAdmin(
             @RequestParam(name = "id") Long id
@@ -96,6 +102,7 @@ public class UserController {
         return "redirect:/admin/user/all";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/admin/user/dismiss")
     public String deleteAdmin(
             @RequestParam(name = "id") Long id

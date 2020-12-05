@@ -22,6 +22,7 @@ public class ReviewController {
     @Autowired
     private ReviewService reviewService;
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/admin/review/update/{id}")
     public String confirmationReview(
             @PathVariable Long id,

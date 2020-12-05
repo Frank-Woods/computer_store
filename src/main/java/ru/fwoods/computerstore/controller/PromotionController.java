@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,11 +37,13 @@ public class PromotionController {
     @Autowired
     private ProductDataService productDataService;
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/admin/promotion/create")
     public String getPromotionPage() {
         return "admin/promotion/create";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/admin/promotion/update/{id}")
     public String getPromotionUpdatePage(
             @PathVariable Long id,
@@ -53,6 +56,7 @@ public class PromotionController {
         return "admin/promotion/update";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/admin/promotion/{id}/product/all")
     public String getPromotionProductPage(
             @RequestParam(required = false, defaultValue = "0") Integer page,
@@ -68,6 +72,7 @@ public class PromotionController {
         return "admin/promotion/product/all";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/admin/promotion/{id}/product/create")
     public String getPromotionProductCreate(
             @PathVariable Long id,
@@ -79,6 +84,7 @@ public class PromotionController {
         return "admin/promotion/product/create";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/admin/promotion/{promotionId}/product/update/{id}")
     public String getPromotionProductUpdate(
             @PathVariable Long promotionId,

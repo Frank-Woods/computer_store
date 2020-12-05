@@ -16,11 +16,13 @@ public class CountryController {
     @Autowired
     private CountryService countryService;
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/admin/country/create")
     public String getCountriesCreate() {
         return "admin/country/create";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/admin/country/update/{id}")
     public String getCountriesUpdate(
             @PathVariable Long id,

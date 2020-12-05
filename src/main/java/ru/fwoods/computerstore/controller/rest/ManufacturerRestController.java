@@ -30,6 +30,7 @@ public class ManufacturerRestController {
     @Autowired
     private ControllerUtils controllerUtils;
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping(value = "/admin/manufacturer/get/search")
     public ResponseEntity getManufacturerSearch(
             @RequestParam(required = false, defaultValue = "") String searchParam
@@ -38,6 +39,7 @@ public class ManufacturerRestController {
         return ResponseEntity.ok().body(manufacturerList);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping(value = "/admin/manufacturer/create", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity createManufacturer(
             @RequestPart(name = "manufacturer", required = false) @Validated Manufacturer manufacturer,
@@ -52,6 +54,7 @@ public class ManufacturerRestController {
         return ResponseEntity.ok().body(null);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping(value = "/admin/manufacturer/update", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity updateManufacturer(
             @RequestPart(name = "manufacturer", required = false) @Validated Manufacturer manufacturer,
@@ -66,6 +69,7 @@ public class ManufacturerRestController {
         return ResponseEntity.ok().body(null);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping(value = "/admin/manufacturer/delete")
     public ResponseEntity<Map<String, String>> deleteManufacturer(@RequestPart(name = "manufacturer") IdWrapper idWrapper) {
         try {
