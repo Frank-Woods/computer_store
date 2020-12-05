@@ -10,9 +10,9 @@ public class TestController {
     public String test() {
         return "site/cart/index";
     }
-
-    @GetMapping("/cart/payment")
-    public String test2() {
-        return "site/cart/payment";
-    }
+//
+//    @GetMapping("/cart/payment")
+//    public String test2() {
+//        return "site/cart/payment";
+//    }
 }

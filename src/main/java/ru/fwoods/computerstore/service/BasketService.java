@@ -112,6 +112,8 @@ public class BasketService {
                     discountPrice = productData.getCost() * promotionProduct.getDiscount() / 100;
                     productDataCart.setDiscount(promotionProduct.getDiscount());
                 }
+            } else {
+                productDataCart.setDiscount(0);
             }
             productDataCart.setDiscountCost(discountPrice);
 
