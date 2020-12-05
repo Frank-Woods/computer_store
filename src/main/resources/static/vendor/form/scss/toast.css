@@ -23,18 +23,18 @@
   width: 100%;
   max-height: 200px;
   min-height: 100px;
-  background-color: #23242d;
-  border-radius: 0.25rem;
-  border: 1px solid #181924;
-  color: rgba(255, 255, 255, 0.75);
+  background-color: #4e73df;
+  border-radius: .25rem;
+  border: 1px solid #f8f9fc;
+  color: rgba(255, 255, 255, .75);
 }
 .custom-toasts__item:not(:first-of-type) {
   margin-top: 1rem;
 }
 .custom-toasts__item__header {
   width: 100%;
-  background-color: #20202a;
-  border-bottom: 1px solid #181924;
+  background-color: #2a52c4;
+  border-bottom: 1px solid #e3e6f0;
   padding: 0.5rem 0.75rem;
   display: flex;
   align-items: center;
