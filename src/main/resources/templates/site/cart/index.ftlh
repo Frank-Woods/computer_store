@@ -9,11 +9,11 @@
                         <table class="w-100">
                             <thead>
                             <tr>
-                                <th>Product</th>
-                                <th class="th-text-center">Price</th>
-                                <th class="th-text-center">Quantity</th>
-                                <th class="th-text-center">Total Prce</th>
-                                <th class="th-text-center">Remove</th>
+                                <th class="font-weight-bold">Продукт</th>
+                                <th class="th-text-center font-weight-bold">Стоимость</th>
+                                <th class="th-text-center font-weight-bold">Количество</th>
+                                <th class="th-text-center font-weight-bold">Итого</th>
+                                <th class="th-text-center font-weight-bold">Удалить</th>
                             </tr>
                             </thead>
                             <tbody class="cart-product-wrapper">
