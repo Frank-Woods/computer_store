@@ -17,7 +17,8 @@ class Input {
             multiple: attributes && attributes.multiple ? attributes.multiple : false,
             accept: attributes && attributes.accept ? attributes.accept : null,
             files: attributes && attributes.files ? attributes.files : null,
-            controllers: attributes && attributes.controllers ? attributes.controllers : false
+            controllers: attributes && attributes.controllers ? attributes.controllers : false,
+            onChangeValue: attributes && attributes.onChangeValue ? attributes.onChangeValue : null
         }
         this.validation = new Validation(form, validation);
 
@@ -76,6 +77,9 @@ class Input {
 
     inputChange(e) {
         this.removeError();
+        if (this.attributes.onChangeValue) {
+            this.attributes.onChangeValue(this.getValue());
+        }
     }
 
     linkingNodes() {

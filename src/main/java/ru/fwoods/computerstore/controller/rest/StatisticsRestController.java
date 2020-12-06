@@ -1,6 +1,7 @@
 package ru.fwoods.computerstore.controller.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,9 +18,9 @@ public class StatisticsRestController {
     private StatisticsService statisticsService;
 
     @PostMapping(value = "/statistics/get")
-    public List<Statistics> getStatistics(
+    public ResponseEntity getStatistics(
             @RequestPart(name = "dates") DateStatistics dateStatistics
     ) {
-        return statisticsService.getStatistics(dateStatistics);
+        return ResponseEntity.ok().body(statisticsService.getStatistics(dateStatistics));
     }
 }

@@ -76,7 +76,7 @@ public class SaleService {
         saleProductService.save(saleProductDomain);
     }
 
-    public List<Sale> getSalesByDate(DateStatistics dateStatistics) {
-        return saleRepository.getSalesByDate(dateStatistics.getStart(), dateStatistics.getEnd());
-    }
+//    public List<Sale> getSalesByDate(DateStatistics dateStatistics) {
+//        return saleRepository.getSalesByDate(dateStatistics.getStart(), dateStatistics.getEnd());
+//    }
 }

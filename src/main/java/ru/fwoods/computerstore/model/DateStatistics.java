@@ -1,12 +1,11 @@
 package ru.fwoods.computerstore.model;
 
+import java.sql.Date;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 public class DateStatistics {
 
     LocalDateTime start;
-
     LocalDateTime end;
 
     public LocalDateTime getStart() {
