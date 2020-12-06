@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "sale")
@@ -33,6 +34,9 @@ public class Sale {
     )
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
+    @OneToMany(mappedBy = "sale")
+    private List<SaleProduct> saleProductList;
 
     public Long getId() {
         return id;
@@ -64,5 +68,13 @@ public class Sale {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<SaleProduct> getSaleProductList() {
+        return saleProductList;
+    }
+
+    public void setSaleProductList(List<SaleProduct> saleProductList) {
+        this.saleProductList = saleProductList;
     }
 }

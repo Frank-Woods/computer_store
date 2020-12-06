@@ -5,10 +5,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ru.fwoods.computerstore.domain.*;
+import ru.fwoods.computerstore.model.DateStatistics;
 import ru.fwoods.computerstore.repository.SaleRepository;
 import ru.fwoods.computerstore.repository.UserRepository;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -72,5 +74,9 @@ public class SaleService {
             }
         }
         saleProductService.save(saleProductDomain);
+    }
+
+    public List<Sale> getSalesByDate(DateStatistics dateStatistics) {
+        return saleRepository.getSalesByDate(dateStatistics.getStart(), dateStatistics.getEnd());
     }
 }
